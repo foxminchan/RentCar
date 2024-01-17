@@ -3,7 +3,7 @@
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-
+using RentCar.Core.Entities;
 using RentCar.Core.Identity;
 
 namespace RentCar.Infrastructure.Data;
@@ -11,6 +11,8 @@ namespace RentCar.Infrastructure.Data;
 public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
     : IdentityDbContext<ApplicationUser>(options), IDatabaseFacade
 {
+    public DbSet<Vehicle> Vehicles { get; set; } = default!;
+
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);

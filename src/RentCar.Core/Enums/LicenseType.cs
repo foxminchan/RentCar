@@ -3,7 +3,7 @@
 
 using Ardalis.SmartEnum;
 
-namespace RentCar.Core.Constant;
+namespace RentCar.Core.Enums;
 
 public sealed class LicenseType(string name, int value) : SmartEnum<LicenseType>(name, value)
 {

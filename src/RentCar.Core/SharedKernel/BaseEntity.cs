@@ -7,7 +7,7 @@ namespace RentCar.Core.SharedKernel;
 
 public abstract class BaseEntity
 {
-    public Ulid Id { get; set; }
+    public Ulid Id { get; set; } = Ulid.NewUlid();
 
     private readonly List<BaseEvent> _domainEvents = [];
 

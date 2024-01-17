@@ -2,7 +2,8 @@
 // Licensed under the MIT License
 
 using Microsoft.AspNetCore.Identity;
-using RentCar.Core.Constant;
+
+using RentCar.Core.Enums;
 using RentCar.Core.ValueObjects;
 
 namespace RentCar.Core.Identity;

@@ -1,5 +1,15 @@
-﻿namespace RentCar.Core.Entities;
+﻿using RentCar.Core.Enums;
+using RentCar.Core.Interfaces;
+using RentCar.Core.SharedKernel;
 
-public sealed class Vehicle
+namespace RentCar.Core.Entities;
+
+public sealed class Vehicle : BaseEntity, IAggregateRoot
 {
+    public string? Name { get; set; }
+    public string? Brand { get; set; }
+    public string? Color { get; set; }
+    public string? Plate { get; set; }
+    public VehicleType? Type { get; set; }
+    public string? Image { get; set; }
 }
