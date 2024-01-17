@@ -1,4 +1,7 @@
-﻿using System.Text.Json;
+﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
+// Licensed under the MIT License
+
+using System.Text.Json;
 
 namespace RentCar.Core.SharedKernel;
 

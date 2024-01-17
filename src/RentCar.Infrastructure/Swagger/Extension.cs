@@ -1,8 +1,6 @@
 ﻿using MicroElements.Swashbuckle.FluentValidation.AspNetCore;
-
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Options;
-
 using Swashbuckle.AspNetCore.SwaggerGen;
 
 namespace RentCar.Infrastructure.Swagger;

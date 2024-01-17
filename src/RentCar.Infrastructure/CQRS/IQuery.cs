@@ -5,6 +5,4 @@ using MediatR;
 
 namespace RentCar.Infrastructure.CQRS;
 
-public interface IQuery<out TResponse> : IRequest<TResponse>
-{
-}
+public interface IQuery<out TResponse> : IRequest<TResponse>;
