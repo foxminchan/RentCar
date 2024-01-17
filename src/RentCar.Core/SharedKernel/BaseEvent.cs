@@ -5,6 +5,4 @@ using MediatR;
 
 namespace RentCar.Core.SharedKernel;
 
-public abstract class BaseEvent : INotification
-{
-}
+public abstract class BaseEvent : INotification;

@@ -1,3 +1,3 @@
 ﻿namespace RentCar.Core.Interfaces;
 
-public interface IAggregateRoot { }
+public interface IAggregateRoot;

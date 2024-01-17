@@ -3,6 +3,4 @@
 
 namespace RentCar.Core.Interfaces;
 
-public interface ITransactionRequest
-{
-}
+public interface ITransactionRequest;
