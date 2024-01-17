@@ -1,12 +1,8 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
+// Licensed under the MIT License
 
-namespace RentCar.Infrastructure.Data
+namespace RentCar.Infrastructure.Data;
+
+internal class Extension
 {
-    internal class Extension
-    {
-    }
 }
