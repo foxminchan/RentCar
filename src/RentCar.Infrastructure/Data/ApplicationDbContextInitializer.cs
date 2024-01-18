@@ -1,7 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
+﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
+// Licensed under the MIT License
+
+using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
-
 using RentCar.Core.Constants;
 using RentCar.Core.Identity;
 
@@ -59,7 +61,7 @@ public sealed class ApplicationDbContextInitializer(
         var result = await userManager.CreateAsync(example, password);
 
         if (!result.Succeeded)
-            throw new Exception(string.Join("\n", result.Errors));
+            throw new(string.Join("\n", result.Errors));
 
         var admin = new IdentityRole(Roles.Admin);
         var customer = new IdentityRole(Roles.Customer);

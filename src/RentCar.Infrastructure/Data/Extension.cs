@@ -37,10 +37,12 @@ public static class Extension
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Development)
-                options.EnableDetailedErrors()
+                options
+                    .EnableDetailedErrors()
                     .EnableSensitiveDataLogging();
         });
 
+        services.AddScoped<ApplicationDbContextInitializer>();
         services.AddScoped<IDatabaseFacade>(p => p.GetRequiredService<ApplicationDbContext>());
 
         return services;

@@ -1,9 +1,13 @@
 {
-  "name": "RentCar",
+  "name": "rent-car",
   "version": "1.0.0",
-  "description": "",
-  "keywords": [],
-  "author": "",
+  "description": "Streamlined car rental management, including reservation, fleet admin, and payment features",
+  "keywords": [
+    "car",
+    "rental",
+    "management"
+  ],
+  "author": "Nguyen Xuan Nhan",
   "license": "MIT",
   "devDependencies": {
     "@commitlint/cli": "^18.4.4",

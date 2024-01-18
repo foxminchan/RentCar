@@ -5,7 +5,7 @@ using RentCar.Core.SharedKernel;
 
 namespace RentCar.Core.Events.Vehicle;
 
-public sealed class VehicleDeleteEvent(Ulid id) : BaseEvent
+public sealed class VehicleDeletedEvent(Ulid id) : BaseEvent
 {
     public Ulid Id { get; } = id;
 }

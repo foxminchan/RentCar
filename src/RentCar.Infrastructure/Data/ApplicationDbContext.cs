@@ -13,6 +13,7 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
     : IdentityDbContext<ApplicationUser>(options), IDatabaseFacade
 {
     public DbSet<Vehicle> Vehicles => Set<Vehicle>();
+    public DbSet<Rental> Rentals => Set<Rental>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
