@@ -11,7 +11,9 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Vehicle\" />
+    <Folder Include="Vehicle\Commands\CreateVehicleCommand\" />
+    <Folder Include="Vehicle\EventHandlers\" />
+    <Folder Include="Vehicle\Queries\" />
   </ItemGroup>
 
 </Project>
