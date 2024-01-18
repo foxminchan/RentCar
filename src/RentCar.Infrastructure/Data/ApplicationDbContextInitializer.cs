@@ -2,6 +2,7 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Logging;
 
+using RentCar.Core.Constants;
 using RentCar.Core.Identity;
 
 namespace RentCar.Infrastructure.Data;
@@ -59,5 +60,13 @@ public sealed class ApplicationDbContextInitializer(
 
         if (!result.Succeeded)
             throw new Exception(string.Join("\n", result.Errors));
+
+        var admin = new IdentityRole(Roles.Admin);
+        var customer = new IdentityRole(Roles.Customer);
+
+        await roleManager.CreateAsync(admin);
+        await roleManager.CreateAsync(customer);
+
+        await userManager.AddToRoleAsync(example, Roles.Admin);
     }
 }

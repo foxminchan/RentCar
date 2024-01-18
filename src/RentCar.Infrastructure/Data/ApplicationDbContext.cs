@@ -5,17 +5,21 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RentCar.Core.Entities;
 using RentCar.Core.Identity;
+using SmartEnum.EFCore;
 
 namespace RentCar.Infrastructure.Data;
 
 public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
     : IdentityDbContext<ApplicationUser>(options), IDatabaseFacade
 {
-    public DbSet<Vehicle> Vehicles { get; set; } = default!;
+    public DbSet<Vehicle> Vehicles => Set<Vehicle>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {
         base.OnModelCreating(builder);
         builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
+
+    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
+        => configurationBuilder.ConfigureSmartEnum();
 }

@@ -45,7 +45,7 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Versioning\" />
+      <Folder Include="NewFolder\" />
     </ItemGroup>
 
 </Project>
