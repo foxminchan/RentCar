@@ -2,6 +2,7 @@
 // Licensed under the MIT License
 
 using Microsoft.AspNetCore.Identity;
+using RentCar.Core.Entities;
 using RentCar.Core.Enums;
 using RentCar.Core.ValueObjects;
 
@@ -16,4 +17,5 @@ public class ApplicationUser : IdentityUser
     [PersonalData] public virtual string? LicenseId { get; set; }
     [PersonalData] public virtual LicenseType LicenseType { get; set; } = LicenseType.A1;
     [PersonalData] public virtual DateOnly DateOfBirth { get; set; }
+    public ICollection<Rental> Rentals { get; set; } = new List<Rental>();
 }
