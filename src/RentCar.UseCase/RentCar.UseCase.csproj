@@ -6,8 +6,10 @@
         <ImplicitUsings>enable</ImplicitUsings>
         <InvariantGlobalization>true</InvariantGlobalization>
         <PublishAot>true</PublishAot>
-        <DockerDefaultTargetOS>Linux</DockerDefaultTargetOS>
-        <DockerfileContext>.</DockerfileContext>
+        <OutputType>Exe</OutputType>
+        <RootNamespace>RentcarApi</RootNamespace>
+        <ContainerRepository>rentcar-api</ContainerRepository>
+        <ContainerImageTag>latest</ContainerImageTag>
     </PropertyGroup>
 
     <ItemGroup>

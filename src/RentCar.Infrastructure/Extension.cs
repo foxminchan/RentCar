@@ -13,6 +13,7 @@ using RentCar.Infrastructure.Filters;
 using RentCar.Infrastructure.HealthCheck;
 using RentCar.Infrastructure.Logging;
 using RentCar.Infrastructure.Swagger;
+using RentCar.Infrastructure.Versioning;
 
 namespace RentCar.Infrastructure;
 
@@ -21,6 +22,7 @@ public static class Extension
     public static void AddInfrastructure(this IServiceCollection services, WebApplicationBuilder builder)
     {
         builder.AddHealthCheck();
+        builder.AddApiVersioning();
         builder.AddSerilog(builder.Environment.ApplicationName);
 
         builder.WebHost.ConfigureKestrel(options =>

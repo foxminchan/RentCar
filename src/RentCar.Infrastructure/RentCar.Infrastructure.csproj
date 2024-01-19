@@ -28,7 +28,7 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Serilog.AspNetCore" Version="8.0.0" />
+        <PackageReference Include="Serilog.AspNetCore" Version="8.0.1" />
         <PackageReference Include="Serilog.Exceptions" Version="8.4.0" />
         <PackageReference Include="Serilog.Sinks.Async" Version="1.5.0" />
     </ItemGroup>
@@ -39,13 +39,6 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Ardalis.GuardClauses" Version="4.3.0" />
-        <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="8.0.0" />
-        <PackageReference Include="Ardalis.Specification" Version="8.0.0" />
-        <PackageReference Include="Ardalis.Result.AspNetCore" Version="7.2.0" />
-    </ItemGroup>
-
-    <ItemGroup>
         <PackageReference Include="AspNetCore.HealthChecks.NpgSql" Version="8.0.0" />
         <PackageReference Include="AspNetCore.HealthChecks.UI" Version="8.0.0" />
         <PackageReference Include="AspNetCore.HealthChecks.UI.Client" Version="8.0.0" />
@@ -53,7 +46,15 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Versioning\" />
+        <PackageReference Include="OpenTelemetry.Instrumentation.EntityFrameworkCore" Version="1.0.0-beta.7" />
+        <PackageReference Include="OpenTelemetry.Exporter.Prometheus.AspNetCore" Version="1.4.0-rc.3" />
+        <PackageReference Include="OpenTelemetry.Exporter.OpenTelemetryProtocol" Version="1.7.0" />
+        <PackageReference Include="OpenTelemetry.Extensions.Hosting" Version="1.7.0" />
+    </ItemGroup>    
+
+    <ItemGroup>
+        <Folder Include="OpenTelemetry\" />
+        <Folder Include="Versioning\" />
     </ItemGroup>
 
 </Project>

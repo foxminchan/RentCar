@@ -11,8 +11,11 @@ using RentCar.Infrastructure;
 using RentCar.UseCase.Extensions;
 using System.IO.Compression;
 using System.Net.Mime;
+using RentCar.Infrastructure.OpenTelemetry;
 
 var builder = WebApplication.CreateSlimBuilder(args);
+
+builder.AddOpenTelemetry();
 
 builder.Services.AddRateLimiting();
 
@@ -72,5 +75,6 @@ app
 
 await app.UseWebInfrastructureAsync();
 
-app.Run();
+app.MapPrometheusScrapingEndpoint();
 
+app.Run();

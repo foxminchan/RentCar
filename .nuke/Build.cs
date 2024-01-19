@@ -35,7 +35,7 @@ class Build : NukeBuild
     const string TestWithCoverageSupportProjectPostfix = "*.UseCase.Tests";
     const string CoverageFolderName = "coverage";
     string CoveragePrefix => $"{CoverageFolderName}.*";
-    string CoverageReportFile => $"coverage.xml";
+    string CoverageReportFile => "coverage.xml";
 
     Target Init => d => d
         .Executes(() => NpmTasks.NpmCi());
@@ -111,6 +111,9 @@ class Build : NukeBuild
                     .SetExcludeByFile("**/Migrations/*.cs%2C**/Function/*.cs")
                     .SetNoRestore(true)
                 )));
+
+    Target Ci => d => d
+        .DependsOn(Init, Lint, TestWithCoverage);
 
     Target GenerateHtmlTestReport => d => d
         .DependsOn(TestWithCoverage)

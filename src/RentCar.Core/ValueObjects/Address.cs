@@ -17,21 +17,18 @@ public class Address : ValueObject
         string? street,
         string? ward,
         string? city,
-        string? province,
-        string? zipCode)
+        string? province)
     {
         Street = street;
         Ward = ward;
         City = city;
         Province = province;
-        ZipCode = zipCode;
     }
 
     public string? Street { get; set; }
     public string? Ward { get; set; }
     public string? City { get; set; }
     public string? Province { get; set; }
-    public string? ZipCode { get; set; }
 
     public override string ToString()
     {
@@ -40,8 +37,7 @@ public class Address : ValueObject
             Street,
             Ward,
             City,
-            Province,
-            ZipCode
+            Province
         };
 
         var nonEmptyComponents = components
