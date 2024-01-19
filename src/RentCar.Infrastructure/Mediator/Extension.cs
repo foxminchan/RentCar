@@ -9,7 +9,7 @@ using RentCar.Infrastructure.Data;
 using RentCar.Infrastructure.Logging;
 using RentCar.Infrastructure.Validator;
 
-namespace RentCar.Infrastructure.CQRS;
+namespace RentCar.Infrastructure.Mediator;
 
 public static class Extension
 {

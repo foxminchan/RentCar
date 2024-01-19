@@ -3,7 +3,7 @@
 
 using MediatR;
 
-namespace RentCar.Infrastructure.CQRS;
+namespace RentCar.Core.SharedKernel;
 
 public interface ICommandHandler<in TCommand, TResponse> : IRequestHandler<TCommand, TResponse>
     where TCommand : ICommand<TResponse>;

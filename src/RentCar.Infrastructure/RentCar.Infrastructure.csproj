@@ -42,6 +42,7 @@
         <PackageReference Include="Ardalis.GuardClauses" Version="4.3.0" />
         <PackageReference Include="Ardalis.Specification.EntityFrameworkCore" Version="8.0.0" />
         <PackageReference Include="Ardalis.Specification" Version="8.0.0" />
+        <PackageReference Include="Ardalis.Result.AspNetCore" Version="7.2.0" />
     </ItemGroup>
 
     <ItemGroup>

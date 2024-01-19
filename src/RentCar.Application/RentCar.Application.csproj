@@ -1,19 +1,22 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
-  <PropertyGroup>
-    <TargetFramework>net8.0</TargetFramework>
-    <ImplicitUsings>enable</ImplicitUsings>
-    <Nullable>enable</Nullable>
-  </PropertyGroup>
+    <PropertyGroup>
+        <TargetFramework>net8.0</TargetFramework>
+        <ImplicitUsings>enable</ImplicitUsings>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
 
-  <ItemGroup>
-    <ProjectReference Include="..\RentCar.Infrastructure\RentCar.Infrastructure.csproj" />
-  </ItemGroup>
+    <ItemGroup>
+        <ProjectReference Include="..\RentCar.Infrastructure\RentCar.Infrastructure.csproj" />
+    </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="Vehicle\Commands\CreateVehicleCommand\" />
-    <Folder Include="Vehicle\EventHandlers\" />
-    <Folder Include="Vehicle\Queries\" />
-  </ItemGroup>
+    <ItemGroup>
+        <PackageReference Include="Mapster" Version="7.4.0" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <Folder Include="Vehicle\Commands\UpdateVehicleCommand\" />
+        <Folder Include="Vehicle\Queries\" />
+    </ItemGroup>
 
 </Project>

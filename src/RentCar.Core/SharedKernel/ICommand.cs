@@ -3,6 +3,6 @@
 
 using MediatR;
 
-namespace RentCar.Infrastructure.CQRS;
+namespace RentCar.Core.SharedKernel;
 
 public interface ICommand<out TResponse> : IRequest<TResponse>;

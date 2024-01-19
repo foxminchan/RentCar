@@ -5,7 +5,6 @@ using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
 using RentCar.Core.Entities;
 using RentCar.Core.Identity;
-using SmartEnum.EFCore;
 
 namespace RentCar.Infrastructure.Data;
 
@@ -20,7 +19,4 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
         base.OnModelCreating(builder);
         builder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);
     }
-
-    protected override void ConfigureConventions(ModelConfigurationBuilder configurationBuilder)
-        => configurationBuilder.ConfigureSmartEnum();
 }

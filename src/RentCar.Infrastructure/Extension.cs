@@ -20,6 +20,7 @@ public static class Extension
 {
     public static void AddInfrastructure(this IServiceCollection services, WebApplicationBuilder builder)
     {
+        builder.AddHealthCheck();
         builder.AddSerilog(builder.Environment.ApplicationName);
 
         builder.WebHost.ConfigureKestrel(options =>

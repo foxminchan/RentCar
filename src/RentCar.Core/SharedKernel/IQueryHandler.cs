@@ -3,7 +3,7 @@
 
 using MediatR;
 
-namespace RentCar.Infrastructure.CQRS;
+namespace RentCar.Core.SharedKernel;
 
 public interface IQueryHandler<in TQuery, TResponse> : IRequestHandler<TQuery, TResponse>
     where TQuery : IQuery<TResponse>;
