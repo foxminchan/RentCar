@@ -1,4 +1,7 @@
-﻿using MediatR;
+﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
+// Licensed under the MIT License
+
+using MediatR;
 using Microsoft.Extensions.Logging;
 using RentCar.Core.Events.Vehicle;
 

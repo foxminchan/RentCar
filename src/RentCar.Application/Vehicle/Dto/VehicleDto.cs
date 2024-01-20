@@ -1,4 +1,7 @@
-﻿using RentCar.Core.Enums;
+﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
+// Licensed under the MIT License
+
+using RentCar.Core.Enums;
 
 namespace RentCar.Application.Vehicle.Dto;
 
