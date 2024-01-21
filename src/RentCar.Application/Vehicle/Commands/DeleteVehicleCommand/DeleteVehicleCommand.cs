@@ -7,4 +7,4 @@ using RentCar.Core.SharedKernel;
 
 namespace RentCar.Application.Vehicle.Commands.DeleteVehicleCommand;
 
-public record DeleteVehicleCommand(Ulid Id) : ICommand<Result>;
+public record DeleteVehicleCommand(Guid Id) : ICommand<Result>;

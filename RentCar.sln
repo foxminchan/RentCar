@@ -11,13 +11,19 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentCar.Infrastructure", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentCar.Application", "src\RentCar.Application\RentCar.Application.csproj", "{646D4F34-9DA0-4D7D-B517-2A666C92D9DA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = ".nuke", ".nuke\.nuke.csproj", "{0BCDEDFE-8FC0-458F-B704-CD0D1990F330}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentCar.Build", ".nuke\RentCar.Build.csproj", "{0BCDEDFE-8FC0-458F-B704-CD0D1990F330}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentCar.UnitTest", "test\RentCar.UnitTest\RentCar.UnitTest.csproj", "{6584D75D-4826-4FDB-8302-70C8327DDFE4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentCar.Unit.Test", "test\RentCar.UnitTest\RentCar.Unit.Test.csproj", "{6584D75D-4826-4FDB-8302-70C8327DDFE4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentCar.IntegrationTest", "test\RentCar.IntegrationTest\RentCar.IntegrationTest.csproj", "{BC4D4D34-02E2-483F-863D-CA5E1B55EE55}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentCar.Integration.Test", "test\RentCar.IntegrationTest\RentCar.Integration.Test.csproj", "{BC4D4D34-02E2-483F-863D-CA5E1B55EE55}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentCar.FunctionalTest", "test\RentCar.FunctionalTest\RentCar.FunctionalTest.csproj", "{B1B4C4FC-9041-4EB7-91FE-073E9D4A8118}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RentCar.Functional.Test", "test\RentCar.FunctionalTest\RentCar.Functional.Test.csproj", "{B1B4C4FC-9041-4EB7-91FE-073E9D4A8118}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Build", "Build", "{012886AD-1AFE-4323-BF94-2F83E4AFF335}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "App", "App", "{F37F6489-4743-4737-BE35-19184D37B520}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{87C70095-3A0B-4EFF-98AA-BDA4EA0E3064}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -58,6 +64,16 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{BDBA51C4-E7AE-457D-A4D9-DE369FC1B33B} = {F37F6489-4743-4737-BE35-19184D37B520}
+		{2A56DB29-15F7-43E6-AA86-2598762948B8} = {F37F6489-4743-4737-BE35-19184D37B520}
+		{F6F07728-867D-47AC-94B8-E91BF6E917B1} = {F37F6489-4743-4737-BE35-19184D37B520}
+		{646D4F34-9DA0-4D7D-B517-2A666C92D9DA} = {F37F6489-4743-4737-BE35-19184D37B520}
+		{0BCDEDFE-8FC0-458F-B704-CD0D1990F330} = {012886AD-1AFE-4323-BF94-2F83E4AFF335}
+		{6584D75D-4826-4FDB-8302-70C8327DDFE4} = {87C70095-3A0B-4EFF-98AA-BDA4EA0E3064}
+		{BC4D4D34-02E2-483F-863D-CA5E1B55EE55} = {87C70095-3A0B-4EFF-98AA-BDA4EA0E3064}
+		{B1B4C4FC-9041-4EB7-91FE-073E9D4A8118} = {87C70095-3A0B-4EFF-98AA-BDA4EA0E3064}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {CB12B9DE-3CC9-48DA-84D6-8657B1095A31}

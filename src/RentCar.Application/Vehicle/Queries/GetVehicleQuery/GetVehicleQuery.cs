@@ -7,4 +7,4 @@ using RentCar.Core.SharedKernel;
 
 namespace RentCar.Application.Vehicle.Queries.GetVehicleQuery;
 
-public record GetVehicleQuery(Ulid Id) : IQuery<Result<VehicleDto>>;
+public record GetVehicleQuery(Guid Id) : IQuery<Result<VehicleDto>>;

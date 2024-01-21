@@ -18,7 +18,7 @@ using System.Linq;
     AutoGenerate = false,
     OnPushBranches = ["main"], 
     OnPullRequestBranches = ["main"],
-    InvokedTargets = [nameof(Init), nameof(Lint), nameof(TestWithCoverage)])]
+    InvokedTargets = [nameof(Init), nameof(Lint), nameof(TestWithCoverage), nameof(TestWithoutCoverage)])]
 class Build : NukeBuild
 {
     public static int Main () => Execute<Build>(x => x.Compile);
@@ -31,8 +31,9 @@ class Build : NukeBuild
 
     const string ProjectName = "RentCar.*";
     string ProjectPrefix => $"{ProjectName}*";
-    const string TestProjectPostfix = "*.Tests";
-    const string TestWithCoverageSupportProjectPostfix = "*.UseCase.Tests";
+    const string TestProjectPostfix = "*.Test";
+    const string TestWithCoverageSupportProjectPostfix = "*.Unit.Test";
+    const string TestWithoutCoverageSupportProjectPostfix = "*.Functional.Tests";
     const string CoverageFolderName = "coverage";
     string CoveragePrefix => $"{CoverageFolderName}.*";
     string CoverageReportFile => "coverage.xml";
@@ -112,8 +113,18 @@ class Build : NukeBuild
                     .SetNoRestore(true)
                 )));
 
+    Target TestWithoutCoverage => d => d
+        .DependsOn(Compile)
+        .After(Lint)
+        .Executes(() => _solution.GetAllProjects(TestWithoutCoverageSupportProjectPostfix)
+                .ForEach(project => DotNetTasks.DotNetTest(s => s
+                    .SetProjectFile(project)
+                    .SetConfiguration(_configuration)
+                    .SetNoRestore(true)
+                )));
+
     Target Ci => d => d
-        .DependsOn(Init, Lint, TestWithCoverage);
+        .DependsOn(Init, Lint, TestWithCoverage, TestWithoutCoverage);
 
     Target GenerateHtmlTestReport => d => d
         .DependsOn(TestWithCoverage)

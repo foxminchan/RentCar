@@ -11,6 +11,6 @@ public sealed class Maintenance : BaseEntity
     public DateTime? Date { get; set; } = DateTime.UtcNow;
     public string? Description { get; set; }
     public decimal? Cost { get; set; }
-    public Ulid VehicleId { get; set; }
+    public Guid VehicleId { get; set; }
     [JsonIgnore] public Vehicle? Vehicle { get; set; }
 }

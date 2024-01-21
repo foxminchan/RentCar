@@ -4,7 +4,7 @@ namespace RentCar.Core.Specifications.Vehicle;
 
 public sealed class VehicleById : Specification<Entities.Vehicle>
 {
-    public VehicleById(Ulid id)
+    public VehicleById(Guid id)
     {
         Query.Where(x => x.Id == id);
     }

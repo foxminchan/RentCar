@@ -14,4 +14,4 @@ public record CreateVehicleCommand(
     string? Plate,
     VehicleType? Type,
     CarStatus? Status,
-    string? Image) : ICommand<Result<Ulid>>;
+    string? Image) : ICommand<Result<Guid>>;

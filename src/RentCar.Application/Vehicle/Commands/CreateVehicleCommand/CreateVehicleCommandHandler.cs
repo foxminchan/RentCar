@@ -11,9 +11,9 @@ using RentCar.Core.SharedKernel;
 namespace RentCar.Application.Vehicle.Commands.CreateVehicleCommand;
 
 public sealed class CreateVehicleCommandHandler(IRepositoryBase<Core.Entities.Vehicle> repository)
-    : ICommandHandler<CreateVehicleCommand, Result<Ulid>>
+    : ICommandHandler<CreateVehicleCommand, Result<Guid>>
 {
-    public async Task<Result<Ulid>> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
+    public async Task<Result<Guid>> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
     {
         var entity = request.Adapt<Core.Entities.Vehicle>();
         entity.AddDomainEvent(new VehicleCreatedEvent(entity));

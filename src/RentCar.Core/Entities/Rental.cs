@@ -15,11 +15,11 @@ public sealed class Rental : BaseEntity, IAggregateRoot
     public DateTime? EndDate { get; set; }
     public decimal? TotalPrice { get; set; }
     public RentStatus? Status { get; set; } = RentStatus.Renting;
-    public Ulid? VehicleId { get; set; }
+    public Guid? VehicleId { get; set; }
     [JsonIgnore] public Vehicle? Vehicle { get; set; }
     public string? UserId { get; set; }
     [JsonIgnore] public ApplicationUser? User { get; set; }
-    public Ulid? PaymentId { get; set; }
+    public Guid? PaymentId { get; set; }
     [JsonIgnore] public Payment? Payment { get; set; }
     public ICollection<Feedback>? Feedbacks { get; set; } = new List<Feedback>();
 }

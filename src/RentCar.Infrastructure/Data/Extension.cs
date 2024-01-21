@@ -9,6 +9,7 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RentCar.Infrastructure.Data.Interceptors;
+using RentCar.Infrastructure.Data.CompiledModels;
 
 namespace RentCar.Infrastructure.Data;
 
@@ -34,6 +35,7 @@ public static class Extension
                 .UseExceptionProcessor()
                 .EnableServiceProviderCaching()
                 .UseSnakeCaseNamingConvention()
+                .UseModel(ApplicationDbContextModel.Instance)
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
 
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Development)
@@ -42,7 +44,6 @@ public static class Extension
                     .EnableSensitiveDataLogging();
         });
 
-        services.AddScoped<ApplicationDbContextInitializer>();
         services.AddScoped<IDatabaseFacade>(p => p.GetRequiredService<ApplicationDbContext>());
 
         return services;

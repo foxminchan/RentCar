@@ -1,4 +1,5 @@
 ﻿using System.Reflection.Metadata;
+using FluentValidation;
 using Microsoft.Extensions.DependencyInjection;
 using RentCar.Infrastructure.Mediator;
 
@@ -13,5 +14,7 @@ public static class Extension
                 s.AddMediatR(options =>
                     options.RegisterServicesFromAssembly(typeof(AssemblyReference).Assembly)
                 ));
+
+        services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
     }
 }

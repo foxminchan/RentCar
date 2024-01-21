@@ -2,7 +2,7 @@
 
 namespace RentCar.Core.Events.Rental;
 
-public sealed class RentalDeletedEvent(Ulid id) : BaseEvent
+public sealed class RentalDeletedEvent(Guid id) : BaseEvent
 {
-    public Ulid Id { get; } = id;
+    public Guid Id { get; } = id;
 }

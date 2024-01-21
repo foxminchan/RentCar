@@ -9,7 +9,7 @@ using RentCar.Core.SharedKernel;
 namespace RentCar.Application.Vehicle.Commands.UpdateVehicleCommand;
 
 public record UpdateVehicleCommand(
-    Ulid Id,
+    Guid Id,
     string? Name,
     string? Brand,
     string? Color,

@@ -49,12 +49,20 @@ builder.Services.AddCors(options => options
             .AllowAnyMethod()
             .AllowAnyHeader()));
 
+builder.Services.AddSwaggerGen();
+
 var app = builder.Build();
 
+if (app.Environment.IsDevelopment())
+{
+    app.UseSwagger();
+    app.UseSwaggerUI();
+}
+
 app
-    .MapGroup("/api/v{version:apiVersion}/")
+    .MapGroup("/api/auth")
     .MapIdentityApi<ApplicationUser>()
-    .MapToApiVersion(1);
+    .WithTags("Auth");
 
 app
     .UseHsts()
@@ -67,7 +75,7 @@ app
     .UseResponseCompression()
     .UseStatusCodePages();
 
-await app.UseWebInfrastructureAsync();
+app.UseWebInfrastructure();
 
 app.MapPrometheusScrapingEndpoint();
 

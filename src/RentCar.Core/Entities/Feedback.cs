@@ -11,6 +11,6 @@ public sealed class Feedback : BaseEntity
     public string? Message { get; set; }
     public byte? Rating { get; set; }
     public bool? IsApproved { get; set; }
-    public Ulid? RentalId { get; set; }
+    public Guid? RentalId { get; set; }
     [JsonIgnore] public Rental? Rental { get; set; }
 }
