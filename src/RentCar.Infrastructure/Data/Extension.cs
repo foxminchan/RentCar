@@ -2,14 +2,15 @@
 // Licensed under the MIT License
 
 using Ardalis.GuardClauses;
+using Ardalis.SharedKernel;
 using EntityFramework.Exceptions.PostgreSQL;
 using Microsoft.EntityFrameworkCore.Diagnostics;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using RentCar.Infrastructure.Data.Interceptors;
 using RentCar.Infrastructure.Data.CompiledModels;
+using RentCar.Infrastructure.Data.Interceptors;
 
 namespace RentCar.Infrastructure.Data;
 
@@ -21,7 +22,6 @@ public static class Extension
 
         Guard.Against.Null(connectionString, message: "Connection string 'DefaultConnection' not found.");
 
-        services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
         services.AddScoped<IDbCommandInterceptor, TimingInterceptor>();
 
         services.AddDbContextPool<ApplicationDbContext>(options =>
@@ -44,6 +44,7 @@ public static class Extension
                     .EnableSensitiveDataLogging();
         });
 
+        services.AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>();
         services.AddScoped<IDatabaseFacade>(p => p.GetRequiredService<ApplicationDbContext>());
 
         return services;

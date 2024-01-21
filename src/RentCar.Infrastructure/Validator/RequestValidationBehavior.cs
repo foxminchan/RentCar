@@ -2,6 +2,8 @@
 // Licensed under the MIT License
 
 using System.Text.Json;
+using Ardalis.Result;
+using Ardalis.Result.FluentValidation;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;
@@ -33,10 +35,32 @@ public sealed class RequestValidationBehavior<TRequest, TResponse>(
                              .GetService<IEnumerable<IValidator<TRequest>>>()?.ToList()
                          ?? throw new InvalidOperationException();
 
-        if (validators.Any())
-            await Task.WhenAll(
-                validators.Select(v =>
-                    v.HandleValidationAsync(request)));
+        if (validators.Count != 0)
+        {
+            var context = new ValidationContext<TRequest>(request);
+            var validationResults = await Task.WhenAll(validators.Select(x => x.ValidateAsync(context, cancellationToken)));
+            var resultErrors = validationResults.SelectMany(e => e.AsErrors()).ToList();
+            var failures = validationResults.SelectMany(x => x.Errors).Where(x => x is { }).ToList();
+
+            if (failures.Count != 0)
+            {
+                if (typeof(TResponse).IsGenericType && typeof(TResponse).GetGenericTypeDefinition() == typeof(Result<>))
+                {
+                    var result = typeof(TResponse).GetGenericArguments()[0];
+                    var invalidMethod = typeof(Result).MakeGenericType(result)
+                        .GetMethod(nameof(Result<int>.Invalid), [typeof(List<ValidationError>)]);
+
+                    if (invalidMethod is { })
+                        return (TResponse)invalidMethod.Invoke(null, [resultErrors])!;
+                }
+                else
+                {
+                    return typeof(TResponse) == typeof(Result)
+                        ? (TResponse)(object)Result.Invalid(resultErrors)
+                        : throw new ValidationException(failures);
+                }
+            }
+        }
 
         var response = await next();
 

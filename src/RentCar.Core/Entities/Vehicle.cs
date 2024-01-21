@@ -1,13 +1,12 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
+using Ardalis.SharedKernel;
 using RentCar.Core.Enums;
-using RentCar.Core.Interfaces;
-using RentCar.Core.SharedKernel;
 
 namespace RentCar.Core.Entities;
 
-public sealed class Vehicle : BaseEntity, IAggregateRoot
+public sealed class Vehicle : EntityBase<Guid>, IAggregateRoot
 {
     public string? Name { get; set; }
     public string? Brand { get; set; }

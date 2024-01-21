@@ -1,11 +1,11 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
-using RentCar.Core.SharedKernel;
+using Ardalis.SharedKernel;
 
 namespace RentCar.Core.Entities;
 
-public sealed class Payment : BaseEntity
+public sealed class Payment : EntityBase<Guid>
 {
     private string? _cardHolderName;
     public string? CardNumber { get; set; }

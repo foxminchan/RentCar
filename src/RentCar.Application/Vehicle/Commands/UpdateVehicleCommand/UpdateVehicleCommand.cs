@@ -2,9 +2,10 @@
 // Licensed under the MIT License
 
 using Ardalis.Result;
+using Ardalis.SharedKernel;
 using MediatR;
 using RentCar.Core.Enums;
-using RentCar.Core.SharedKernel;
+using RentCar.Core.Interfaces;
 
 namespace RentCar.Application.Vehicle.Commands.UpdateVehicleCommand;
 
@@ -16,4 +17,4 @@ public record UpdateVehicleCommand(
     string? Plate,
     VehicleType? Type,
     CarStatus? Status,
-    string? Image) : ICommand<Result<Unit>>;
+    string? Image) : ICommand<Result<Unit>>, ITransactionRequest;

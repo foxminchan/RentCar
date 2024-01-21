@@ -2,8 +2,9 @@
 // Licensed under the MIT License
 
 using Ardalis.Result;
+using Ardalis.SharedKernel;
 using RentCar.Core.Enums;
-using RentCar.Core.SharedKernel;
+using RentCar.Core.Interfaces;
 
 namespace RentCar.Application.Vehicle.Commands.CreateVehicleCommand;
 
@@ -14,4 +15,4 @@ public record CreateVehicleCommand(
     string? Plate,
     VehicleType? Type,
     CarStatus? Status,
-    string? Image) : ICommand<Result<Guid>>;
+    string? Image) : ICommand<Result<Guid>>, ITransactionRequest;

@@ -1,11 +1,10 @@
 // Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
-using Microsoft.AspNetCore.Identity;
+using Carter;
 using Microsoft.AspNetCore.ResponseCompression;
 using RentCar.Application;
-using RentCar.Core.Identity;
-using RentCar.Infrastructure.Data;
+using RentCar.Infrastructure.Exceptions;
 using RentCar.Infrastructure.OpenTelemetry;
 using RentCar.Infrastructure;
 using RentCar.UseCase.Extensions;
@@ -33,13 +32,6 @@ builder.Services.AddResponseCompression(options =>
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddInfrastructure(builder);
 builder.WebHost.ConfigureKestrel(options => options.AddServerHeader = false);
-builder.Services.AddAuthentication(IdentityConstants.ApplicationScheme)
-    .AddIdentityCookies();
-builder.Services.AddAuthorizationBuilder();
-builder.Services.AddIdentityCore<ApplicationUser>()
-    .AddEntityFrameworkStores<ApplicationDbContext>()
-    .AddApiEndpoints();
-
 builder.Services.AddApplication();
 
 builder.Services.AddCors(options => options
@@ -49,7 +41,10 @@ builder.Services.AddCors(options => options
             .AllowAnyMethod()
             .AllowAnyHeader()));
 
+builder.Services.AddCarter();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddExceptionHandler<ExceptionHandler>();
 
 var app = builder.Build();
 
@@ -59,10 +54,7 @@ if (app.Environment.IsDevelopment())
     app.UseSwaggerUI();
 }
 
-app
-    .MapGroup("/api/auth")
-    .MapIdentityApi<ApplicationUser>()
-    .WithTags("Auth");
+app.MapCarter();
 
 app
     .UseHsts()

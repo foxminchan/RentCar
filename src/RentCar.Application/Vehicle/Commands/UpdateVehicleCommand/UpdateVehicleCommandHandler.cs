@@ -3,11 +3,11 @@
 
 using Ardalis.GuardClauses;
 using Ardalis.Result;
+using Ardalis.SharedKernel;
 using Ardalis.Specification;
 using FluentValidation;
 using Mapster;
 using MediatR;
-using RentCar.Core.SharedKernel;
 
 namespace RentCar.Application.Vehicle.Commands.UpdateVehicleCommand;
 
@@ -33,34 +33,43 @@ public sealed class UpdateVehicleCommandValidator : AbstractValidator<UpdateVehi
     public UpdateVehicleCommandValidator()
     {
         RuleFor(x => x.Id)
-            .NotEmpty().NotNull();
+            .NotEmpty()
+            .NotNull();
 
         RuleFor(x => x.Name)
             .NotEmpty()
-            .MaximumLength(50);
+            .WithMessage("Name is required")
+            .MaximumLength(50)
+            .WithMessage("Name must not exceed 50 characters");
 
         RuleFor(x => x.Brand)
             .NotEmpty()
-            .MaximumLength(50);
+            .WithMessage("Brand is required")
+            .MaximumLength(50)
+            .WithMessage("Brand must not exceed 50 characters");
 
         RuleFor(x => x.Color)
             .NotEmpty()
-            .MaximumLength(20);
+            .WithMessage("Color is required")
+            .MaximumLength(20)
+            .WithMessage("Color must not exceed 20 characters");
 
         RuleFor(x => x.Plate)
             .NotEmpty()
-            .MaximumLength(10);
+            .WithMessage("Plate is required")
+            .MaximumLength(10)
+            .WithMessage("Plate must not exceed 10 characters");
 
         RuleFor(x => x.Type)
-            .NotEmpty()
-            .IsInEnum();
+            .IsInEnum()
+            .WithMessage("Type must be in enum");
 
         RuleFor(x => x.Status)
-            .NotEmpty()
-            .IsInEnum();
+            .IsInEnum()
+            .WithMessage("Status must be in enum");
 
         RuleFor(x => x.Image)
-            .NotEmpty()
-            .MaximumLength(255);
+            .MaximumLength(255)
+            .WithMessage("Image Url must not exceed 255 characters");
     }
 }

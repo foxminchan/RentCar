@@ -2,9 +2,10 @@
 // Licensed under the MIT License
 
 using Ardalis.Result;
+using Ardalis.SharedKernel;
 
-using RentCar.Core.SharedKernel;
+using RentCar.Core.Interfaces;
 
 namespace RentCar.Application.Vehicle.Commands.DeleteVehicleCommand;
 
-public record DeleteVehicleCommand(Guid Id) : ICommand<Result>;
+public record DeleteVehicleCommand(Guid Id) : ICommand<Result>, ITransactionRequest;

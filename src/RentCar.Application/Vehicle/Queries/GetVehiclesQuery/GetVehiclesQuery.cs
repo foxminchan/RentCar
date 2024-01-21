@@ -1,6 +1,6 @@
 ﻿using Ardalis.Result;
+using Ardalis.SharedKernel;
 using RentCar.Application.Vehicle.Dto;
-using RentCar.Core.SharedKernel;
 
 namespace RentCar.Application.Vehicle.Queries.GetVehiclesQuery;
 

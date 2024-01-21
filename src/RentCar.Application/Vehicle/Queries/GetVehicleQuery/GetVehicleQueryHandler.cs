@@ -3,10 +3,10 @@
 
 using Ardalis.GuardClauses;
 using Ardalis.Result;
+using Ardalis.SharedKernel;
 using Ardalis.Specification;
 using Mapster;
 using RentCar.Application.Vehicle.Dto;
-using RentCar.Core.SharedKernel;
 using RentCar.Core.Specifications.Vehicle;
 
 namespace RentCar.Application.Vehicle.Queries.GetVehicleQuery;

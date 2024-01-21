@@ -1,9 +1,9 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
+using Ardalis.SharedKernel;
 using Ardalis.Specification.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
-using RentCar.Core.Interfaces;
 
 namespace RentCar.Infrastructure.Data;
 

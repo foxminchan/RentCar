@@ -2,11 +2,11 @@
 // Licensed under the MIT License
 
 using System.Text.Json.Serialization;
-using RentCar.Core.SharedKernel;
+using Ardalis.SharedKernel;
 
 namespace RentCar.Core.Entities;
 
-public sealed class Feedback : BaseEntity
+public sealed class Feedback : EntityBase<Guid>
 {
     public string? Message { get; set; }
     public byte? Rating { get; set; }

@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
+using RentCar.Infrastructure.Auth;
 using RentCar.Infrastructure.Data;
 using RentCar.Infrastructure.Filters;
 using RentCar.Infrastructure.HealthCheck;
@@ -19,9 +20,12 @@ public static class Extension
         builder.AddHealthCheck();
         builder.AddSerilog(builder.Environment.ApplicationName);
 
+        services.AddScoped(typeof(Repository<>));
+
         services
             .AddProblemDetails()
-            .AddHttpContextAccessor();
+            .AddHttpContextAccessor()
+            .AddApplicationIdentity();
 
         services.AddPostgres(builder.Configuration);
 
@@ -30,10 +34,7 @@ public static class Extension
 
     public static void UseWebInfrastructure(this WebApplication app)
     {
-        app
-            .UseAuthentication()
-            .UseAuthorization();
-
+        app.MapIdentity();
         app.MapHealthCheck();
         app.Map("/", () => Results.Redirect("/swagger"));
         app.Map("/error",

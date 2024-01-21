@@ -1,12 +1,12 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
+using Ardalis.SharedKernel;
 using System.Text.Json.Serialization;
-using RentCar.Core.SharedKernel;
 
 namespace RentCar.Core.Entities;
 
-public sealed class Maintenance : BaseEntity
+public sealed class Maintenance : EntityBase<Guid>
 {
     public DateTime? Date { get; set; } = DateTime.UtcNow;
     public string? Description { get; set; }

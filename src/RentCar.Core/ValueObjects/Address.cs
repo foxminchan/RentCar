@@ -1,8 +1,8 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
+using Ardalis.SharedKernel;
 using Microsoft.EntityFrameworkCore;
-using RentCar.Core.SharedKernel;
 
 namespace RentCar.Core.ValueObjects;
 
@@ -47,7 +47,7 @@ public class Address : ValueObject
         return string.Join(", ", nonEmptyComponents);
     }
 
-    protected override IEnumerable<object?> GetEqualityComponents()
+    protected override IEnumerable<object> GetEqualityComponents()
     {
         yield return ToString();
     }
