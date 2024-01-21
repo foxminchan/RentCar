@@ -9,15 +9,8 @@ namespace RentCar.Infrastructure.Swagger;
 
 public sealed class SwaggerDefaultValues : IOperationFilter
 {
-    public const string VersionPattern = "v{version:apiVersion}";
-
     public void Apply(OpenApiOperation operation, OperationFilterContext context)
     {
-        var apiDescription = context.ApiDescription;
-
-        context.ApiDescription.RelativePath = context.ApiDescription.RelativePath?
-            .Replace(VersionPattern, context.ApiDescription.GroupName);
-
         foreach (var responseType in context.ApiDescription.SupportedResponseTypes)
         {
             var responseKey = responseType.IsDefaultResponse
@@ -35,7 +28,7 @@ public sealed class SwaggerDefaultValues : IOperationFilter
 
         foreach (var parameter in operation.Parameters)
         {
-            var description = apiDescription.ParameterDescriptions.First(p => p.Name == parameter.Name);
+            var description = context.ApiDescription.ParameterDescriptions.First(p => p.Name == parameter.Name);
 
             parameter.Description ??= description.ModelMetadata?.Description;
 

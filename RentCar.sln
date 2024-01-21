@@ -11,13 +11,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentCar.Infrastructure", "s
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentCar.Application", "src\RentCar.Application\RentCar.Application.csproj", "{646D4F34-9DA0-4D7D-B517-2A666C92D9DA}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentCar.Website", "src\RentCar.Website\RentCar.Website.csproj", "{49282608-249E-4E88-AC6E-4DECE088317F}"
-EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = ".nuke", ".nuke\.nuke.csproj", "{0BCDEDFE-8FC0-458F-B704-CD0D1990F330}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentCar.Api.Test", "test\RentCar.Api.Test\RentCar.Api.Test.csproj", "{E18D2F4E-36B8-4275-92F6-BB0EFE24E6E2}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "RentCar.Website.Test", "test\RentCar.Website.Test\RentCar.Website.Test.csproj", "{0DA9C326-908F-4057-9DE3-9D0DCDCF6572}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -41,20 +37,12 @@ Global
 		{646D4F34-9DA0-4D7D-B517-2A666C92D9DA}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{646D4F34-9DA0-4D7D-B517-2A666C92D9DA}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{646D4F34-9DA0-4D7D-B517-2A666C92D9DA}.Release|Any CPU.Build.0 = Release|Any CPU
-		{49282608-249E-4E88-AC6E-4DECE088317F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{49282608-249E-4E88-AC6E-4DECE088317F}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{49282608-249E-4E88-AC6E-4DECE088317F}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{49282608-249E-4E88-AC6E-4DECE088317F}.Release|Any CPU.Build.0 = Release|Any CPU
 		{0BCDEDFE-8FC0-458F-B704-CD0D1990F330}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{0BCDEDFE-8FC0-458F-B704-CD0D1990F330}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E18D2F4E-36B8-4275-92F6-BB0EFE24E6E2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{E18D2F4E-36B8-4275-92F6-BB0EFE24E6E2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{E18D2F4E-36B8-4275-92F6-BB0EFE24E6E2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{E18D2F4E-36B8-4275-92F6-BB0EFE24E6E2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{0DA9C326-908F-4057-9DE3-9D0DCDCF6572}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{0DA9C326-908F-4057-9DE3-9D0DCDCF6572}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{0DA9C326-908F-4057-9DE3-9D0DCDCF6572}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{0DA9C326-908F-4057-9DE3-9D0DCDCF6572}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

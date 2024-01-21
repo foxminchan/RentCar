@@ -13,6 +13,9 @@ public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> 
 {
     public DbSet<Vehicle> Vehicles => Set<Vehicle>();
     public DbSet<Rental> Rentals => Set<Rental>();
+    public DbSet<Payment> Payments => Set<Payment>();
+    public DbSet<Feedback> Feedbacks => Set<Feedback>();
+    public DbSet<Maintenance> Maintenances => Set<Maintenance>();
 
     protected override void OnModelCreating(ModelBuilder builder)
     {

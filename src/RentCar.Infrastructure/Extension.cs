@@ -3,9 +3,7 @@
 
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Diagnostics;
-using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Server.Kestrel.Core;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using RentCar.Infrastructure.Data;
@@ -25,17 +23,9 @@ public static class Extension
         builder.AddApiVersioning();
         builder.AddSerilog(builder.Environment.ApplicationName);
 
-        builder.WebHost.ConfigureKestrel(options =>
-        {
-            options.AddServerHeader = false;
-            options.AllowResponseHeaderCompression = true;
-            options.ConfigureEndpointDefaults(o => o.Protocols = HttpProtocols.Http1AndHttp2AndHttp3);
-        });
-
         services
             .AddOpenApi()
             .AddProblemDetails()
-            .AddEndpointsApiExplorer()
             .AddHttpContextAccessor();
 
         services.AddPostgres(builder.Configuration);
@@ -52,6 +42,8 @@ public static class Extension
             await initializer.InitialiseAsync();
             await initializer.SeedAsync();
         }
+
+        app.UseOpenApi();
 
         app
             .UseAuthentication()

@@ -1,8 +1,8 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
-using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using Microsoft.EntityFrameworkCore;
 using RentCar.Core.Entities;
 
 namespace RentCar.Infrastructure.Data.Configurations;

@@ -33,7 +33,7 @@ public sealed class UpdateVehicleCommandValidator : AbstractValidator<UpdateVehi
     public UpdateVehicleCommandValidator()
     {
         RuleFor(x => x.Id)
-            .NotEmpty();
+            .NotEmpty().NotNull();
 
         RuleFor(x => x.Name)
             .NotEmpty()

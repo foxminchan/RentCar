@@ -15,9 +15,10 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="Rental\" />
         <Folder Include="Vehicle\Commands\DeleteVehicleCommand\" />
         <Folder Include="Vehicle\Commands\UpdateVehicleCommand\" />
-        <Folder Include="Vehicle\Queries\" />
+        <Folder Include="Vehicle\Queries\GetVehiclesQuery\" />
     </ItemGroup>
 
 </Project>

@@ -7,6 +7,7 @@ namespace RentCar.Application.Vehicle.Dto;
 
 public record VehicleDto
 {
+    public Ulid Id { get; set; }
     public string? Name { get; set; }
     public string? Brand { get; set; }
     public string? Color { get; set; }

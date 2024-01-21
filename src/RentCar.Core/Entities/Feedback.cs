@@ -1,5 +1,16 @@
-﻿namespace RentCar.Core.Entities;
+﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
+// Licensed under the MIT License
 
-internal class Feedback
+using System.Text.Json.Serialization;
+using RentCar.Core.SharedKernel;
+
+namespace RentCar.Core.Entities;
+
+public sealed class Feedback : BaseEntity
 {
+    public string? Message { get; set; }
+    public byte? Rating { get; set; }
+    public bool? IsApproved { get; set; }
+    public Ulid? RentalId { get; set; }
+    [JsonIgnore] public Rental? Rental { get; set; }
 }

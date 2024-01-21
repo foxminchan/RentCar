@@ -17,4 +17,5 @@ public sealed class Vehicle : BaseEntity, IAggregateRoot
     public CarStatus? Status { get; set; } = CarStatus.Available;
     public string? Image { get; set; }
     public ICollection<Rental>? Rentals { get; set; } = new List<Rental>();
+    public ICollection<Maintenance>? Maintenances { get; set; } = new List<Maintenance>();
 }
