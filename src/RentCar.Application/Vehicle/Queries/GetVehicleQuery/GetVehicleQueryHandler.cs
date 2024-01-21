@@ -11,7 +11,7 @@ using RentCar.Core.Specifications.Vehicle;
 
 namespace RentCar.Application.Vehicle.Queries.GetVehicleQuery;
 
-public class GetVehicleQueryHandler(IReadRepositoryBase<Core.Entities.Vehicle> repository) 
+public sealed class GetVehicleQueryHandler(IReadRepositoryBase<Core.Entities.Vehicle> repository) 
     : IQueryHandler<GetVehicleQuery, Result<VehicleDto>>
 {
     public async Task<Result<VehicleDto>> Handle(GetVehicleQuery request, CancellationToken cancellationToken)

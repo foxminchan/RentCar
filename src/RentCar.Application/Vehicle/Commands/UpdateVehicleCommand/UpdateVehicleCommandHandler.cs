@@ -17,13 +17,9 @@ public sealed class UpdateVehicleCommandHandler(IRepositoryBase<Core.Entities.Ve
     public async Task<Result<Unit>> Handle(UpdateVehicleCommand request, CancellationToken cancellationToken)
     {
         var entity = request.Adapt<Core.Entities.Vehicle>();
-
         var existItem = await repository.GetByIdAsync(entity.Id, cancellationToken);
-
         Guard.Against.NotFound(entity.Id, existItem);
-
         await repository.UpdateAsync(entity, cancellationToken);
-
         return Result.Success(Unit.Value);
     }
 }
@@ -34,7 +30,7 @@ public sealed class UpdateVehicleCommandValidator : AbstractValidator<UpdateVehi
     {
         RuleFor(x => x.Id)
             .NotEmpty()
-            .NotNull();
+            .WithMessage("Id is required");
 
         RuleFor(x => x.Name)
             .NotEmpty()

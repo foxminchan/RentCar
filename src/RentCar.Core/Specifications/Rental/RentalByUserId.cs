@@ -5,10 +5,10 @@ using Ardalis.Specification;
 
 namespace RentCar.Core.Specifications.Rental;
 
-public sealed class RentalById : Specification<Entities.Rental>
+public sealed class RentalByUserId : Specification<Entities.Rental>
 {
-    public RentalById(Guid id)
+    public RentalByUserId(string userId)
     {
-        Query.Where(x => x.Id == id);
+        Query.Where(x => x.UserId == userId);
     }
 }

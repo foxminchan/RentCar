@@ -7,6 +7,5 @@ public enum RentStatus
 {
     Renting = 1,
     Returned = 2,
-    Cancelled = 3,
-    Unknown = 4
+    Cancelled = 3
 }

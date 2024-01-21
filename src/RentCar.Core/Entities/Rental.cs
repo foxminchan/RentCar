@@ -10,7 +10,7 @@ namespace RentCar.Core.Entities;
 
 public sealed class Rental : EntityBase<Guid>, IAggregateRoot
 {
-    public DateTime? StartDate { get; set; }
+    public DateTime? StartDate { get; set; } = DateTime.UtcNow;
     public DateTime? EndDate { get; set; }
     public decimal? TotalPrice { get; set; }
     public RentStatus? Status { get; set; } = RentStatus.Renting;

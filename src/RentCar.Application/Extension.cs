@@ -1,4 +1,7 @@
-﻿using System.Reflection.Metadata;
+﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
+// Licensed under the MIT License
+
+using System.Reflection.Metadata;
 using FluentValidation;
 using MediatR;
 using Microsoft.Extensions.DependencyInjection;

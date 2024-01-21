@@ -3,14 +3,15 @@
 
 using Ardalis.Specification;
 
-namespace RentCar.Core.Specifications.Vehicle;
+namespace RentCar.Core.Specifications.Rental;
 
-public sealed class VehicleFilterPaginated : Specification<Entities.Vehicle>
+public sealed class RentalByUserIdFilterPaginated : Specification<Entities.Rental>
 {
-    public VehicleFilterPaginated(int skip, int take, string orderBy)
+    public RentalByUserIdFilterPaginated(string userId, int skip, int take, string orderBy)
     {
         Query.Skip(skip);
         Query.Take(take);
+        Query.Where(x => x.UserId == userId);
         Query.OrderBy(x => x.GetType().GetProperty(orderBy)!.GetValue(x, null));
     }
 }

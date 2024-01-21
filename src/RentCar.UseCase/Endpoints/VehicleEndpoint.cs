@@ -16,7 +16,7 @@ using RentCar.UseCase.Extensions;
 
 namespace RentCar.UseCase.Endpoints;
 
-public class VehicleEndpoint : ICarterModule
+public sealed class VehicleEndpoint : ICarterModule
 {
     public void AddRoutes(IEndpointRouteBuilder app)
     {
