@@ -8,7 +8,7 @@ using RentCar.Core.Interfaces;
 
 namespace RentCar.Application.Rental.Commands.CreateRentalCommand;
 
-public record CreateRentalCommand(
+public sealed record CreateRentalCommand(
     DateTime? StartDate,
     DateTime? EndDate,
     decimal? TotalPrice,

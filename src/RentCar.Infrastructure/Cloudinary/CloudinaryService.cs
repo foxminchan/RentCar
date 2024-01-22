@@ -26,7 +26,7 @@ public class CloudinaryService(ICloudinaryUploadApi cloudinary) : ICloudinarySer
         var uploadResult = await cloudinary.UploadAsync(uploadParams);
 
         return uploadResult.Error is { }
-            ? Result<CloudinaryResult>.Error(uploadResult.Error.Message)
+            ? Result<CloudinaryResult>.Invalid(new ValidationError(uploadResult.Error.Message))
             : Result<CloudinaryResult>.Success(new(uploadResult.PublicId, uploadResult.SecureUrl.AbsoluteUri));
     }
 

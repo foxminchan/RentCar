@@ -2,13 +2,9 @@
 // Licensed under the MIT License
 
 using Ardalis.Result;
-
 using Carter;
-
 using MediatR;
-
 using Microsoft.AspNetCore.Mvc;
-
 using RentCar.Application.Vehicle.Commands.CreateVehicleCommand;
 using RentCar.Application.Vehicle.Commands.DeleteVehicleCommand;
 using RentCar.Application.Vehicle.Commands.UpdateVehicleCommand;

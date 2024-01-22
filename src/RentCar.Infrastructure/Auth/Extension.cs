@@ -1,7 +1,6 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
-using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -16,12 +15,7 @@ public static class Extension
 {
     public static void AddApplicationIdentity(this IServiceCollection services)
     {
-        services.AddAuthentication(options =>
-            {
-                options.DefaultScheme = IdentityConstants.ApplicationScheme;
-                options.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
-            })
-            .AddBearerToken();
+        services.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme);
         services.AddAuthorizationBuilder();
         services.AddIdentityCore<ApplicationUser>()
             .AddEntityFrameworkStores<ApplicationDbContext>()

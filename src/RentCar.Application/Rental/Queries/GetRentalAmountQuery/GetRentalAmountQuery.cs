@@ -2,8 +2,8 @@
 // Licensed under the MIT License
 
 using Ardalis.Result;
-using MediatR;
+using Ardalis.SharedKernel;
 
 namespace RentCar.Application.Rental.Queries.GetRentalAmountQuery;
 
-public record GetRentalAmountQuery(string? UserId = null) : IRequest<Result<int>>;
+public sealed record GetRentalAmountQuery(string? UserId = null) : IQuery<Result<int>>;

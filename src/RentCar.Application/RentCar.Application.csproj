@@ -25,10 +25,11 @@
         <Folder Include="Rental\Commands\UpdateRentalCommand\" />
         <Folder Include="Rental\Queries\GetRentalsQuery\" />
         <Folder Include="Rental\Queries\GetRentalAmountQuery\" />
-        <Folder Include="User\Commands\" />
-        <Folder Include="User\Dto\" />
+        <Folder Include="User\Commands\DeleteUserCommand\" />
+        <Folder Include="User\Commands\UpdateUserCommand\" />
+        <Folder Include="User\Queries\GetUserQuery\" />
+        <Folder Include="User\Queries\GetUsersQuery\" />
         <Folder Include="User\Validators\" />
-        <Folder Include="User\Queries\" />
         <Folder Include="Vehicle\Commands\DeleteVehicleCommand\" />
         <Folder Include="Vehicle\Commands\UpdateVehicleCommand\" />
         <Folder Include="Vehicle\Queries\GetVehiclesQuery\" />

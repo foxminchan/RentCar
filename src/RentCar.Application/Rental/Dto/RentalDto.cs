@@ -5,7 +5,7 @@ using RentCar.Core.Enums;
 
 namespace RentCar.Application.Rental.Dto;
 
-public record RentalDto
+public sealed record RentalDto
 {
     public Guid Id { get; set; }
     public DateTime? StartDate { get; set; }

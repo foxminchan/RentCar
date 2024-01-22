@@ -24,7 +24,6 @@ public sealed class RentalEndpoint : ICarterModule
         var group = app
             .MapGroup("/api/rental/")
             .WithTags("Rental");
-
         group.RequirePerUserRateLimit();
         group.MapGet("", GetRentals).WithName(nameof(GetRentals));
         group.MapGet("{id:guid}", GetRental).WithName(nameof(GetRental));

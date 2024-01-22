@@ -7,5 +7,5 @@ using RentCar.Application.Vehicle.Dto;
 
 namespace RentCar.Application.Vehicle.Queries.GetVehiclesQuery;
 
-public record GetVehiclesQuery(int Skip = 0, int Take = 20, string OrderBy = "Id") 
+public sealed record GetVehiclesQuery(int Skip = 0, int Take = 20, string OrderBy = "Id") 
     : IQuery<Result<IEnumerable<VehicleDto>>>;

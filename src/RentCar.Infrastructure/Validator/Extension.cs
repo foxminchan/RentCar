@@ -8,12 +8,12 @@ namespace RentCar.Infrastructure.Validator;
 
 public static class Extension
 {
-    public static OptionsBuilder<TOptions> ValidateFluentValidation<TOptions>(
-        this OptionsBuilder<TOptions> builder)
-        where TOptions : class
+    public static OptionsBuilder<TOption> ValidateFluentValidation<TOption>(
+        this OptionsBuilder<TOption> builder)
+        where TOption : class
     {
-        builder.Services.AddSingleton<IValidateOptions<TOptions>>(service =>
-            new OptionValidation<TOptions>(service));
+        builder.Services.AddSingleton<IValidateOptions<TOption>>(service =>
+            new OptionValidation<TOption>(service));
         return builder;
     }
 }

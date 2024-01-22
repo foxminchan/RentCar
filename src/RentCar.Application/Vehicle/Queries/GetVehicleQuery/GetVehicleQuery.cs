@@ -7,4 +7,4 @@ using RentCar.Application.Vehicle.Dto;
 
 namespace RentCar.Application.Vehicle.Queries.GetVehicleQuery;
 
-public record GetVehicleQuery(Guid Id) : IQuery<Result<VehicleDto>>;
+public sealed record GetVehicleQuery(Guid Id) : IQuery<Result<VehicleDto>>;

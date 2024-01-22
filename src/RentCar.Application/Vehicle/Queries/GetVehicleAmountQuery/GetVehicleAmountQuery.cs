@@ -6,4 +6,4 @@ using Ardalis.SharedKernel;
 
 namespace RentCar.Application.Vehicle.Queries.GetVehicleAmountQuery;
 
-public record GetVehicleAmountQuery : IQuery<Result<int>>;
+public sealed record GetVehicleAmountQuery : IQuery<Result<int>>;

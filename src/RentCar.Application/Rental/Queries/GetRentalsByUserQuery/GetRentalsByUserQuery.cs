@@ -7,5 +7,5 @@ using RentCar.Application.Rental.Dto;
 
 namespace RentCar.Application.Rental.Queries.GetRentalsByUserQuery;
 
-public record GetRentalsByUserQuery(int Skip, int Take, string OrderBy, string UserId) 
+public sealed record GetRentalsByUserQuery(int Skip, int Take, string OrderBy, string UserId) 
     : IQuery<Result<IEnumerable<RentalDto>>>;

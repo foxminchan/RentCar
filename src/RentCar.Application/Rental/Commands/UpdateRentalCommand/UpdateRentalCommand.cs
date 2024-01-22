@@ -8,7 +8,7 @@ using RentCar.Core.Enums;
 
 namespace RentCar.Application.Rental.Commands.UpdateRentalCommand;
 
-public record UpdateRentalCommand(
+public sealed record UpdateRentalCommand(
     Guid Id,
     DateTime? StartDate,
     DateTime? EndDate,

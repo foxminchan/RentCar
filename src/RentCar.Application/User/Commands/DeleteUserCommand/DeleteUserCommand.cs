@@ -5,6 +5,6 @@ using Ardalis.Result;
 using Ardalis.SharedKernel;
 using RentCar.Core.Interfaces;
 
-namespace RentCar.Application.Rental.Commands.DeleteRentalCommand;
+namespace RentCar.Application.User.Commands.DeleteUserCommand;
 
-public sealed record DeleteRentalCommand(Guid Id) : ICommand<Result>, ITransactionRequest;
+public sealed record DeleteUserCommand(string Id) : ICommand<Result>, ITransactionRequest;
