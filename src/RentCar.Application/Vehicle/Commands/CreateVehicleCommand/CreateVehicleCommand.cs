@@ -11,7 +11,7 @@ using RentCar.Core.Interfaces;
 
 namespace RentCar.Application.Vehicle.Commands.CreateVehicleCommand;
 
-public record CreateVehicleCommand(
+public sealed record CreateVehicleCommand(
     string? Name,
     string? Brand,
     string? Color,

@@ -10,7 +10,7 @@ using RentCar.Core.Interfaces;
 
 namespace RentCar.Application.Vehicle.Commands.UpdateVehicleCommand;
 
-public record UpdateVehicleCommand(
+public sealed record UpdateVehicleCommand(
     Guid Id,
     string? Name,
     string? Brand,

@@ -8,4 +8,4 @@ using RentCar.Core.Interfaces;
 
 namespace RentCar.Application.Vehicle.Commands.DeleteVehicleCommand;
 
-public record DeleteVehicleCommand(Guid Id) : ICommand<Result>, ITransactionRequest;
+public sealed record DeleteVehicleCommand(Guid Id) : ICommand<Result>, ITransactionRequest;

@@ -1,9 +1,8 @@
-FROM mcr.microsoft.com/dotnet/aspnet:8.0 AS base
-USER app
+FROM mcr.microsoft.com/dotnet/aspnet:8.0-nanoserver-1809 AS base
 WORKDIR /app
 EXPOSE 8080
 
-FROM mcr.microsoft.com/dotnet/sdk:8.0 AS build
+FROM mcr.microsoft.com/dotnet/sdk:8.0-nanoserver-1809 AS build
 ARG BUILD_CONFIGURATION=Release
 WORKDIR /src
 COPY ["src/RentCar.UseCase/RentCar.UseCase.csproj", "src/RentCar.UseCase/"]
@@ -13,11 +12,11 @@ COPY ["src/RentCar.Core/RentCar.Core.csproj", "src/RentCar.Core/"]
 RUN dotnet restore "./src/RentCar.UseCase/./RentCar.UseCase.csproj"
 COPY . .
 WORKDIR "/src/src/RentCar.UseCase"
-RUN dotnet build "./RentCar.UseCase.csproj" -c $BUILD_CONFIGURATION -o /app/build
+RUN dotnet build "./RentCar.UseCase.csproj" -c %BUILD_CONFIGURATION% -o /app/build
 
 FROM build AS publish
 ARG BUILD_CONFIGURATION=Release
-RUN dotnet publish "./RentCar.UseCase.csproj" -c $BUILD_CONFIGURATION -o /app/publish /p:UseAppHost=false
+RUN dotnet publish "./RentCar.UseCase.csproj" -c %BUILD_CONFIGURATION% -o /app/publish /p:UseAppHost=false
 
 FROM base AS final
 WORKDIR /app

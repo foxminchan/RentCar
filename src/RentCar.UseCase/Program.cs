@@ -43,7 +43,6 @@ builder.Services.AddCors(options => options
 
 builder.Services.AddCarter();
 builder.Services.AddSwaggerGen();
-
 builder.Services.AddExceptionHandler<ExceptionHandler>();
 
 var app = builder.Build();

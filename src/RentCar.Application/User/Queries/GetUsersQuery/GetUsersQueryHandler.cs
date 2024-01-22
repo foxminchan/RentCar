@@ -11,7 +11,7 @@ using RentCar.Core.Identity;
 
 namespace RentCar.Application.User.Queries.GetUsersQuery;
 
-public class GetUsersQueryHandler(UserManager<ApplicationUser> userManager)
+public sealed class GetUsersQueryHandler(UserManager<ApplicationUser> userManager)
     : IQueryHandler<GetUsersQuery, Result<IEnumerable<UserDto>>>
 {
     public async Task<Result<IEnumerable<UserDto>>> Handle(GetUsersQuery request, CancellationToken cancellationToken)

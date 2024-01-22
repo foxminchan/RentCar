@@ -5,7 +5,7 @@ using FluentValidation;
 
 namespace RentCar.Infrastructure.Cloudinary;
 
-public class CloudinaryValidator : AbstractValidator<CloudinarySetting>
+public sealed class CloudinaryValidator : AbstractValidator<CloudinarySetting>
 {
     public CloudinaryValidator()
     {

@@ -6,7 +6,7 @@ using RentCar.Core.Enums;
 
 namespace RentCar.Core.Events.Rental;
 
-public class RentalUpdatedEvent(Guid vehicleId, Guid rentalId, RentStatus? status) : DomainEventBase
+public sealed class RentalUpdatedEvent(Guid vehicleId, Guid rentalId, RentStatus? status) : DomainEventBase
 {
     public RentStatus? Status { get; set; } = status;
     public Guid VehicleId { get; set; } = vehicleId;

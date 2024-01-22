@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 namespace RentCar.Core.ValueObjects;
 
 [Owned]
-public class Address : ValueObject
+public sealed class Address : ValueObject
 {
     public Address()
     {

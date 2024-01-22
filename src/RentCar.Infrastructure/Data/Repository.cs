@@ -7,5 +7,5 @@ using Microsoft.EntityFrameworkCore;
 
 namespace RentCar.Infrastructure.Data;
 
-public class Repository<T>(DbContext dbContext) : RepositoryBase<T>(dbContext)
+public sealed class Repository<T>(DbContext dbContext) : RepositoryBase<T>(dbContext)
     where T : class, IAggregateRoot;

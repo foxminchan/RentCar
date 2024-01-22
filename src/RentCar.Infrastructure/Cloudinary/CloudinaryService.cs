@@ -8,7 +8,7 @@ using Microsoft.AspNetCore.Http;
 
 namespace RentCar.Infrastructure.Cloudinary;
 
-public class CloudinaryService(ICloudinaryUploadApi cloudinary) : ICloudinaryService
+public sealed class CloudinaryService(ICloudinaryUploadApi cloudinary) : ICloudinaryService
 {
     public async Task<Result<CloudinaryResult>> AddPhotoAsync(IFormFile? file)
     {

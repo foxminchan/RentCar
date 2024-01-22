@@ -3,4 +3,4 @@
 
 namespace RentCar.Infrastructure.Cloudinary;
 
-public record CloudinaryResult(string PublishId, string Url);
+public sealed record CloudinaryResult(string PublishId, string Url);
