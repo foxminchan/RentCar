@@ -9,11 +9,9 @@ using FluentValidation;
 using Mapster;
 using MediatR;
 
-using RentCar.Core.Events.Rental;
-
 namespace RentCar.Application.Rental.Commands.UpdateRentalCommand;
 
-public sealed class UpdateRentalCommandHandler(IRepositoryBase<Core.Entities.Rental> repository, IPublisher mediator) 
+public sealed class UpdateRentalCommandHandler(IRepositoryBase<Core.Entities.Rental> repository) 
     : ICommandHandler<UpdateRentalCommand, Result<Unit>>
 {
     public async Task<Result<Unit>> Handle(UpdateRentalCommand request, CancellationToken cancellationToken)
@@ -22,7 +20,7 @@ public sealed class UpdateRentalCommandHandler(IRepositoryBase<Core.Entities.Ren
         var existItem = await repository.GetByIdAsync(entity.Id, cancellationToken);
         Guard.Against.NotFound(entity.Id, existItem);
         await repository.UpdateAsync(entity, cancellationToken);
-        await mediator.Publish(new RentalUpdatedEvent(entity.Id, entity.VehicleId, entity.Status), cancellationToken);
+        existItem.UpdateRental(entity.Id, entity.VehicleId, entity.Status);
         return Result.Success(Unit.Value);
     }
 }

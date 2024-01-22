@@ -22,7 +22,9 @@ public static class Extension
 
         Guard.Against.Null(connectionString, message: "Connection string 'DefaultConnection' not found.");
 
+        services.AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>();
         services.AddScoped<IDbCommandInterceptor, TimingInterceptor>();
+        services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
 
         services.AddDbContextPool<ApplicationDbContext>(options =>
         {
@@ -44,8 +46,10 @@ public static class Extension
                     .EnableSensitiveDataLogging();
         });
 
-        services.AddScoped<IDomainEventDispatcher, MediatRDomainEventDispatcher>();
         services.AddScoped<IDatabaseFacade>(p => p.GetRequiredService<ApplicationDbContext>());
+
+        services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
+        services.AddTransient(typeof(IReadRepository<>), typeof(Repository<>));
 
         return services;
     }

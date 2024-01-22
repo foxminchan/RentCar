@@ -6,19 +6,17 @@ using Ardalis.SharedKernel;
 using Ardalis.Specification;
 using FluentValidation;
 using Mapster;
-using MediatR;
-using RentCar.Core.Events.Rental;
 
 namespace RentCar.Application.Rental.Commands.CreateRentalCommand;
 
-public sealed class CreateRentalCommandHandler(IRepositoryBase<Core.Entities.Rental> repository, IPublisher mediator)
+public sealed class CreateRentalCommandHandler(IRepositoryBase<Core.Entities.Rental> repository)
     : ICommandHandler<CreateRentalCommand, Result<Guid>>
 {
     public async Task<Result<Guid>> Handle(CreateRentalCommand request, CancellationToken cancellationToken)
     {
         var entity = request.Adapt<Core.Entities.Rental>();
         var result = await repository.AddAsync(entity, cancellationToken);
-        await mediator.Publish(new RentalCreatedEvent(result.VehicleId), cancellationToken);
+        result.AddRental(entity.VehicleId);
         return Result.Success(result.Id);
     }
 }

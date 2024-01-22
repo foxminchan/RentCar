@@ -3,8 +3,10 @@
 
 using Ardalis.Result;
 using Ardalis.SharedKernel;
+
 using RentCar.Application.Rental.Dto;
 
 namespace RentCar.Application.Rental.Queries.GetRentalsQuery;
 
-public record GetRentalsQuery(int Skip, int Take, string OrderBy) : IQuery<Result<IEnumerable<RentalDto>>>;
+public record GetRentalsQuery(int Skip = 0, int Take = 20, string OrderBy = "Id")
+    : IQuery<Result<IEnumerable<RentalDto>>>;

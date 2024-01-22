@@ -20,8 +20,6 @@ public static class Extension
         builder.AddHealthCheck();
         builder.AddSerilog(builder.Environment.ApplicationName);
 
-        services.AddScoped(typeof(Repository<>));
-
         services
             .AddProblemDetails()
             .AddHttpContextAccessor()

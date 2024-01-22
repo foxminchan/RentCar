@@ -6,12 +6,10 @@ using Ardalis.Result;
 using Ardalis.SharedKernel;
 using Ardalis.Specification;
 using FluentValidation;
-using MediatR;
-using RentCar.Core.Events.Rental;
 
 namespace RentCar.Application.Rental.Commands.DeleteRentalCommand;
 
-public sealed class DeleteRentalCommandHandler(IRepositoryBase<Core.Entities.Rental> repository, IPublisher mediator)
+public sealed class DeleteRentalCommandHandler(IRepositoryBase<Core.Entities.Rental> repository)
     : ICommandHandler<DeleteRentalCommand, Result>
 {
     public async Task<Result> Handle(DeleteRentalCommand request, CancellationToken cancellationToken)
@@ -20,7 +18,7 @@ public sealed class DeleteRentalCommandHandler(IRepositoryBase<Core.Entities.Ren
         var entity = await repository.GetByIdAsync(request.Id, cancellationToken);
         Guard.Against.NotFound(request.Id, entity);
         await repository.DeleteAsync(entity, cancellationToken);
-        await mediator.Publish(new RentalDeletedEvent(entity.Id, entity.VehicleId, entity.EndDate), cancellationToken);
+        entity.DeleteRental(entity.VehicleId, entity.VehicleId, entity.EndDate);
         return Result.Success();
     }
 }
