@@ -8,10 +8,14 @@ using Ardalis.Specification;
 using FluentValidation;
 using Mapster;
 using MediatR;
+using Microsoft.AspNetCore.Http;
+using RentCar.Infrastructure.Cloudinary;
 
 namespace RentCar.Application.Vehicle.Commands.UpdateVehicleCommand;
 
-public sealed class UpdateVehicleCommandHandler(IRepositoryBase<Core.Entities.Vehicle> repository)
+public sealed class UpdateVehicleCommandHandler(
+    IRepositoryBase<Core.Entities.Vehicle> repository,
+    ICloudinaryService cloudinaryService)
     : ICommandHandler<UpdateVehicleCommand, Result<Unit>>
 {
     public async Task<Result<Unit>> Handle(UpdateVehicleCommand request, CancellationToken cancellationToken)
@@ -19,6 +23,19 @@ public sealed class UpdateVehicleCommandHandler(IRepositoryBase<Core.Entities.Ve
         var entity = request.Adapt<Core.Entities.Vehicle>();
         var existItem = await repository.GetByIdAsync(entity.Id, cancellationToken);
         Guard.Against.NotFound(entity.Id, existItem);
+
+        if (request.Image is null && existItem.Image is { })
+            await cloudinaryService.DeletePhotoAsync(existItem.Image);
+
+        if (request.ImageFile is { })
+        {
+            if (existItem.Image is { })
+                await cloudinaryService.DeletePhotoAsync(existItem.Image);
+
+            var uploadResult = await cloudinaryService.AddPhotoAsync(request.ImageFile);
+            entity.Image = uploadResult.Value.Url;
+        }
+
         await repository.UpdateAsync(entity, cancellationToken);
         return Result.Success(Unit.Value);
     }
@@ -67,5 +84,21 @@ public sealed class UpdateVehicleCommandValidator : AbstractValidator<UpdateVehi
         RuleFor(x => x.Image)
             .MaximumLength(255)
             .WithMessage("Image Url must not exceed 255 characters");
+
+        RuleFor(x => x.ImageFile)
+            .Must(BeAValidImage)
+            .WithMessage("Invalid image format");
+    }
+
+    private static bool BeAValidImage(IFormFile? file)
+    {
+        if (file is null)
+            return true;
+
+        var allowedExtensions = new[] { ".jpg", ".png", ".jpeg" };
+        var extension = Path.GetExtension(file.FileName);
+
+        return file.Length <= 2 * 1024 * 1024
+               && (!string.IsNullOrEmpty(extension) && allowedExtensions.Contains(extension.ToLower()));
     }
 }

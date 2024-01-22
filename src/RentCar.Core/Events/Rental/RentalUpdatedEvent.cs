@@ -3,12 +3,10 @@
 
 using Ardalis.SharedKernel;
 using RentCar.Core.Enums;
-using RentCar.Core.Interfaces;
 
 namespace RentCar.Core.Events.Rental;
 
-public class RentalUpdatedEvent(Guid vehicleId, Guid rentalId, RentStatus? status)
-    : DomainEventBase, ITransactionRequest
+public class RentalUpdatedEvent(Guid vehicleId, Guid rentalId, RentStatus? status) : DomainEventBase
 {
     public RentStatus? Status { get; set; } = status;
     public Guid VehicleId { get; set; } = vehicleId;

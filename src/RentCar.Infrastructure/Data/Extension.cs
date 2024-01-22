@@ -47,9 +47,8 @@ public static class Extension
         });
 
         services.AddScoped<IDatabaseFacade>(p => p.GetRequiredService<ApplicationDbContext>());
-
-        services.AddTransient(typeof(IRepository<>), typeof(Repository<>));
-        services.AddTransient(typeof(IReadRepository<>), typeof(Repository<>));
+        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+        services.AddScoped(typeof(IReadRepository<>), typeof(Repository<>));
 
         return services;
     }

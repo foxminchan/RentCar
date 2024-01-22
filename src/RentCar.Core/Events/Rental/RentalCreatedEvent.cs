@@ -2,11 +2,10 @@
 // Licensed under the MIT License
 
 using Ardalis.SharedKernel;
-using RentCar.Core.Interfaces;
 
 namespace RentCar.Core.Events.Rental;
 
-public sealed class RentalCreatedEvent(Guid vehicleId) : DomainEventBase, ITransactionRequest
+public sealed class RentalCreatedEvent(Guid vehicleId) : DomainEventBase
 {
     public Guid VehicleId { get; set; } = vehicleId;
 }

@@ -3,6 +3,9 @@
 
 using Ardalis.Result;
 using Ardalis.SharedKernel;
+
+using Microsoft.AspNetCore.Http;
+
 using RentCar.Core.Enums;
 using RentCar.Core.Interfaces;
 
@@ -15,4 +18,4 @@ public record CreateVehicleCommand(
     string? Plate,
     VehicleType? Type,
     CarStatus? Status,
-    string? Image) : ICommand<Result<Guid>>, ITransactionRequest;
+    IFormFile? ImageFile) : ICommand<Result<Guid>>, ITransactionRequest;

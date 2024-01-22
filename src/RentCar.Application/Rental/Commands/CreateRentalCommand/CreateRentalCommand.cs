@@ -13,7 +13,7 @@ public record CreateRentalCommand(
     DateTime? EndDate,
     decimal? TotalPrice,
     RentStatus? Status,
-    Guid? VehicleId,
+    Guid VehicleId,
     string? UserId,
     Guid? PaymentId
 ) : ICommand<Result<Guid>>, ITransactionRequest;

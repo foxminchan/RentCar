@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.Extensions.DependencyInjection;
 using RentCar.Infrastructure.Auth;
+using RentCar.Infrastructure.Cloudinary;
 using RentCar.Infrastructure.Data;
 using RentCar.Infrastructure.Filters;
 using RentCar.Infrastructure.HealthCheck;
@@ -25,7 +26,9 @@ public static class Extension
             .AddHttpContextAccessor()
             .AddApplicationIdentity();
 
-        services.AddPostgres(builder.Configuration);
+        services
+            .AddPostgres(builder.Configuration)
+            .AddCloudinary(builder.Configuration);
 
         services.AddSingleton<IDeveloperPageExceptionFilter, DeveloperPageExceptionFilter>();
     }

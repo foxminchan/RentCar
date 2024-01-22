@@ -4,6 +4,7 @@
 using Ardalis.Result;
 using Ardalis.SharedKernel;
 using MediatR;
+using Microsoft.AspNetCore.Http;
 using RentCar.Core.Enums;
 using RentCar.Core.Interfaces;
 
@@ -17,4 +18,5 @@ public record UpdateVehicleCommand(
     string? Plate,
     VehicleType? Type,
     CarStatus? Status,
+    IFormFile? ImageFile,
     string? Image) : ICommand<Result<Unit>>, ITransactionRequest;

@@ -15,11 +15,20 @@
     </ItemGroup>
 
     <ItemGroup>
+        <Folder Include="Maintenance\Dto\" />
+        <Folder Include="Maintenance\Commands\" />
+        <Folder Include="Maintenance\Handlers\" />
+        <Folder Include="Maintenance\Validators\" />
+        <Folder Include="Maintenance\Queries\" />
         <Folder Include="Rental\Commands\CreateRentalCommand\" />
         <Folder Include="Rental\Commands\DeleteRentalCommand\" />
         <Folder Include="Rental\Commands\UpdateRentalCommand\" />
         <Folder Include="Rental\Queries\GetRentalsQuery\" />
         <Folder Include="Rental\Queries\GetRentalAmountQuery\" />
+        <Folder Include="User\Commands\" />
+        <Folder Include="User\Dto\" />
+        <Folder Include="User\Validators\" />
+        <Folder Include="User\Queries\" />
         <Folder Include="Vehicle\Commands\DeleteVehicleCommand\" />
         <Folder Include="Vehicle\Commands\UpdateVehicleCommand\" />
         <Folder Include="Vehicle\Queries\GetVehiclesQuery\" />

@@ -6,6 +6,7 @@ using Ardalis.SharedKernel;
 using Ardalis.Specification;
 using FluentValidation;
 using Mapster;
+using RentCar.Application.Vehicle.Validators;
 
 namespace RentCar.Application.Rental.Commands.CreateRentalCommand;
 
@@ -23,7 +24,7 @@ public sealed class CreateRentalCommandHandler(IRepositoryBase<Core.Entities.Ren
 
 public sealed class CreateRentalCommandValidator : AbstractValidator<CreateRentalCommand>
 {
-    public CreateRentalCommandValidator()
+    public CreateRentalCommandValidator(VehicleIdValidator vehicleIdValidator)
     {
         RuleFor(x => x.StartDate)
             .NotEmpty()
@@ -40,11 +41,10 @@ public sealed class CreateRentalCommandValidator : AbstractValidator<CreateRenta
 
         RuleFor(x => x.Status)
             .IsInEnum()
-            .WithMessage("Status must be in enum");
+            .WithMessage("Status is not valid");
 
         RuleFor(x => x.VehicleId)
-            .NotEmpty()
-            .WithMessage("Vehicle id is required");
+            .SetValidator(vehicleIdValidator);
 
         RuleFor(x => x.UserId)
             .NotEmpty()

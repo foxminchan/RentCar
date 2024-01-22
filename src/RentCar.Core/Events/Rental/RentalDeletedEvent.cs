@@ -3,12 +3,9 @@
 
 using Ardalis.SharedKernel;
 
-using RentCar.Core.Interfaces;
-
 namespace RentCar.Core.Events.Rental;
 
-public sealed class RentalDeletedEvent(Guid vehicleId, Guid rentalId, DateTime? endDate)
-    : DomainEventBase, ITransactionRequest
+public sealed class RentalDeletedEvent(Guid vehicleId, Guid rentalId, DateTime? endDate) : DomainEventBase
 {
     public Guid VehicleId { get; } = vehicleId;
     public Guid RentalId { get; } = rentalId;

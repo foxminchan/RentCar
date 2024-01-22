@@ -6,15 +6,26 @@ using Ardalis.SharedKernel;
 using Ardalis.Specification;
 using FluentValidation;
 using Mapster;
+using Microsoft.AspNetCore.Http;
+using RentCar.Infrastructure.Cloudinary;
 
 namespace RentCar.Application.Vehicle.Commands.CreateVehicleCommand;
 
-public sealed class CreateVehicleCommandHandler(IRepositoryBase<Core.Entities.Vehicle> repository)
+public sealed class CreateVehicleCommandHandler(
+    IRepositoryBase<Core.Entities.Vehicle> repository,
+    ICloudinaryService cloudinaryService)
     : ICommandHandler<CreateVehicleCommand, Result<Guid>>
 {
     public async Task<Result<Guid>> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
     {
         var entity = request.Adapt<Core.Entities.Vehicle>();
+
+        if (request.ImageFile is { })
+        {
+            var uploadResult = await cloudinaryService.AddPhotoAsync(request.ImageFile);
+            entity.Image = uploadResult.Value.Url;
+        }
+
         var result = await repository.AddAsync(entity, cancellationToken);
         return Result.Success(result.Id);
     }
@@ -56,8 +67,20 @@ public sealed class CreateVehicleCommandValidator : AbstractValidator<CreateVehi
             .IsInEnum()
             .WithMessage("Status must be in enum");
 
-        RuleFor(x => x.Image)
-            .MaximumLength(255)
-            .WithMessage("Image Url must not exceed 255 characters");
+        RuleFor(x => x.ImageFile)
+            .Must(BeAValidImage)
+            .WithMessage("Invalid image format");
+    }
+
+    private static bool BeAValidImage(IFormFile? file)
+    {
+        if (file is null)
+            return true;
+
+        var allowedExtensions = new[] { ".jpg", ".png", ".jpeg" };
+        var extension = Path.GetExtension(file.FileName);
+
+        return file.Length <= 2 * 1024 * 1024
+               && (!string.IsNullOrEmpty(extension) && allowedExtensions.Contains(extension.ToLower()));
     }
 }
