@@ -1,0 +1,29 @@
+version: "3.9"
+services:
+  api:
+    image: ghcr.io/foxminchan/rent-car-api:latest
+    container_name: api
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ASPNETCORE_URLS=http://+:80
+    networks:
+      - bridge-network
+
+  db:
+    image: postgres:latest
+    container_name: db
+    environment:
+      - POSTGRES_USER=postgres
+      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_DB=rent-car
+    volumes:
+      - ./db-data:/var/lib/postgresql/data
+    networks:
+      - bridge-network
+
+networks:
+  bridge-network:
+    driver: bridge
+
+volumes:
+  db-data:

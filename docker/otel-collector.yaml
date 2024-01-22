@@ -1,0 +1,43 @@
+receivers:
+  otlp:
+    protocols:
+      grpc:
+      http:
+        cors:
+          allowed_origins:
+            - http://*
+            - https://*
+exporters:
+  debug:
+    verbosity: detailed
+
+  logging:
+
+  prometheus:
+    endpoint: "0.0.0.0:8889"
+    const_labels:
+      label1: value1
+
+  elasticsearch:
+    endpoints:
+    - "http://elk:9200"
+
+processors:
+  batch:
+    timeout: 1s
+    send_batch_size: 1024
+  transform:
+    metric_statements:
+      - context: metric
+
+service:
+  extensions: [pprof, zpages, health_check]
+  pipelines:
+    metrics:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [logging, prometheus]
+    logs:
+      receivers: [otlp]
+      processors: [batch]
+      exporters: [logging, elasticsearch]

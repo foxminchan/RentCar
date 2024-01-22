@@ -1,9 +1,6 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
-// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
-// Licensed under the MIT License
-
 using CloudinaryDotNet;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
