@@ -3,8 +3,9 @@
 
 using Ardalis.Result;
 using Ardalis.SharedKernel;
+
 using RentCar.Core.Interfaces;
 
-namespace RentCar.Infrastructure.Abstraction.Commands.CreateEntityCommand;
+namespace RentCar.Application.Abstraction.Commands.CreateEntityCommand;
 
 public record CreateEntityCommand : ICommand<Result<Guid>>,ITransactionRequest;

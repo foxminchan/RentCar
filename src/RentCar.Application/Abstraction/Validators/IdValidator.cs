@@ -2,10 +2,12 @@
 // Licensed under the MIT License
 
 using FluentValidation;
+
 using Microsoft.EntityFrameworkCore;
+
 using RentCar.Infrastructure.Data;
 
-namespace RentCar.Infrastructure.Abstraction.Validators;
+namespace RentCar.Application.Abstraction.Validators;
 
 public class IdValidator<TModel> : AbstractValidator<Guid?>
     where TModel : class

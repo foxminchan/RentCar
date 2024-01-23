@@ -6,9 +6,10 @@ using Ardalis.SharedKernel;
 using Mapster;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
+
+using RentCar.Application.Abstraction.Validators;
 using RentCar.Application.User.Dto;
 using RentCar.Core.Identity;
-using RentCar.Infrastructure.Abstraction.Validators;
 
 namespace RentCar.Application.User.Queries.GetUsersQuery;
 

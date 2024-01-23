@@ -4,9 +4,10 @@
 using Ardalis.Result;
 using Ardalis.SharedKernel;
 using Ardalis.Specification;
+
 using Mapster;
 
-namespace RentCar.Infrastructure.Abstraction.Commands.CreateEntityCommand;
+namespace RentCar.Application.Abstraction.Commands.CreateEntityCommand;
 
 public class CreateEntityCommandHandler<TCommand, TEntity>(IRepositoryBase<TEntity> repository)
     : ICommandHandler<TCommand, Result<Guid>>

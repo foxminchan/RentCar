@@ -2,9 +2,10 @@
 // Licensed under the MIT License
 
 using Ardalis.Specification;
+
+using RentCar.Application.Abstraction.Queries.GetEntityQuery;
 using RentCar.Application.Feedback.Dto;
 using RentCar.Core.Specifications.Feedback;
-using RentCar.Infrastructure.Abstraction.Queries.GetEntityQuery;
 
 namespace RentCar.Application.Feedback.Queries.GetFeedbackQuery;
 

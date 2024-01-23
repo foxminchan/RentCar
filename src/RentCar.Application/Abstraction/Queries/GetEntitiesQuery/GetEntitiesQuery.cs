@@ -3,8 +3,9 @@
 
 using Ardalis.Result;
 using Ardalis.SharedKernel;
+
 using RentCar.Core.Specifications;
 
-namespace RentCar.Infrastructure.Abstraction.Queries.GetEntitiesQuery;
+namespace RentCar.Application.Abstraction.Queries.GetEntitiesQuery;
 
 public record GetEntitiesQuery<T>(SpecificationBase Spec) : IQuery<PagedResult<IEnumerable<T>>> where T : notnull;

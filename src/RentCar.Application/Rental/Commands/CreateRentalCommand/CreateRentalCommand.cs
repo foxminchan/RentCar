@@ -1,8 +1,8 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
+using RentCar.Application.Abstraction.Commands.CreateEntityCommand;
 using RentCar.Core.Enums;
-using RentCar.Infrastructure.Abstraction.Commands.CreateEntityCommand;
 
 namespace RentCar.Application.Rental.Commands.CreateRentalCommand;
 

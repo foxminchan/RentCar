@@ -2,8 +2,9 @@
 // Licensed under the MIT License
 
 using Microsoft.AspNetCore.Http;
+
+using RentCar.Application.Abstraction.Commands.UpdateEntityCommand;
 using RentCar.Core.Enums;
-using RentCar.Infrastructure.Abstraction.Commands.UpdateEntityCommand;
 
 namespace RentCar.Application.Vehicle.Commands.UpdateVehicleCommand;
 

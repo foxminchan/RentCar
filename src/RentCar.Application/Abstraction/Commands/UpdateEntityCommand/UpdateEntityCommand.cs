@@ -3,8 +3,11 @@
 
 using Ardalis.Result;
 using Ardalis.SharedKernel;
+
+using MediatR;
+
 using RentCar.Core.Interfaces;
 
-namespace RentCar.Infrastructure.Abstraction.Commands.DeleteEntityCommand;
+namespace RentCar.Application.Abstraction.Commands.UpdateEntityCommand;
 
-public record DeleteEntityCommand(Guid Id) : ICommand<Result>, ITransactionRequest;
+public record UpdateEntityCommand : ICommand<Result<Unit>>, ITransactionRequest;

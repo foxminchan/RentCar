@@ -57,11 +57,6 @@
     </ItemGroup>    
 
     <ItemGroup>
-        <Folder Include="Abstraction\Commands\CreateEntityCommand\" />
-        <Folder Include="Abstraction\Commands\DeleteEntityCommand\" />
-        <Folder Include="Abstraction\Commands\UpdateEntityCommand\" />
-        <Folder Include="Abstraction\Queries\GetEntitiesQuery\" />
-        <Folder Include="Abstraction\Queries\GetEntitiesByFieldQuery\" />
         <Folder Include="OpenTelemetry\" />
         <Folder Include="Swagger\" />
     </ItemGroup>

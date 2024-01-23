@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
-using RentCar.Infrastructure.Abstraction.Validators;
+using RentCar.Application.Abstraction.Validators;
 using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Rental.Validators;

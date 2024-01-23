@@ -2,10 +2,11 @@
 // Licensed under the MIT License
 
 using Ardalis.Specification;
+
+using RentCar.Application.Abstraction.Queries.GetEntitiesQuery;
+using RentCar.Application.Abstraction.Validators;
 using RentCar.Application.Vehicle.Dto;
 using RentCar.Core.Specifications.Vehicle;
-using RentCar.Infrastructure.Abstraction.Queries.GetEntitiesQuery;
-using RentCar.Infrastructure.Abstraction.Validators;
 
 namespace RentCar.Application.Vehicle.Queries.GetVehiclesQuery;
 

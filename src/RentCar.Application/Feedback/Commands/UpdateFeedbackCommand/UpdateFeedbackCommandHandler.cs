@@ -3,8 +3,9 @@
 
 using Ardalis.Specification;
 using FluentValidation;
+
+using RentCar.Application.Abstraction.Commands.UpdateEntityCommand;
 using RentCar.Application.Rental.Validators;
-using RentCar.Infrastructure.Abstraction.Commands.UpdateEntityCommand;
 
 namespace RentCar.Application.Feedback.Commands.UpdateFeedbackCommand;
 

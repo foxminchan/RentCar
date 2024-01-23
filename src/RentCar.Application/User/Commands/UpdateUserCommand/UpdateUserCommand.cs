@@ -1,9 +1,9 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
+using RentCar.Application.Abstraction.Commands.UpdateEntityCommand;
 using RentCar.Core.Enums;
 using RentCar.Core.ValueObjects;
-using RentCar.Infrastructure.Abstraction.Commands.UpdateEntityCommand;
 
 namespace RentCar.Application.User.Commands.UpdateUserCommand;
 

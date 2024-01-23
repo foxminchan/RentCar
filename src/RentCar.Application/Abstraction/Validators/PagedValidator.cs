@@ -2,9 +2,10 @@
 // Licensed under the MIT License
 
 using FluentValidation;
+
 using RentCar.Core.Specifications;
 
-namespace RentCar.Infrastructure.Abstraction.Validators;
+namespace RentCar.Application.Abstraction.Validators;
 
 public class PagedValidator<TModel> : AbstractValidator<SpecificationBase> where TModel : notnull
 {

@@ -1,9 +1,9 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
+using RentCar.Application.Abstraction.Queries.GetEntitiesByFieldQuery;
 using RentCar.Application.Rental.Dto;
 using RentCar.Core.Specifications;
-using RentCar.Infrastructure.Abstraction.Queries.GetEntitiesByFieldQuery;
 
 namespace RentCar.Application.Rental.Queries.GetRentalsByUserQuery;
 

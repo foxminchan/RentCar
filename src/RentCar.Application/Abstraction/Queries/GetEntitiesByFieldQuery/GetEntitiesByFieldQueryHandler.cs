@@ -5,9 +5,10 @@ using Ardalis.GuardClauses;
 using Ardalis.Result;
 using Ardalis.SharedKernel;
 using Ardalis.Specification;
+
 using Mapster;
 
-namespace RentCar.Infrastructure.Abstraction.Queries.GetEntitiesByFieldQuery;
+namespace RentCar.Application.Abstraction.Queries.GetEntitiesByFieldQuery;
 
 public class GetEntitiesByFieldQueryHandler<TQuery, TEntity, TResult, TSpec>(IReadRepositoryBase<TEntity> repository)
     : IQueryHandler<TQuery, PagedResult<IEnumerable<TResult>>>

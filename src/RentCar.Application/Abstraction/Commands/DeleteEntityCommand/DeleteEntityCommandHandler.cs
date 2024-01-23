@@ -6,7 +6,7 @@ using Ardalis.Result;
 using Ardalis.SharedKernel;
 using Ardalis.Specification;
 
-namespace RentCar.Infrastructure.Abstraction.Commands.DeleteEntityCommand;
+namespace RentCar.Application.Abstraction.Commands.DeleteEntityCommand;
 
 public class DeleteEntityCommandHandler<TCommand, TEntity>(IRepositoryBase<TEntity> repository)
     : ICommandHandler<TCommand, Result>

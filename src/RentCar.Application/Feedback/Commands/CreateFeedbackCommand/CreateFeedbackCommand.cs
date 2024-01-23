@@ -1,7 +1,7 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
-using RentCar.Infrastructure.Abstraction.Commands.CreateEntityCommand;
+using RentCar.Application.Abstraction.Commands.CreateEntityCommand;
 
 namespace RentCar.Application.Feedback.Commands.CreateFeedbackCommand;
 

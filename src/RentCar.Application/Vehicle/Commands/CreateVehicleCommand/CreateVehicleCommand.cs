@@ -2,8 +2,9 @@
 // Licensed under the MIT License
 
 using Microsoft.AspNetCore.Http;
+
+using RentCar.Application.Abstraction.Commands.CreateEntityCommand;
 using RentCar.Core.Enums;
-using RentCar.Infrastructure.Abstraction.Commands.CreateEntityCommand;
 
 namespace RentCar.Application.Vehicle.Commands.CreateVehicleCommand;
 
