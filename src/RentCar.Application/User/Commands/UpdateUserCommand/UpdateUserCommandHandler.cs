@@ -1,6 +1,8 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
+using System.Security.Claims;
+
 using Ardalis.GuardClauses;
 using Ardalis.Result;
 using Ardalis.SharedKernel;
@@ -9,6 +11,7 @@ using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Identity;
 using RentCar.Application.User.Validators;
+using RentCar.Core.Constants;
 using RentCar.Core.Identity;
 
 namespace RentCar.Application.User.Commands.UpdateUserCommand;
@@ -45,6 +48,12 @@ public sealed class UpdateUserCommandHandler(UserManager<ApplicationUser> userMa
 
         var result = await userManager.UpdateAsync(info);
 
+        if (request.Role is { })
+            await userManager.AddToRoleAsync(user, request.Role);
+
+        if (request.Policies is { } && request.Policies.Count != 0)
+            request.Policies.ForEach(policy => userManager.AddClaimAsync(user, new(ClaimTypes.Role, policy)));
+        
         return !result.Succeeded
             ? Result.Invalid(new List<ValidationError>(
                 result.Errors.Select(e => new ValidationError(e.Description))))
@@ -112,5 +121,15 @@ public sealed class UpdateUserCommandValidator : AbstractValidator<UpdateUserCom
             .NotEmpty()
             .Equal(x => x.Password)
             .WithMessage("Password and Confirm Password must be the same");
+
+        RuleFor(x => x.Role)
+            .Must(role => role is null or Roles.Admin or Roles.Customer)
+            .WithMessage("Role is invalid");
+
+        RuleFor(x => x.Policies)
+            .Must(policies => 
+                policies is null 
+                || policies.All(policy => policy is Policies.Create or Policies.Read or Policies.Update or Policies.Delete))
+            .WithMessage("Invalid policy in the list");
     }
 }

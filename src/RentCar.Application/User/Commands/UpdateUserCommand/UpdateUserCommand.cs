@@ -18,4 +18,6 @@ public sealed record UpdateUserCommand(
     DateOnly DateOfBirth,
     string Email,
     string Password,
-    string ConfirmPassword) : UpdateEntityCommand;
+    string ConfirmPassword,
+    string? Role,
+    List<string>? Policies) : UpdateEntityCommand;
