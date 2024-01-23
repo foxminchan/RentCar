@@ -11,6 +11,7 @@ using RentCar.Application.Vehicle.Commands.UpdateVehicleCommand;
 using RentCar.Application.Vehicle.Dto;
 using RentCar.Application.Vehicle.Queries.GetVehicleQuery;
 using RentCar.Application.Vehicle.Queries.GetVehiclesQuery;
+using RentCar.Core.Specifications;
 using RentCar.UseCase.Extensions;
 
 namespace RentCar.UseCase.Endpoints;
@@ -31,9 +32,9 @@ public sealed class VehicleEndpoint : ICarterModule
     }
 
     private static async Task<PagedResult<IEnumerable<VehicleDto>>> GetVehicles(
-        [AsParameters] GetVehiclesQuery request,
+        [AsParameters] SpecificationBase spec,
         [FromServices] ISender sender)
-        => await sender.Send(request);
+        => await sender.Send(new GetVehiclesQuery(spec));
 
     private static async Task<Result<VehicleDto>> GetVehicle(
         [FromRoute] Guid id,

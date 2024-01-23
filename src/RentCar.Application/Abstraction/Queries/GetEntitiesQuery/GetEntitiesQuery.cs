@@ -3,7 +3,6 @@
 
 using Ardalis.Result;
 using Ardalis.SharedKernel;
-
 using RentCar.Core.Specifications;
 
 namespace RentCar.Application.Abstraction.Queries.GetEntitiesQuery;

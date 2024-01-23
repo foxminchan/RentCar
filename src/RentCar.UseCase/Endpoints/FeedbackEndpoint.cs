@@ -12,6 +12,7 @@ using RentCar.Application.Feedback.Dto;
 using RentCar.Application.Feedback.Queries.GetFeedbackByVehicleQuery;
 using RentCar.Application.Feedback.Queries.GetFeedbackQuery;
 using RentCar.Application.Feedback.Queries.GetFeedbacksQuery;
+using RentCar.Core.Specifications;
 using RentCar.UseCase.Extensions;
 
 namespace RentCar.UseCase.Endpoints;
@@ -26,7 +27,7 @@ public sealed class FeedbackEndpoint : ICarterModule
         group.RequirePerUserRateLimit();
         group.MapGet("", GetFeedbacks).WithName(nameof(GetFeedbacks));
         group.MapGet("{id:guid}", GetFeedBack).WithName(nameof(GetFeedBack));
-        group.MapGet("vehicle", GetFeedbacksByVehicle).WithName(nameof(GetFeedbacksByVehicle));
+        group.MapGet("vehicle/{id:guid}", GetFeedbacksByVehicle).WithName(nameof(GetFeedbacksByVehicle));
         group.MapPost("", AddFeedback).WithName(nameof(AddFeedback));
         group.MapPut("", UpdateFeedback).WithName(nameof(UpdateFeedback));
         group.MapDelete("{id:guid}", DeleteFeedback).WithName(nameof(DeleteFeedback));
@@ -53,12 +54,13 @@ public sealed class FeedbackEndpoint : ICarterModule
         => await sender.Send(new GetFeedbackQuery(id));
 
     private static async Task<Result<PagedResult<IEnumerable<FeedbackDto>>>> GetFeedbacks(
-        [AsParameters] GetFeedbacksQuery request,
+        [AsParameters] SpecificationBase spec,
         [FromServices] ISender sender)
-        => await sender.Send(request);
+        => await sender.Send(new GetFeedbacksQuery(spec));
 
     private static async Task<Result<PagedResult<IEnumerable<FeedbackDto>>>> GetFeedbacksByVehicle(
-        [AsParameters] GetFeedbackByVehicleQuery request,
+        [FromRoute] Guid id,
+        [AsParameters] SpecificationBase spec,
         [FromServices] ISender sender)
-        => await sender.Send(request);
+        => await sender.Send(new GetFeedbackByVehicleQuery(id, spec));
 }

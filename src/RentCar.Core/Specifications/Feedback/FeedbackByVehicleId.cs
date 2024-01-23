@@ -4,15 +4,15 @@ namespace RentCar.Core.Specifications.Feedback;
 
 public sealed class FeedbackByVehicleId : Specification<Entities.Feedback>
 {
-    public FeedbackByVehicleId(Guid vehicleId, long pageNumber, long pageSize, string orderBy, bool isDescending)
+    public FeedbackByVehicleId(Guid vehicleId, SpecificationBase spec)
     {
-        Query.Take((int)pageSize);
-        Query.Skip((int)((pageNumber - 1) * pageSize));
+        Query.Take((int)spec.PageSize);
+        Query.Skip((int)((spec.PageNumber - 1) * spec.PageSize));
         Query.Where(x => x.Rental!.VehicleId == vehicleId);
 
-        if (isDescending)
-            Query.OrderByDescending(x => x.GetType().GetProperty(orderBy)!.GetValue(x, null));
+        if (spec.IsAscending)
+            Query.OrderBy(x => x.GetType().GetProperty(spec.OrderBy ?? "Id")!.GetValue(x, null));
         else
-            Query.OrderBy(x => x.GetType().GetProperty(orderBy)!.GetValue(x, null));
+            Query.OrderByDescending(x => x.GetType().GetProperty(spec.OrderBy ?? "Id")!.GetValue(x, null));
     }
 }

@@ -12,6 +12,7 @@ using RentCar.Application.Rental.Dto;
 using RentCar.Application.Rental.Queries.GetRentalQuery;
 using RentCar.Application.Rental.Queries.GetRentalsByUserQuery;
 using RentCar.Application.Rental.Queries.GetRentalsQuery;
+using RentCar.Core.Specifications;
 using RentCar.UseCase.Extensions;
 
 namespace RentCar.UseCase.Endpoints;
@@ -26,16 +27,16 @@ public sealed class RentalEndpoint : ICarterModule
         group.RequirePerUserRateLimit();
         group.MapGet("", GetRentals).WithName(nameof(GetRentals));
         group.MapGet("{id:guid}", GetRental).WithName(nameof(GetRental));
-        group.MapGet("user", GetRentalsByUser).WithName(nameof(GetRentalsByUser));
+        group.MapGet("user/{id:guid}", GetRentalsByUser).WithName(nameof(GetRentalsByUser));
         group.MapPost("", AddRental).WithName(nameof(AddRental));
         group.MapPut("", UpdateRental).WithName(nameof(UpdateRental));
         group.MapDelete("{id:guid}", DeleteRental).WithName(nameof(DeleteRental));
     }
 
     private static async Task<Result<PagedResult<IEnumerable<RentalDto>>>> GetRentals(
-        [AsParameters] GetRentalsQuery request,
+        [AsParameters] SpecificationBase spec,
         [FromServices] ISender sender)
-        => await sender.Send(request);
+        => await sender.Send(new GetRentalsQuery(spec));
 
 
     private static async Task<Result<RentalDto>> GetRental(
@@ -44,9 +45,10 @@ public sealed class RentalEndpoint : ICarterModule
         => await sender.Send(new GetRentalQuery(id));
 
     private static async Task<Result<PagedResult<IEnumerable<RentalDto>>>> GetRentalsByUser(
-        [AsParameters] GetRentalsByUserQuery request,
+        [FromRoute] Guid id,
+        [AsParameters] SpecificationBase spec,
         [FromServices] ISender sender)
-        => await sender.Send(request);
+        => await sender.Send(new GetRentalsByUserQuery(id, spec));
 
     private static async Task<Result<Guid>> AddRental(
         [FromBody] CreateRentalCommand request,

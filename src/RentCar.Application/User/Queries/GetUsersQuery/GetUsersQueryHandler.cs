@@ -19,7 +19,7 @@ public sealed class GetUsersQueryHandler(UserManager<ApplicationUser> userManage
     public async Task<PagedResult<IEnumerable<UserDto>>> Handle(GetUsersQuery request,
         CancellationToken cancellationToken)
     {
-        var query = userManager.Users.OrderBy(x => x.GetType().GetProperty(request.Spec.OrderBy)!.GetValue(x, null));
+        var query = userManager.Users.OrderBy(x => x.GetType().GetProperty(request.Spec.OrderBy ?? "Id")!.GetValue(x, null));
 
         if (!request.Spec.IsAscending)
             query = query.OrderDescending();
@@ -27,7 +27,6 @@ public sealed class GetUsersQueryHandler(UserManager<ApplicationUser> userManage
         var users = await query
             .Skip((int)((request.Spec.PageNumber - 1) * request.Spec.PageSize))
             .Take((int)request.Spec.PageSize)
-            .OrderBy(x => x.GetType().GetProperty(request.Spec.OrderBy)!.GetValue(x, null))
             .ProjectToType<UserDto>()
             .ToListAsync(cancellationToken);
 

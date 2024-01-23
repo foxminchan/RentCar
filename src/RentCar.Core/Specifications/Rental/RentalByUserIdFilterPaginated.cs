@@ -14,8 +14,8 @@ public sealed class RentalByUserIdFilterPaginated : Specification<Entities.Renta
         Query.Where(x => x.UserId == userId);
 
         if (spec.IsAscending)
-            Query.OrderBy(x => x.GetType().GetProperty(spec.OrderBy)!.GetValue(x, null));
+            Query.OrderBy(x => x.GetType().GetProperty(spec.OrderBy ?? "Id")!.GetValue(x, null));
         else
-            Query.OrderByDescending(x => x.GetType().GetProperty(spec.OrderBy)!.GetValue(x, null));
+            Query.OrderByDescending(x => x.GetType().GetProperty(spec.OrderBy ?? "Id")!.GetValue(x, null));
     }
 }

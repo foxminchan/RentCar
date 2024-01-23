@@ -7,14 +7,14 @@ namespace RentCar.Core.Specifications.Feedback;
 
 public sealed class FeedbackFilterPaginated : Specification<Entities.Feedback>
 {
-    public FeedbackFilterPaginated(long pageNumber, long pageSize, string orderBy, bool isDescending)
+    public FeedbackFilterPaginated(SpecificationBase spec)
     {
-        Query.Take((int)pageSize);
-        Query.Skip((int)((pageNumber - 1) * pageSize));
+        Query.Take((int)spec.PageSize);
+        Query.Skip((int)((spec.PageNumber - 1) * spec.PageSize));
 
-        if (isDescending)
-            Query.OrderByDescending(x => x.GetType().GetProperty(orderBy)!.GetValue(x, null));
+        if (spec.IsAscending)
+            Query.OrderBy(x => x.GetType().GetProperty(spec.OrderBy ?? "Id")!.GetValue(x, null));
         else
-            Query.OrderBy(x => x.GetType().GetProperty(orderBy)!.GetValue(x, null));
+            Query.OrderByDescending(x => x.GetType().GetProperty(spec.OrderBy ?? "Id")!.GetValue(x, null));
     }
 }

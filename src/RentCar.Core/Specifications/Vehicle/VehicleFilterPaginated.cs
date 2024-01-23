@@ -12,9 +12,9 @@ public sealed class VehicleFilterPaginated : Specification<Entities.Vehicle>
         Query.Take((int)spec.PageSize);
         Query.Skip((int)((spec.PageNumber - 1) * spec.PageSize));
 
-        if (spec.IsAscending)
-            Query.OrderBy(x => x.GetType().GetProperty(spec.OrderBy)!.GetValue(x, null));
+        if (spec.IsAscending)   
+            Query.OrderBy(x => x.GetType().GetProperty(spec.OrderBy ?? "Id")!.GetValue(x, null));
         else
-            Query.OrderByDescending(x => x.GetType().GetProperty(spec.OrderBy)!.GetValue(x, null));
+            Query.OrderByDescending(x => x.GetType().GetProperty(spec.OrderBy ?? "Id")!.GetValue(x, null));
     }
 }

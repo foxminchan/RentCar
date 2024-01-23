@@ -7,5 +7,5 @@ using RentCar.Core.Specifications;
 
 namespace RentCar.Application.Rental.Queries.GetRentalsByUserQuery;
 
-public sealed record GetRentalsByUserQuery(Guid UserId, SpecificationBase Spec)
-    : GetEntitiesByFieldQuery<RentalDto>(UserId, Spec);
+public sealed record GetRentalsByUserQuery(Guid Id, SpecificationBase Spec)
+    : GetEntitiesByFieldQuery<RentalDto>(Id, Spec);

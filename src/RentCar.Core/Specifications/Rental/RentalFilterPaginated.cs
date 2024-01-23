@@ -13,8 +13,8 @@ public sealed class RentalFilterPaginated : Specification<Entities.Rental>
         Query.Skip((int)((spec.PageNumber - 1) * spec.PageSize));
 
         if (spec.IsAscending)
-            Query.OrderBy(x => x.GetType().GetProperty(spec.OrderBy)!.GetValue(x, null));
+            Query.OrderBy(x => x.GetType().GetProperty(spec.OrderBy ?? "Id")!.GetValue(x, null));
         else
-            Query.OrderByDescending(x => x.GetType().GetProperty(spec.OrderBy)!.GetValue(x, null));
+            Query.OrderByDescending(x => x.GetType().GetProperty(spec.OrderBy ?? "Id")!.GetValue(x, null));
     }
 }

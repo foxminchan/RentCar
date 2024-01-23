@@ -11,6 +11,7 @@ using RentCar.Application.User.Commands.UpdateUserCommand;
 using RentCar.Application.User.Dto;
 using RentCar.Application.User.Queries.GetUserQuery;
 using RentCar.Application.User.Queries.GetUsersQuery;
+using RentCar.Core.Specifications;
 using RentCar.UseCase.Extensions;
 
 namespace RentCar.UseCase.Endpoints;
@@ -31,9 +32,9 @@ public sealed class UserEndpoint : ICarterModule
     }
 
     private static async Task<PagedResult<IEnumerable<UserDto>>> GetUsers(
-        [AsParameters] GetUsersQuery request,
+        [AsParameters] SpecificationBase spec,
         [FromServices] ISender sender)
-        => await sender.Send(request);
+        => await sender.Send(new GetUsersQuery(spec));
 
     private static async Task<Result<UserDto>> GetUser(
         [FromRoute] Guid id,
