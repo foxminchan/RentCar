@@ -11,22 +11,22 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 #pragma warning disable 219, 612, 618
 #nullable disable
 
-namespace RentCar.Infrastructure.Data.CompiledModels
+namespace RentCar.Infrastructure.Data.CompliedModels
 {
     internal partial class IdentityUserClaimEntityType
     {
         public static RuntimeEntityType Create(RuntimeModel model, RuntimeEntityType baseEntityType = null)
         {
             var runtimeEntityType = model.AddEntityType(
-                "Microsoft.AspNetCore.Identity.IdentityUserClaim<string>",
-                typeof(IdentityUserClaim<string>),
+                "Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>",
+                typeof(IdentityUserClaim<Guid>),
                 baseEntityType);
 
             var id = runtimeEntityType.AddProperty(
                 "Id",
                 typeof(int),
-                propertyInfo: typeof(IdentityUserClaim<string>).GetProperty("Id", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                fieldInfo: typeof(IdentityUserClaim<string>).GetField("<Id>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                propertyInfo: typeof(IdentityUserClaim<Guid>).GetProperty("Id", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(IdentityUserClaim<Guid>).GetField("<Id>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 valueGenerated: ValueGenerated.OnAdd,
                 afterSaveBehavior: PropertySaveBehavior.Throw,
                 sentinel: 0);
@@ -51,8 +51,8 @@ namespace RentCar.Infrastructure.Data.CompiledModels
             var claimType = runtimeEntityType.AddProperty(
                 "ClaimType",
                 typeof(string),
-                propertyInfo: typeof(IdentityUserClaim<string>).GetProperty("ClaimType", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                fieldInfo: typeof(IdentityUserClaim<string>).GetField("<ClaimType>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                propertyInfo: typeof(IdentityUserClaim<Guid>).GetProperty("ClaimType", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(IdentityUserClaim<Guid>).GetField("<ClaimType>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 nullable: true);
             claimType.TypeMapping = StringTypeMapping.Default.Clone(
                 comparer: new ValueComparer<string>(
@@ -75,8 +75,8 @@ namespace RentCar.Infrastructure.Data.CompiledModels
             var claimValue = runtimeEntityType.AddProperty(
                 "ClaimValue",
                 typeof(string),
-                propertyInfo: typeof(IdentityUserClaim<string>).GetProperty("ClaimValue", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                fieldInfo: typeof(IdentityUserClaim<string>).GetField("<ClaimValue>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                propertyInfo: typeof(IdentityUserClaim<Guid>).GetProperty("ClaimValue", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(IdentityUserClaim<Guid>).GetField("<ClaimValue>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 nullable: true);
             claimValue.TypeMapping = StringTypeMapping.Default.Clone(
                 comparer: new ValueComparer<string>(
@@ -98,24 +98,25 @@ namespace RentCar.Infrastructure.Data.CompiledModels
 
             var userId = runtimeEntityType.AddProperty(
                 "UserId",
-                typeof(string),
-                propertyInfo: typeof(IdentityUserClaim<string>).GetProperty("UserId", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                fieldInfo: typeof(IdentityUserClaim<string>).GetField("<UserId>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
-            userId.TypeMapping = StringTypeMapping.Default.Clone(
-                comparer: new ValueComparer<string>(
-                    (string v1, string v2) => v1 == v2,
-                    (string v) => v.GetHashCode(),
-                    (string v) => v),
-                keyComparer: new ValueComparer<string>(
-                    (string v1, string v2) => v1 == v2,
-                    (string v) => v.GetHashCode(),
-                    (string v) => v),
-                providerValueComparer: new ValueComparer<string>(
-                    (string v1, string v2) => v1 == v2,
-                    (string v) => v.GetHashCode(),
-                    (string v) => v),
+                typeof(Guid),
+                propertyInfo: typeof(IdentityUserClaim<Guid>).GetProperty("UserId", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(IdentityUserClaim<Guid>).GetField("<UserId>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                sentinel: new Guid("00000000-0000-0000-0000-000000000000"));
+            userId.TypeMapping = GuidTypeMapping.Default.Clone(
+                comparer: new ValueComparer<Guid>(
+                    (Guid v1, Guid v2) => v1 == v2,
+                    (Guid v) => v.GetHashCode(),
+                    (Guid v) => v),
+                keyComparer: new ValueComparer<Guid>(
+                    (Guid v1, Guid v2) => v1 == v2,
+                    (Guid v) => v.GetHashCode(),
+                    (Guid v) => v),
+                providerValueComparer: new ValueComparer<Guid>(
+                    (Guid v1, Guid v2) => v1 == v2,
+                    (Guid v) => v.GetHashCode(),
+                    (Guid v) => v),
                 mappingInfo: new RelationalTypeMappingInfo(
-                    dbType: System.Data.DbType.String));
+                    storeTypeName: "uuid"));
             userId.AddAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.None);
             userId.AddAnnotation("Relational:ColumnName", "user_id");
 

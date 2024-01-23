@@ -6,7 +6,7 @@ using RentCar.Core.Enums;
 
 namespace RentCar.Core.Entities;
 
-public sealed class Vehicle : EntityBase<Guid>, IAggregateRoot
+public sealed class Vehicle : EntityBase<Guid>
 {
     public string? Name { get; set; }
     public string? Brand { get; set; }

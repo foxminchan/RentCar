@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using RentCar.Infrastructure.Data.CompiledModels;
+using RentCar.Infrastructure.Data.CompliedModels;
 using RentCar.Infrastructure.Data.Interceptors;
 
 namespace RentCar.Infrastructure.Data;

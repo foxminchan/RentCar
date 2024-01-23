@@ -22,6 +22,7 @@
 
     <ItemGroup>
       <Folder Include="Specifications\Feedback\" />
+      <Folder Include="Specifications\Maintenance\" />
     </ItemGroup>
 
 </Project>

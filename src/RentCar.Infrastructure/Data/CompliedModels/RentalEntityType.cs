@@ -18,7 +18,7 @@ using RentCar.Core.Identity;
 #pragma warning disable 219, 612, 618
 #nullable disable
 
-namespace RentCar.Infrastructure.Data.CompiledModels
+namespace RentCar.Infrastructure.Data.CompliedModels
 {
     internal partial class RentalEntityType
     {
@@ -179,162 +179,162 @@ namespace RentCar.Infrastructure.Data.CompiledModels
 
             var userId = runtimeEntityType.AddProperty(
                 "UserId",
-                typeof(string),
+                typeof(Guid?),
                 propertyInfo: typeof(Rental).GetProperty("UserId", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 fieldInfo: typeof(Rental).GetField("<UserId>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 nullable: true,
                 maxLength: 50);
-            userId.TypeMapping = NpgsqlStringTypeMapping.Default.Clone(
-                comparer: new ValueComparer<string>(
-                    (string v1, string v2) => v1 == v2,
-                    (string v) => v.GetHashCode(),
-                    (string v) => v),
-                keyComparer: new ValueComparer<string>(
-                    (string v1, string v2) => v1 == v2,
-                    (string v) => v.GetHashCode(),
-                    (string v) => v),
-                providerValueComparer: new ValueComparer<string>(
-                    (string v1, string v2) => v1 == v2,
-                    (string v) => v.GetHashCode(),
-                    (string v) => v),
+            userId.TypeMapping = GuidTypeMapping.Default.Clone(
+                comparer: new ValueComparer<Guid?>(
+                    (Nullable<Guid> v1, Nullable<Guid> v2) => v1.HasValue && v2.HasValue && (Guid)v1 == (Guid)v2 || !v1.HasValue && !v2.HasValue,
+                    (Nullable<Guid> v) => v.HasValue ? ((Guid)v).GetHashCode() : 0,
+                    (Nullable<Guid> v) => v.HasValue ? (Nullable<Guid>)(Guid)v : default(Nullable<Guid>)),
+                keyComparer: new ValueComparer<Guid?>(
+                    (Nullable<Guid> v1, Nullable<Guid> v2) => v1.HasValue && v2.HasValue && (Guid)v1 == (Guid)v2 || !v1.HasValue && !v2.HasValue,
+                    (Nullable<Guid> v) => v.HasValue ? ((Guid)v).GetHashCode() : 0,
+                    (Nullable<Guid> v) => v.HasValue ? (Nullable<Guid>)(Guid)v : default(Nullable<Guid>)),
+                providerValueComparer: new ValueComparer<Guid?>(
+                    (Nullable<Guid> v1, Nullable<Guid> v2) => v1.HasValue && v2.HasValue && (Guid)v1 == (Guid)v2 || !v1.HasValue && !v2.HasValue,
+                    (Nullable<Guid> v) => v.HasValue ? ((Guid)v).GetHashCode() : 0,
+                    (Nullable<Guid> v) => v.HasValue ? (Nullable<Guid>)(Guid)v : default(Nullable<Guid>)),
                 mappingInfo: new RelationalTypeMappingInfo(
-                    storeTypeName: "character varying(50)",
+                    storeTypeName: "uuid",
                     size: 50));
-            userId.TypeMapping = ((NpgsqlStringTypeMapping)userId.TypeMapping).Clone(npgsqlDbType: NpgsqlTypes.NpgsqlDbType.Varchar);
-        userId.AddAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.None);
-        userId.AddAnnotation("Relational:ColumnName", "user_id");
+            userId.AddAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.None);
+            userId.AddAnnotation("Relational:ColumnName", "user_id");
 
-        var vehicleId = runtimeEntityType.AddProperty(
-            "VehicleId",
-            typeof(Guid?),
-            propertyInfo: typeof(Rental).GetProperty("VehicleId", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-            fieldInfo: typeof(Rental).GetField("<VehicleId>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-            nullable: true);
-        vehicleId.TypeMapping = GuidTypeMapping.Default.Clone(
-            comparer: new ValueComparer<Guid?>(
-                (Nullable<Guid> v1, Nullable<Guid> v2) => v1.HasValue && v2.HasValue && (Guid)v1 == (Guid)v2 || !v1.HasValue && !v2.HasValue,
-                (Nullable<Guid> v) => v.HasValue ? ((Guid)v).GetHashCode() : 0,
-                (Nullable<Guid> v) => v.HasValue ? (Nullable<Guid>)(Guid)v : default(Nullable<Guid>)),
-            keyComparer: new ValueComparer<Guid?>(
-                (Nullable<Guid> v1, Nullable<Guid> v2) => v1.HasValue && v2.HasValue && (Guid)v1 == (Guid)v2 || !v1.HasValue && !v2.HasValue,
-                (Nullable<Guid> v) => v.HasValue ? ((Guid)v).GetHashCode() : 0,
-                (Nullable<Guid> v) => v.HasValue ? (Nullable<Guid>)(Guid)v : default(Nullable<Guid>)),
-            providerValueComparer: new ValueComparer<Guid?>(
-                (Nullable<Guid> v1, Nullable<Guid> v2) => v1.HasValue && v2.HasValue && (Guid)v1 == (Guid)v2 || !v1.HasValue && !v2.HasValue,
-                (Nullable<Guid> v) => v.HasValue ? ((Guid)v).GetHashCode() : 0,
-                (Nullable<Guid> v) => v.HasValue ? (Nullable<Guid>)(Guid)v : default(Nullable<Guid>)),
-            mappingInfo: new RelationalTypeMappingInfo(
-                storeTypeName: "uuid"));
-        vehicleId.AddAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.None);
-        vehicleId.AddAnnotation("Relational:ColumnName", "vehicle_id");
+            var vehicleId = runtimeEntityType.AddProperty(
+                "VehicleId",
+                typeof(Guid),
+                propertyInfo: typeof(Rental).GetProperty("VehicleId", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(Rental).GetField("<VehicleId>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                sentinel: new Guid("00000000-0000-0000-0000-000000000000"));
+            vehicleId.TypeMapping = GuidTypeMapping.Default.Clone(
+                comparer: new ValueComparer<Guid>(
+                    (Guid v1, Guid v2) => v1 == v2,
+                    (Guid v) => v.GetHashCode(),
+                    (Guid v) => v),
+                keyComparer: new ValueComparer<Guid>(
+                    (Guid v1, Guid v2) => v1 == v2,
+                    (Guid v) => v.GetHashCode(),
+                    (Guid v) => v),
+                providerValueComparer: new ValueComparer<Guid>(
+                    (Guid v1, Guid v2) => v1 == v2,
+                    (Guid v) => v.GetHashCode(),
+                    (Guid v) => v),
+                mappingInfo: new RelationalTypeMappingInfo(
+                    storeTypeName: "uuid"));
+            vehicleId.AddAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.None);
+            vehicleId.AddAnnotation("Relational:ColumnName", "vehicle_id");
 
-        var key = runtimeEntityType.AddKey(
-            new[] { id });
-        runtimeEntityType.SetPrimaryKey(key);
-        key.AddAnnotation("Relational:Name", "pk_rentals");
+            var key = runtimeEntityType.AddKey(
+                new[] { id });
+            runtimeEntityType.SetPrimaryKey(key);
+            key.AddAnnotation("Relational:Name", "pk_rentals");
 
-        var index = runtimeEntityType.AddIndex(
-            new[] { paymentId });
-        index.AddAnnotation("Relational:Name", "ix_rentals_payment_id");
+            var index = runtimeEntityType.AddIndex(
+                new[] { paymentId });
+            index.AddAnnotation("Relational:Name", "ix_rentals_payment_id");
 
-        var index0 = runtimeEntityType.AddIndex(
-            new[] { userId });
-        index0.AddAnnotation("Relational:Name", "ix_rentals_user_id");
+            var index0 = runtimeEntityType.AddIndex(
+                new[] { userId });
+            index0.AddAnnotation("Relational:Name", "ix_rentals_user_id");
 
-        var index1 = runtimeEntityType.AddIndex(
-            new[] { vehicleId });
-        index1.AddAnnotation("Relational:Name", "ix_rentals_vehicle_id");
+            var index1 = runtimeEntityType.AddIndex(
+                new[] { vehicleId });
+            index1.AddAnnotation("Relational:Name", "ix_rentals_vehicle_id");
 
-        return runtimeEntityType;
+            return runtimeEntityType;
+        }
+
+        public static RuntimeForeignKey CreateForeignKey1(RuntimeEntityType declaringEntityType, RuntimeEntityType principalEntityType)
+        {
+            var runtimeForeignKey = declaringEntityType.AddForeignKey(new[] { declaringEntityType.FindProperty("PaymentId") },
+                principalEntityType.FindKey(new[] { principalEntityType.FindProperty("Id") }),
+                principalEntityType,
+                deleteBehavior: DeleteBehavior.SetNull);
+
+            var payment = declaringEntityType.AddNavigation("Payment",
+                runtimeForeignKey,
+                onDependent: true,
+                typeof(Payment),
+                propertyInfo: typeof(Rental).GetProperty("Payment", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(Rental).GetField("<Payment>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
+
+            var rentals = principalEntityType.AddNavigation("Rentals",
+                runtimeForeignKey,
+                onDependent: false,
+                typeof(ICollection<Rental>),
+                propertyInfo: typeof(Payment).GetProperty("Rentals", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(Payment).GetField("<Rentals>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
+
+            runtimeForeignKey.AddAnnotation("Relational:Name", "fk_rentals_payments_payment_id");
+            return runtimeForeignKey;
+        }
+
+        public static RuntimeForeignKey CreateForeignKey2(RuntimeEntityType declaringEntityType, RuntimeEntityType principalEntityType)
+        {
+            var runtimeForeignKey = declaringEntityType.AddForeignKey(new[] { declaringEntityType.FindProperty("UserId") },
+                principalEntityType.FindKey(new[] { principalEntityType.FindProperty("Id") }),
+                principalEntityType,
+                deleteBehavior: DeleteBehavior.SetNull);
+
+            var user = declaringEntityType.AddNavigation("User",
+                runtimeForeignKey,
+                onDependent: true,
+                typeof(ApplicationUser),
+                propertyInfo: typeof(Rental).GetProperty("User", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(Rental).GetField("<User>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
+
+            var rentals = principalEntityType.AddNavigation("Rentals",
+                runtimeForeignKey,
+                onDependent: false,
+                typeof(ICollection<Rental>),
+                propertyInfo: typeof(ApplicationUser).GetProperty("Rentals", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(ApplicationUser).GetField("<Rentals>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
+
+            runtimeForeignKey.AddAnnotation("Relational:Name", "fk_rentals_users_user_id");
+            return runtimeForeignKey;
+        }
+
+        public static RuntimeForeignKey CreateForeignKey3(RuntimeEntityType declaringEntityType, RuntimeEntityType principalEntityType)
+        {
+            var runtimeForeignKey = declaringEntityType.AddForeignKey(new[] { declaringEntityType.FindProperty("VehicleId") },
+                principalEntityType.FindKey(new[] { principalEntityType.FindProperty("Id") }),
+                principalEntityType,
+                deleteBehavior: DeleteBehavior.SetNull,
+                required: true);
+
+            var vehicle = declaringEntityType.AddNavigation("Vehicle",
+                runtimeForeignKey,
+                onDependent: true,
+                typeof(Vehicle),
+                propertyInfo: typeof(Rental).GetProperty("Vehicle", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(Rental).GetField("<Vehicle>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
+
+            var rentals = principalEntityType.AddNavigation("Rentals",
+                runtimeForeignKey,
+                onDependent: false,
+                typeof(ICollection<Rental>),
+                propertyInfo: typeof(Vehicle).GetProperty("Rentals", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(Vehicle).GetField("<Rentals>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
+
+            runtimeForeignKey.AddAnnotation("Relational:Name", "fk_rentals_vehicles_vehicle_id");
+            return runtimeForeignKey;
+        }
+
+        public static void CreateAnnotations(RuntimeEntityType runtimeEntityType)
+        {
+            runtimeEntityType.AddAnnotation("Relational:FunctionName", null);
+            runtimeEntityType.AddAnnotation("Relational:Schema", null);
+            runtimeEntityType.AddAnnotation("Relational:SqlQuery", null);
+            runtimeEntityType.AddAnnotation("Relational:TableName", "rentals");
+            runtimeEntityType.AddAnnotation("Relational:ViewName", null);
+            runtimeEntityType.AddAnnotation("Relational:ViewSchema", null);
+
+            Customize(runtimeEntityType);
+        }
+
+        static partial void Customize(RuntimeEntityType runtimeEntityType);
     }
-
-    public static RuntimeForeignKey CreateForeignKey1(RuntimeEntityType declaringEntityType, RuntimeEntityType principalEntityType)
-    {
-        var runtimeForeignKey = declaringEntityType.AddForeignKey(new[] { declaringEntityType.FindProperty("PaymentId") },
-            principalEntityType.FindKey(new[] { principalEntityType.FindProperty("Id") }),
-            principalEntityType,
-            deleteBehavior: DeleteBehavior.SetNull);
-
-        var payment = declaringEntityType.AddNavigation("Payment",
-            runtimeForeignKey,
-            onDependent: true,
-            typeof(Payment),
-            propertyInfo: typeof(Rental).GetProperty("Payment", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-            fieldInfo: typeof(Rental).GetField("<Payment>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
-
-        var rentals = principalEntityType.AddNavigation("Rentals",
-            runtimeForeignKey,
-            onDependent: false,
-            typeof(ICollection<Rental>),
-            propertyInfo: typeof(Payment).GetProperty("Rentals", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-            fieldInfo: typeof(Payment).GetField("<Rentals>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
-
-        runtimeForeignKey.AddAnnotation("Relational:Name", "fk_rentals_payments_payment_id");
-        return runtimeForeignKey;
-    }
-
-    public static RuntimeForeignKey CreateForeignKey2(RuntimeEntityType declaringEntityType, RuntimeEntityType principalEntityType)
-    {
-        var runtimeForeignKey = declaringEntityType.AddForeignKey(new[] { declaringEntityType.FindProperty("UserId") },
-            principalEntityType.FindKey(new[] { principalEntityType.FindProperty("Id") }),
-            principalEntityType,
-            deleteBehavior: DeleteBehavior.SetNull);
-
-        var user = declaringEntityType.AddNavigation("User",
-            runtimeForeignKey,
-            onDependent: true,
-            typeof(ApplicationUser),
-            propertyInfo: typeof(Rental).GetProperty("User", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-            fieldInfo: typeof(Rental).GetField("<User>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
-
-        var rentals = principalEntityType.AddNavigation("Rentals",
-            runtimeForeignKey,
-            onDependent: false,
-            typeof(ICollection<Rental>),
-            propertyInfo: typeof(ApplicationUser).GetProperty("Rentals", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-            fieldInfo: typeof(ApplicationUser).GetField("<Rentals>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
-
-        runtimeForeignKey.AddAnnotation("Relational:Name", "fk_rentals_users_user_id");
-        return runtimeForeignKey;
-    }
-
-    public static RuntimeForeignKey CreateForeignKey3(RuntimeEntityType declaringEntityType, RuntimeEntityType principalEntityType)
-    {
-        var runtimeForeignKey = declaringEntityType.AddForeignKey(new[] { declaringEntityType.FindProperty("VehicleId") },
-            principalEntityType.FindKey(new[] { principalEntityType.FindProperty("Id") }),
-            principalEntityType,
-            deleteBehavior: DeleteBehavior.SetNull);
-
-        var vehicle = declaringEntityType.AddNavigation("Vehicle",
-            runtimeForeignKey,
-            onDependent: true,
-            typeof(Vehicle),
-            propertyInfo: typeof(Rental).GetProperty("Vehicle", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-            fieldInfo: typeof(Rental).GetField("<Vehicle>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
-
-        var rentals = principalEntityType.AddNavigation("Rentals",
-            runtimeForeignKey,
-            onDependent: false,
-            typeof(ICollection<Rental>),
-            propertyInfo: typeof(Vehicle).GetProperty("Rentals", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-            fieldInfo: typeof(Vehicle).GetField("<Rentals>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly));
-
-        runtimeForeignKey.AddAnnotation("Relational:Name", "fk_rentals_vehicles_vehicle_id");
-        return runtimeForeignKey;
-    }
-
-    public static void CreateAnnotations(RuntimeEntityType runtimeEntityType)
-    {
-        runtimeEntityType.AddAnnotation("Relational:FunctionName", null);
-        runtimeEntityType.AddAnnotation("Relational:Schema", null);
-        runtimeEntityType.AddAnnotation("Relational:SqlQuery", null);
-        runtimeEntityType.AddAnnotation("Relational:TableName", "rentals");
-        runtimeEntityType.AddAnnotation("Relational:ViewName", null);
-        runtimeEntityType.AddAnnotation("Relational:ViewSchema", null);
-
-        Customize(runtimeEntityType);
-    }
-
-    static partial void Customize(RuntimeEntityType runtimeEntityType);
-}
 }

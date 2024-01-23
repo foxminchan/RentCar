@@ -11,7 +11,7 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 #pragma warning disable 219, 612, 618
 #nullable disable
 
-namespace RentCar.Infrastructure.Data.CompiledModels
+namespace RentCar.Infrastructure.Data.CompliedModels
 {
     public partial class ApplicationDbContextModel
     {
@@ -65,41 +65,41 @@ namespace RentCar.Infrastructure.Data.CompiledModels
         {
             var relationalModel = new RelationalModel(this);
 
-            var identityRole = FindEntityType("Microsoft.AspNetCore.Identity.IdentityRole")!;
+            var identityRole = FindEntityType("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>")!;
 
             var defaultTableMappings = new List<TableMappingBase<ColumnMappingBase>>();
             identityRole.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings);
-            var microsoftAspNetCoreIdentityIdentityRoleTableBase = new TableBase("Microsoft.AspNetCore.Identity.IdentityRole", null, relationalModel);
-            var concurrency_stampColumnBase = new ColumnBase<ColumnMappingBase>("concurrency_stamp", "text", microsoftAspNetCoreIdentityIdentityRoleTableBase)
+            var microsoftAspNetCoreIdentityIdentityRoleSystemGuidTableBase = new TableBase("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", null, relationalModel);
+            var concurrency_stampColumnBase = new ColumnBase<ColumnMappingBase>("concurrency_stamp", "text", microsoftAspNetCoreIdentityIdentityRoleSystemGuidTableBase)
             {
                 IsNullable = true
             };
-            microsoftAspNetCoreIdentityIdentityRoleTableBase.Columns.Add("concurrency_stamp", concurrency_stampColumnBase);
-            var idColumnBase = new ColumnBase<ColumnMappingBase>("id", "text", microsoftAspNetCoreIdentityIdentityRoleTableBase);
-            microsoftAspNetCoreIdentityIdentityRoleTableBase.Columns.Add("id", idColumnBase);
-            var nameColumnBase = new ColumnBase<ColumnMappingBase>("name", "character varying(256)", microsoftAspNetCoreIdentityIdentityRoleTableBase)
+            microsoftAspNetCoreIdentityIdentityRoleSystemGuidTableBase.Columns.Add("concurrency_stamp", concurrency_stampColumnBase);
+            var idColumnBase = new ColumnBase<ColumnMappingBase>("id", "uuid", microsoftAspNetCoreIdentityIdentityRoleSystemGuidTableBase);
+            microsoftAspNetCoreIdentityIdentityRoleSystemGuidTableBase.Columns.Add("id", idColumnBase);
+            var nameColumnBase = new ColumnBase<ColumnMappingBase>("name", "character varying(256)", microsoftAspNetCoreIdentityIdentityRoleSystemGuidTableBase)
             {
                 IsNullable = true
             };
-            microsoftAspNetCoreIdentityIdentityRoleTableBase.Columns.Add("name", nameColumnBase);
-            var normalized_nameColumnBase = new ColumnBase<ColumnMappingBase>("normalized_name", "character varying(256)", microsoftAspNetCoreIdentityIdentityRoleTableBase)
+            microsoftAspNetCoreIdentityIdentityRoleSystemGuidTableBase.Columns.Add("name", nameColumnBase);
+            var normalized_nameColumnBase = new ColumnBase<ColumnMappingBase>("normalized_name", "character varying(256)", microsoftAspNetCoreIdentityIdentityRoleSystemGuidTableBase)
             {
                 IsNullable = true
             };
-            microsoftAspNetCoreIdentityIdentityRoleTableBase.Columns.Add("normalized_name", normalized_nameColumnBase);
-            relationalModel.DefaultTables.Add("Microsoft.AspNetCore.Identity.IdentityRole", microsoftAspNetCoreIdentityIdentityRoleTableBase);
-            var microsoftAspNetCoreIdentityIdentityRoleMappingBase = new TableMappingBase<ColumnMappingBase>(identityRole, microsoftAspNetCoreIdentityIdentityRoleTableBase, true);
-            microsoftAspNetCoreIdentityIdentityRoleTableBase.AddTypeMapping(microsoftAspNetCoreIdentityIdentityRoleMappingBase, false);
-            defaultTableMappings.Add(microsoftAspNetCoreIdentityIdentityRoleMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase, identityRole.FindProperty("Id")!, microsoftAspNetCoreIdentityIdentityRoleMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)concurrency_stampColumnBase, identityRole.FindProperty("ConcurrencyStamp")!, microsoftAspNetCoreIdentityIdentityRoleMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nameColumnBase, identityRole.FindProperty("Name")!, microsoftAspNetCoreIdentityIdentityRoleMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)normalized_nameColumnBase, identityRole.FindProperty("NormalizedName")!, microsoftAspNetCoreIdentityIdentityRoleMappingBase);
+            microsoftAspNetCoreIdentityIdentityRoleSystemGuidTableBase.Columns.Add("normalized_name", normalized_nameColumnBase);
+            relationalModel.DefaultTables.Add("Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>", microsoftAspNetCoreIdentityIdentityRoleSystemGuidTableBase);
+            var microsoftAspNetCoreIdentityIdentityRoleSystemGuidMappingBase = new TableMappingBase<ColumnMappingBase>(identityRole, microsoftAspNetCoreIdentityIdentityRoleSystemGuidTableBase, true);
+            microsoftAspNetCoreIdentityIdentityRoleSystemGuidTableBase.AddTypeMapping(microsoftAspNetCoreIdentityIdentityRoleSystemGuidMappingBase, false);
+            defaultTableMappings.Add(microsoftAspNetCoreIdentityIdentityRoleSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase, identityRole.FindProperty("Id")!, microsoftAspNetCoreIdentityIdentityRoleSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)concurrency_stampColumnBase, identityRole.FindProperty("ConcurrencyStamp")!, microsoftAspNetCoreIdentityIdentityRoleSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nameColumnBase, identityRole.FindProperty("Name")!, microsoftAspNetCoreIdentityIdentityRoleSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)normalized_nameColumnBase, identityRole.FindProperty("NormalizedName")!, microsoftAspNetCoreIdentityIdentityRoleSystemGuidMappingBase);
 
             var tableMappings = new List<TableMapping>();
             identityRole.SetRuntimeAnnotation("Relational:TableMappings", tableMappings);
             var aspNetRolesTable = new Table("AspNetRoles", null, relationalModel);
-            var idColumn = new Column("id", "text", aspNetRolesTable);
+            var idColumn = new Column("id", "uuid", aspNetRolesTable);
             aspNetRolesTable.Columns.Add("id", idColumn);
             var concurrency_stampColumn = new Column("concurrency_stamp", "text", aspNetRolesTable)
             {
@@ -119,7 +119,7 @@ namespace RentCar.Infrastructure.Data.CompiledModels
             var pk_asp_net_roles = new UniqueConstraint("pk_asp_net_roles", aspNetRolesTable, new[] { idColumn });
             aspNetRolesTable.PrimaryKey = pk_asp_net_roles;
             var pk_asp_net_rolesUc = RelationalModel.GetKey(this,
-                "Microsoft.AspNetCore.Identity.IdentityRole",
+                "Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>",
                 new[] { "Id" });
             pk_asp_net_roles.MappedKeys.Add(pk_asp_net_rolesUc);
             RelationalModel.GetOrCreateUniqueConstraints(pk_asp_net_rolesUc).Add(pk_asp_net_roles);
@@ -127,7 +127,7 @@ namespace RentCar.Infrastructure.Data.CompiledModels
             var roleNameIndex = new TableIndex(
             "RoleNameIndex", aspNetRolesTable, new[] { normalized_nameColumn }, true);
             var roleNameIndexIx = RelationalModel.GetIndex(this,
-                "Microsoft.AspNetCore.Identity.IdentityRole",
+                "Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>",
                 new[] { "NormalizedName" });
             roleNameIndex.MappedIndexes.Add(roleNameIndexIx);
             RelationalModel.GetOrCreateTableIndexes(roleNameIndexIx).Add(roleNameIndex);
@@ -141,33 +141,33 @@ namespace RentCar.Infrastructure.Data.CompiledModels
             RelationalModel.CreateColumnMapping(nameColumn, identityRole.FindProperty("Name")!, aspNetRolesTableMapping);
             RelationalModel.CreateColumnMapping(normalized_nameColumn, identityRole.FindProperty("NormalizedName")!, aspNetRolesTableMapping);
 
-            var identityRoleClaim = FindEntityType("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>")!;
+            var identityRoleClaim = FindEntityType("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>")!;
 
             var defaultTableMappings0 = new List<TableMappingBase<ColumnMappingBase>>();
             identityRoleClaim.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings0);
-            var microsoftAspNetCoreIdentityIdentityRoleClaimstringTableBase = new TableBase("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", null, relationalModel);
-            var claim_typeColumnBase = new ColumnBase<ColumnMappingBase>("claim_type", "text", microsoftAspNetCoreIdentityIdentityRoleClaimstringTableBase)
+            var microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidTableBase = new TableBase("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", null, relationalModel);
+            var claim_typeColumnBase = new ColumnBase<ColumnMappingBase>("claim_type", "text", microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidTableBase)
             {
                 IsNullable = true
             };
-            microsoftAspNetCoreIdentityIdentityRoleClaimstringTableBase.Columns.Add("claim_type", claim_typeColumnBase);
-            var claim_valueColumnBase = new ColumnBase<ColumnMappingBase>("claim_value", "text", microsoftAspNetCoreIdentityIdentityRoleClaimstringTableBase)
+            microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidTableBase.Columns.Add("claim_type", claim_typeColumnBase);
+            var claim_valueColumnBase = new ColumnBase<ColumnMappingBase>("claim_value", "text", microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidTableBase)
             {
                 IsNullable = true
             };
-            microsoftAspNetCoreIdentityIdentityRoleClaimstringTableBase.Columns.Add("claim_value", claim_valueColumnBase);
-            var idColumnBase0 = new ColumnBase<ColumnMappingBase>("id", "integer", microsoftAspNetCoreIdentityIdentityRoleClaimstringTableBase);
-            microsoftAspNetCoreIdentityIdentityRoleClaimstringTableBase.Columns.Add("id", idColumnBase0);
-            var role_idColumnBase = new ColumnBase<ColumnMappingBase>("role_id", "text", microsoftAspNetCoreIdentityIdentityRoleClaimstringTableBase);
-            microsoftAspNetCoreIdentityIdentityRoleClaimstringTableBase.Columns.Add("role_id", role_idColumnBase);
-            relationalModel.DefaultTables.Add("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", microsoftAspNetCoreIdentityIdentityRoleClaimstringTableBase);
-            var microsoftAspNetCoreIdentityIdentityRoleClaimstringMappingBase = new TableMappingBase<ColumnMappingBase>(identityRoleClaim, microsoftAspNetCoreIdentityIdentityRoleClaimstringTableBase, true);
-            microsoftAspNetCoreIdentityIdentityRoleClaimstringTableBase.AddTypeMapping(microsoftAspNetCoreIdentityIdentityRoleClaimstringMappingBase, false);
-            defaultTableMappings0.Add(microsoftAspNetCoreIdentityIdentityRoleClaimstringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase0, identityRoleClaim.FindProperty("Id")!, microsoftAspNetCoreIdentityIdentityRoleClaimstringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)claim_typeColumnBase, identityRoleClaim.FindProperty("ClaimType")!, microsoftAspNetCoreIdentityIdentityRoleClaimstringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)claim_valueColumnBase, identityRoleClaim.FindProperty("ClaimValue")!, microsoftAspNetCoreIdentityIdentityRoleClaimstringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)role_idColumnBase, identityRoleClaim.FindProperty("RoleId")!, microsoftAspNetCoreIdentityIdentityRoleClaimstringMappingBase);
+            microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidTableBase.Columns.Add("claim_value", claim_valueColumnBase);
+            var idColumnBase0 = new ColumnBase<ColumnMappingBase>("id", "integer", microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidTableBase);
+            microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidTableBase.Columns.Add("id", idColumnBase0);
+            var role_idColumnBase = new ColumnBase<ColumnMappingBase>("role_id", "uuid", microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidTableBase);
+            microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidTableBase.Columns.Add("role_id", role_idColumnBase);
+            relationalModel.DefaultTables.Add("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidTableBase);
+            var microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidMappingBase = new TableMappingBase<ColumnMappingBase>(identityRoleClaim, microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidTableBase, true);
+            microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidTableBase.AddTypeMapping(microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidMappingBase, false);
+            defaultTableMappings0.Add(microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase0, identityRoleClaim.FindProperty("Id")!, microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)claim_typeColumnBase, identityRoleClaim.FindProperty("ClaimType")!, microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)claim_valueColumnBase, identityRoleClaim.FindProperty("ClaimValue")!, microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)role_idColumnBase, identityRoleClaim.FindProperty("RoleId")!, microsoftAspNetCoreIdentityIdentityRoleClaimSystemGuidMappingBase);
 
             var tableMappings0 = new List<TableMapping>();
             identityRoleClaim.SetRuntimeAnnotation("Relational:TableMappings", tableMappings0);
@@ -185,12 +185,12 @@ namespace RentCar.Infrastructure.Data.CompiledModels
                 IsNullable = true
             };
             aspNetRoleClaimsTable.Columns.Add("claim_value", claim_valueColumn);
-            var role_idColumn = new Column("role_id", "text", aspNetRoleClaimsTable);
+            var role_idColumn = new Column("role_id", "uuid", aspNetRoleClaimsTable);
             aspNetRoleClaimsTable.Columns.Add("role_id", role_idColumn);
             var pk_asp_net_role_claims = new UniqueConstraint("pk_asp_net_role_claims", aspNetRoleClaimsTable, new[] { idColumn0 });
             aspNetRoleClaimsTable.PrimaryKey = pk_asp_net_role_claims;
             var pk_asp_net_role_claimsUc = RelationalModel.GetKey(this,
-                "Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>",
+                "Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>",
                 new[] { "Id" });
             pk_asp_net_role_claims.MappedKeys.Add(pk_asp_net_role_claimsUc);
             RelationalModel.GetOrCreateUniqueConstraints(pk_asp_net_role_claimsUc).Add(pk_asp_net_role_claims);
@@ -198,7 +198,7 @@ namespace RentCar.Infrastructure.Data.CompiledModels
             var ix_asp_net_role_claims_role_id = new TableIndex(
             "ix_asp_net_role_claims_role_id", aspNetRoleClaimsTable, new[] { role_idColumn }, false);
             var ix_asp_net_role_claims_role_idIx = RelationalModel.GetIndex(this,
-                "Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>",
+                "Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>",
                 new[] { "RoleId" });
             ix_asp_net_role_claims_role_id.MappedIndexes.Add(ix_asp_net_role_claims_role_idIx);
             RelationalModel.GetOrCreateTableIndexes(ix_asp_net_role_claims_role_idIx).Add(ix_asp_net_role_claims_role_id);
@@ -212,33 +212,33 @@ namespace RentCar.Infrastructure.Data.CompiledModels
             RelationalModel.CreateColumnMapping(claim_valueColumn, identityRoleClaim.FindProperty("ClaimValue")!, aspNetRoleClaimsTableMapping);
             RelationalModel.CreateColumnMapping(role_idColumn, identityRoleClaim.FindProperty("RoleId")!, aspNetRoleClaimsTableMapping);
 
-            var identityUserClaim = FindEntityType("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>")!;
+            var identityUserClaim = FindEntityType("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>")!;
 
             var defaultTableMappings1 = new List<TableMappingBase<ColumnMappingBase>>();
             identityUserClaim.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings1);
-            var microsoftAspNetCoreIdentityIdentityUserClaimstringTableBase = new TableBase("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", null, relationalModel);
-            var claim_typeColumnBase0 = new ColumnBase<ColumnMappingBase>("claim_type", "text", microsoftAspNetCoreIdentityIdentityUserClaimstringTableBase)
+            var microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidTableBase = new TableBase("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", null, relationalModel);
+            var claim_typeColumnBase0 = new ColumnBase<ColumnMappingBase>("claim_type", "text", microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidTableBase)
             {
                 IsNullable = true
             };
-            microsoftAspNetCoreIdentityIdentityUserClaimstringTableBase.Columns.Add("claim_type", claim_typeColumnBase0);
-            var claim_valueColumnBase0 = new ColumnBase<ColumnMappingBase>("claim_value", "text", microsoftAspNetCoreIdentityIdentityUserClaimstringTableBase)
+            microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidTableBase.Columns.Add("claim_type", claim_typeColumnBase0);
+            var claim_valueColumnBase0 = new ColumnBase<ColumnMappingBase>("claim_value", "text", microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidTableBase)
             {
                 IsNullable = true
             };
-            microsoftAspNetCoreIdentityIdentityUserClaimstringTableBase.Columns.Add("claim_value", claim_valueColumnBase0);
-            var idColumnBase1 = new ColumnBase<ColumnMappingBase>("id", "integer", microsoftAspNetCoreIdentityIdentityUserClaimstringTableBase);
-            microsoftAspNetCoreIdentityIdentityUserClaimstringTableBase.Columns.Add("id", idColumnBase1);
-            var user_idColumnBase = new ColumnBase<ColumnMappingBase>("user_id", "text", microsoftAspNetCoreIdentityIdentityUserClaimstringTableBase);
-            microsoftAspNetCoreIdentityIdentityUserClaimstringTableBase.Columns.Add("user_id", user_idColumnBase);
-            relationalModel.DefaultTables.Add("Microsoft.AspNetCore.Identity.IdentityUserClaim<string>", microsoftAspNetCoreIdentityIdentityUserClaimstringTableBase);
-            var microsoftAspNetCoreIdentityIdentityUserClaimstringMappingBase = new TableMappingBase<ColumnMappingBase>(identityUserClaim, microsoftAspNetCoreIdentityIdentityUserClaimstringTableBase, true);
-            microsoftAspNetCoreIdentityIdentityUserClaimstringTableBase.AddTypeMapping(microsoftAspNetCoreIdentityIdentityUserClaimstringMappingBase, false);
-            defaultTableMappings1.Add(microsoftAspNetCoreIdentityIdentityUserClaimstringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase1, identityUserClaim.FindProperty("Id")!, microsoftAspNetCoreIdentityIdentityUserClaimstringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)claim_typeColumnBase0, identityUserClaim.FindProperty("ClaimType")!, microsoftAspNetCoreIdentityIdentityUserClaimstringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)claim_valueColumnBase0, identityUserClaim.FindProperty("ClaimValue")!, microsoftAspNetCoreIdentityIdentityUserClaimstringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)user_idColumnBase, identityUserClaim.FindProperty("UserId")!, microsoftAspNetCoreIdentityIdentityUserClaimstringMappingBase);
+            microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidTableBase.Columns.Add("claim_value", claim_valueColumnBase0);
+            var idColumnBase1 = new ColumnBase<ColumnMappingBase>("id", "integer", microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidTableBase);
+            microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidTableBase.Columns.Add("id", idColumnBase1);
+            var user_idColumnBase = new ColumnBase<ColumnMappingBase>("user_id", "uuid", microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidTableBase);
+            microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidTableBase.Columns.Add("user_id", user_idColumnBase);
+            relationalModel.DefaultTables.Add("Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>", microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidTableBase);
+            var microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidMappingBase = new TableMappingBase<ColumnMappingBase>(identityUserClaim, microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidTableBase, true);
+            microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidTableBase.AddTypeMapping(microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidMappingBase, false);
+            defaultTableMappings1.Add(microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)idColumnBase1, identityUserClaim.FindProperty("Id")!, microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)claim_typeColumnBase0, identityUserClaim.FindProperty("ClaimType")!, microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)claim_valueColumnBase0, identityUserClaim.FindProperty("ClaimValue")!, microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)user_idColumnBase, identityUserClaim.FindProperty("UserId")!, microsoftAspNetCoreIdentityIdentityUserClaimSystemGuidMappingBase);
 
             var tableMappings1 = new List<TableMapping>();
             identityUserClaim.SetRuntimeAnnotation("Relational:TableMappings", tableMappings1);
@@ -256,12 +256,12 @@ namespace RentCar.Infrastructure.Data.CompiledModels
                 IsNullable = true
             };
             aspNetUserClaimsTable.Columns.Add("claim_value", claim_valueColumn0);
-            var user_idColumn = new Column("user_id", "text", aspNetUserClaimsTable);
+            var user_idColumn = new Column("user_id", "uuid", aspNetUserClaimsTable);
             aspNetUserClaimsTable.Columns.Add("user_id", user_idColumn);
             var pk_asp_net_user_claims = new UniqueConstraint("pk_asp_net_user_claims", aspNetUserClaimsTable, new[] { idColumn1 });
             aspNetUserClaimsTable.PrimaryKey = pk_asp_net_user_claims;
             var pk_asp_net_user_claimsUc = RelationalModel.GetKey(this,
-                "Microsoft.AspNetCore.Identity.IdentityUserClaim<string>",
+                "Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>",
                 new[] { "Id" });
             pk_asp_net_user_claims.MappedKeys.Add(pk_asp_net_user_claimsUc);
             RelationalModel.GetOrCreateUniqueConstraints(pk_asp_net_user_claimsUc).Add(pk_asp_net_user_claims);
@@ -269,7 +269,7 @@ namespace RentCar.Infrastructure.Data.CompiledModels
             var ix_asp_net_user_claims_user_id = new TableIndex(
             "ix_asp_net_user_claims_user_id", aspNetUserClaimsTable, new[] { user_idColumn }, false);
             var ix_asp_net_user_claims_user_idIx = RelationalModel.GetIndex(this,
-                "Microsoft.AspNetCore.Identity.IdentityUserClaim<string>",
+                "Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>",
                 new[] { "UserId" });
             ix_asp_net_user_claims_user_id.MappedIndexes.Add(ix_asp_net_user_claims_user_idIx);
             RelationalModel.GetOrCreateTableIndexes(ix_asp_net_user_claims_user_idIx).Add(ix_asp_net_user_claims_user_id);
@@ -283,30 +283,30 @@ namespace RentCar.Infrastructure.Data.CompiledModels
             RelationalModel.CreateColumnMapping(claim_valueColumn0, identityUserClaim.FindProperty("ClaimValue")!, aspNetUserClaimsTableMapping);
             RelationalModel.CreateColumnMapping(user_idColumn, identityUserClaim.FindProperty("UserId")!, aspNetUserClaimsTableMapping);
 
-            var identityUserLogin = FindEntityType("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>")!;
+            var identityUserLogin = FindEntityType("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>")!;
 
             var defaultTableMappings2 = new List<TableMappingBase<ColumnMappingBase>>();
             identityUserLogin.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings2);
-            var microsoftAspNetCoreIdentityIdentityUserLoginstringTableBase = new TableBase("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", null, relationalModel);
-            var login_providerColumnBase = new ColumnBase<ColumnMappingBase>("login_provider", "text", microsoftAspNetCoreIdentityIdentityUserLoginstringTableBase);
-            microsoftAspNetCoreIdentityIdentityUserLoginstringTableBase.Columns.Add("login_provider", login_providerColumnBase);
-            var provider_display_nameColumnBase = new ColumnBase<ColumnMappingBase>("provider_display_name", "text", microsoftAspNetCoreIdentityIdentityUserLoginstringTableBase)
+            var microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidTableBase = new TableBase("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", null, relationalModel);
+            var login_providerColumnBase = new ColumnBase<ColumnMappingBase>("login_provider", "text", microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidTableBase);
+            microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidTableBase.Columns.Add("login_provider", login_providerColumnBase);
+            var provider_display_nameColumnBase = new ColumnBase<ColumnMappingBase>("provider_display_name", "text", microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidTableBase)
             {
                 IsNullable = true
             };
-            microsoftAspNetCoreIdentityIdentityUserLoginstringTableBase.Columns.Add("provider_display_name", provider_display_nameColumnBase);
-            var provider_keyColumnBase = new ColumnBase<ColumnMappingBase>("provider_key", "text", microsoftAspNetCoreIdentityIdentityUserLoginstringTableBase);
-            microsoftAspNetCoreIdentityIdentityUserLoginstringTableBase.Columns.Add("provider_key", provider_keyColumnBase);
-            var user_idColumnBase0 = new ColumnBase<ColumnMappingBase>("user_id", "text", microsoftAspNetCoreIdentityIdentityUserLoginstringTableBase);
-            microsoftAspNetCoreIdentityIdentityUserLoginstringTableBase.Columns.Add("user_id", user_idColumnBase0);
-            relationalModel.DefaultTables.Add("Microsoft.AspNetCore.Identity.IdentityUserLogin<string>", microsoftAspNetCoreIdentityIdentityUserLoginstringTableBase);
-            var microsoftAspNetCoreIdentityIdentityUserLoginstringMappingBase = new TableMappingBase<ColumnMappingBase>(identityUserLogin, microsoftAspNetCoreIdentityIdentityUserLoginstringTableBase, true);
-            microsoftAspNetCoreIdentityIdentityUserLoginstringTableBase.AddTypeMapping(microsoftAspNetCoreIdentityIdentityUserLoginstringMappingBase, false);
-            defaultTableMappings2.Add(microsoftAspNetCoreIdentityIdentityUserLoginstringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)login_providerColumnBase, identityUserLogin.FindProperty("LoginProvider")!, microsoftAspNetCoreIdentityIdentityUserLoginstringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)provider_keyColumnBase, identityUserLogin.FindProperty("ProviderKey")!, microsoftAspNetCoreIdentityIdentityUserLoginstringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)provider_display_nameColumnBase, identityUserLogin.FindProperty("ProviderDisplayName")!, microsoftAspNetCoreIdentityIdentityUserLoginstringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)user_idColumnBase0, identityUserLogin.FindProperty("UserId")!, microsoftAspNetCoreIdentityIdentityUserLoginstringMappingBase);
+            microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidTableBase.Columns.Add("provider_display_name", provider_display_nameColumnBase);
+            var provider_keyColumnBase = new ColumnBase<ColumnMappingBase>("provider_key", "text", microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidTableBase);
+            microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidTableBase.Columns.Add("provider_key", provider_keyColumnBase);
+            var user_idColumnBase0 = new ColumnBase<ColumnMappingBase>("user_id", "uuid", microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidTableBase);
+            microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidTableBase.Columns.Add("user_id", user_idColumnBase0);
+            relationalModel.DefaultTables.Add("Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>", microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidTableBase);
+            var microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidMappingBase = new TableMappingBase<ColumnMappingBase>(identityUserLogin, microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidTableBase, true);
+            microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidTableBase.AddTypeMapping(microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidMappingBase, false);
+            defaultTableMappings2.Add(microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)login_providerColumnBase, identityUserLogin.FindProperty("LoginProvider")!, microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)provider_keyColumnBase, identityUserLogin.FindProperty("ProviderKey")!, microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)provider_display_nameColumnBase, identityUserLogin.FindProperty("ProviderDisplayName")!, microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)user_idColumnBase0, identityUserLogin.FindProperty("UserId")!, microsoftAspNetCoreIdentityIdentityUserLoginSystemGuidMappingBase);
 
             var tableMappings2 = new List<TableMapping>();
             identityUserLogin.SetRuntimeAnnotation("Relational:TableMappings", tableMappings2);
@@ -320,12 +320,12 @@ namespace RentCar.Infrastructure.Data.CompiledModels
                 IsNullable = true
             };
             aspNetUserLoginsTable.Columns.Add("provider_display_name", provider_display_nameColumn);
-            var user_idColumn0 = new Column("user_id", "text", aspNetUserLoginsTable);
+            var user_idColumn0 = new Column("user_id", "uuid", aspNetUserLoginsTable);
             aspNetUserLoginsTable.Columns.Add("user_id", user_idColumn0);
             var pk_asp_net_user_logins = new UniqueConstraint("pk_asp_net_user_logins", aspNetUserLoginsTable, new[] { login_providerColumn, provider_keyColumn });
             aspNetUserLoginsTable.PrimaryKey = pk_asp_net_user_logins;
             var pk_asp_net_user_loginsUc = RelationalModel.GetKey(this,
-                "Microsoft.AspNetCore.Identity.IdentityUserLogin<string>",
+                "Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>",
                 new[] { "LoginProvider", "ProviderKey" });
             pk_asp_net_user_logins.MappedKeys.Add(pk_asp_net_user_loginsUc);
             RelationalModel.GetOrCreateUniqueConstraints(pk_asp_net_user_loginsUc).Add(pk_asp_net_user_logins);
@@ -333,7 +333,7 @@ namespace RentCar.Infrastructure.Data.CompiledModels
             var ix_asp_net_user_logins_user_id = new TableIndex(
             "ix_asp_net_user_logins_user_id", aspNetUserLoginsTable, new[] { user_idColumn0 }, false);
             var ix_asp_net_user_logins_user_idIx = RelationalModel.GetIndex(this,
-                "Microsoft.AspNetCore.Identity.IdentityUserLogin<string>",
+                "Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>",
                 new[] { "UserId" });
             ix_asp_net_user_logins_user_id.MappedIndexes.Add(ix_asp_net_user_logins_user_idIx);
             RelationalModel.GetOrCreateTableIndexes(ix_asp_net_user_logins_user_idIx).Add(ix_asp_net_user_logins_user_id);
@@ -347,33 +347,33 @@ namespace RentCar.Infrastructure.Data.CompiledModels
             RelationalModel.CreateColumnMapping(provider_display_nameColumn, identityUserLogin.FindProperty("ProviderDisplayName")!, aspNetUserLoginsTableMapping);
             RelationalModel.CreateColumnMapping(user_idColumn0, identityUserLogin.FindProperty("UserId")!, aspNetUserLoginsTableMapping);
 
-            var identityUserRole = FindEntityType("Microsoft.AspNetCore.Identity.IdentityUserRole<string>")!;
+            var identityUserRole = FindEntityType("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>")!;
 
             var defaultTableMappings3 = new List<TableMappingBase<ColumnMappingBase>>();
             identityUserRole.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings3);
-            var microsoftAspNetCoreIdentityIdentityUserRolestringTableBase = new TableBase("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", null, relationalModel);
-            var role_idColumnBase0 = new ColumnBase<ColumnMappingBase>("role_id", "text", microsoftAspNetCoreIdentityIdentityUserRolestringTableBase);
-            microsoftAspNetCoreIdentityIdentityUserRolestringTableBase.Columns.Add("role_id", role_idColumnBase0);
-            var user_idColumnBase1 = new ColumnBase<ColumnMappingBase>("user_id", "text", microsoftAspNetCoreIdentityIdentityUserRolestringTableBase);
-            microsoftAspNetCoreIdentityIdentityUserRolestringTableBase.Columns.Add("user_id", user_idColumnBase1);
-            relationalModel.DefaultTables.Add("Microsoft.AspNetCore.Identity.IdentityUserRole<string>", microsoftAspNetCoreIdentityIdentityUserRolestringTableBase);
-            var microsoftAspNetCoreIdentityIdentityUserRolestringMappingBase = new TableMappingBase<ColumnMappingBase>(identityUserRole, microsoftAspNetCoreIdentityIdentityUserRolestringTableBase, true);
-            microsoftAspNetCoreIdentityIdentityUserRolestringTableBase.AddTypeMapping(microsoftAspNetCoreIdentityIdentityUserRolestringMappingBase, false);
-            defaultTableMappings3.Add(microsoftAspNetCoreIdentityIdentityUserRolestringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)role_idColumnBase0, identityUserRole.FindProperty("RoleId")!, microsoftAspNetCoreIdentityIdentityUserRolestringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)user_idColumnBase1, identityUserRole.FindProperty("UserId")!, microsoftAspNetCoreIdentityIdentityUserRolestringMappingBase);
+            var microsoftAspNetCoreIdentityIdentityUserRoleSystemGuidTableBase = new TableBase("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", null, relationalModel);
+            var role_idColumnBase0 = new ColumnBase<ColumnMappingBase>("role_id", "uuid", microsoftAspNetCoreIdentityIdentityUserRoleSystemGuidTableBase);
+            microsoftAspNetCoreIdentityIdentityUserRoleSystemGuidTableBase.Columns.Add("role_id", role_idColumnBase0);
+            var user_idColumnBase1 = new ColumnBase<ColumnMappingBase>("user_id", "uuid", microsoftAspNetCoreIdentityIdentityUserRoleSystemGuidTableBase);
+            microsoftAspNetCoreIdentityIdentityUserRoleSystemGuidTableBase.Columns.Add("user_id", user_idColumnBase1);
+            relationalModel.DefaultTables.Add("Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>", microsoftAspNetCoreIdentityIdentityUserRoleSystemGuidTableBase);
+            var microsoftAspNetCoreIdentityIdentityUserRoleSystemGuidMappingBase = new TableMappingBase<ColumnMappingBase>(identityUserRole, microsoftAspNetCoreIdentityIdentityUserRoleSystemGuidTableBase, true);
+            microsoftAspNetCoreIdentityIdentityUserRoleSystemGuidTableBase.AddTypeMapping(microsoftAspNetCoreIdentityIdentityUserRoleSystemGuidMappingBase, false);
+            defaultTableMappings3.Add(microsoftAspNetCoreIdentityIdentityUserRoleSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)role_idColumnBase0, identityUserRole.FindProperty("RoleId")!, microsoftAspNetCoreIdentityIdentityUserRoleSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)user_idColumnBase1, identityUserRole.FindProperty("UserId")!, microsoftAspNetCoreIdentityIdentityUserRoleSystemGuidMappingBase);
 
             var tableMappings3 = new List<TableMapping>();
             identityUserRole.SetRuntimeAnnotation("Relational:TableMappings", tableMappings3);
             var aspNetUserRolesTable = new Table("AspNetUserRoles", null, relationalModel);
-            var user_idColumn1 = new Column("user_id", "text", aspNetUserRolesTable);
+            var user_idColumn1 = new Column("user_id", "uuid", aspNetUserRolesTable);
             aspNetUserRolesTable.Columns.Add("user_id", user_idColumn1);
-            var role_idColumn0 = new Column("role_id", "text", aspNetUserRolesTable);
+            var role_idColumn0 = new Column("role_id", "uuid", aspNetUserRolesTable);
             aspNetUserRolesTable.Columns.Add("role_id", role_idColumn0);
             var pk_asp_net_user_roles = new UniqueConstraint("pk_asp_net_user_roles", aspNetUserRolesTable, new[] { user_idColumn1, role_idColumn0 });
             aspNetUserRolesTable.PrimaryKey = pk_asp_net_user_roles;
             var pk_asp_net_user_rolesUc = RelationalModel.GetKey(this,
-                "Microsoft.AspNetCore.Identity.IdentityUserRole<string>",
+                "Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>",
                 new[] { "UserId", "RoleId" });
             pk_asp_net_user_roles.MappedKeys.Add(pk_asp_net_user_rolesUc);
             RelationalModel.GetOrCreateUniqueConstraints(pk_asp_net_user_rolesUc).Add(pk_asp_net_user_roles);
@@ -381,7 +381,7 @@ namespace RentCar.Infrastructure.Data.CompiledModels
             var ix_asp_net_user_roles_role_id = new TableIndex(
             "ix_asp_net_user_roles_role_id", aspNetUserRolesTable, new[] { role_idColumn0 }, false);
             var ix_asp_net_user_roles_role_idIx = RelationalModel.GetIndex(this,
-                "Microsoft.AspNetCore.Identity.IdentityUserRole<string>",
+                "Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>",
                 new[] { "RoleId" });
             ix_asp_net_user_roles_role_id.MappedIndexes.Add(ix_asp_net_user_roles_role_idIx);
             RelationalModel.GetOrCreateTableIndexes(ix_asp_net_user_roles_role_idIx).Add(ix_asp_net_user_roles_role_id);
@@ -393,35 +393,35 @@ namespace RentCar.Infrastructure.Data.CompiledModels
             RelationalModel.CreateColumnMapping(role_idColumn0, identityUserRole.FindProperty("RoleId")!, aspNetUserRolesTableMapping);
             RelationalModel.CreateColumnMapping(user_idColumn1, identityUserRole.FindProperty("UserId")!, aspNetUserRolesTableMapping);
 
-            var identityUserToken = FindEntityType("Microsoft.AspNetCore.Identity.IdentityUserToken<string>")!;
+            var identityUserToken = FindEntityType("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>")!;
 
             var defaultTableMappings4 = new List<TableMappingBase<ColumnMappingBase>>();
             identityUserToken.SetRuntimeAnnotation("Relational:DefaultMappings", defaultTableMappings4);
-            var microsoftAspNetCoreIdentityIdentityUserTokenstringTableBase = new TableBase("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", null, relationalModel);
-            var login_providerColumnBase0 = new ColumnBase<ColumnMappingBase>("login_provider", "text", microsoftAspNetCoreIdentityIdentityUserTokenstringTableBase);
-            microsoftAspNetCoreIdentityIdentityUserTokenstringTableBase.Columns.Add("login_provider", login_providerColumnBase0);
-            var nameColumnBase0 = new ColumnBase<ColumnMappingBase>("name", "text", microsoftAspNetCoreIdentityIdentityUserTokenstringTableBase);
-            microsoftAspNetCoreIdentityIdentityUserTokenstringTableBase.Columns.Add("name", nameColumnBase0);
-            var user_idColumnBase2 = new ColumnBase<ColumnMappingBase>("user_id", "text", microsoftAspNetCoreIdentityIdentityUserTokenstringTableBase);
-            microsoftAspNetCoreIdentityIdentityUserTokenstringTableBase.Columns.Add("user_id", user_idColumnBase2);
-            var valueColumnBase = new ColumnBase<ColumnMappingBase>("value", "text", microsoftAspNetCoreIdentityIdentityUserTokenstringTableBase)
+            var microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidTableBase = new TableBase("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", null, relationalModel);
+            var login_providerColumnBase0 = new ColumnBase<ColumnMappingBase>("login_provider", "text", microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidTableBase);
+            microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidTableBase.Columns.Add("login_provider", login_providerColumnBase0);
+            var nameColumnBase0 = new ColumnBase<ColumnMappingBase>("name", "text", microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidTableBase);
+            microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidTableBase.Columns.Add("name", nameColumnBase0);
+            var user_idColumnBase2 = new ColumnBase<ColumnMappingBase>("user_id", "uuid", microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidTableBase);
+            microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidTableBase.Columns.Add("user_id", user_idColumnBase2);
+            var valueColumnBase = new ColumnBase<ColumnMappingBase>("value", "text", microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidTableBase)
             {
                 IsNullable = true
             };
-            microsoftAspNetCoreIdentityIdentityUserTokenstringTableBase.Columns.Add("value", valueColumnBase);
-            relationalModel.DefaultTables.Add("Microsoft.AspNetCore.Identity.IdentityUserToken<string>", microsoftAspNetCoreIdentityIdentityUserTokenstringTableBase);
-            var microsoftAspNetCoreIdentityIdentityUserTokenstringMappingBase = new TableMappingBase<ColumnMappingBase>(identityUserToken, microsoftAspNetCoreIdentityIdentityUserTokenstringTableBase, true);
-            microsoftAspNetCoreIdentityIdentityUserTokenstringTableBase.AddTypeMapping(microsoftAspNetCoreIdentityIdentityUserTokenstringMappingBase, false);
-            defaultTableMappings4.Add(microsoftAspNetCoreIdentityIdentityUserTokenstringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)login_providerColumnBase0, identityUserToken.FindProperty("LoginProvider")!, microsoftAspNetCoreIdentityIdentityUserTokenstringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nameColumnBase0, identityUserToken.FindProperty("Name")!, microsoftAspNetCoreIdentityIdentityUserTokenstringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)user_idColumnBase2, identityUserToken.FindProperty("UserId")!, microsoftAspNetCoreIdentityIdentityUserTokenstringMappingBase);
-            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)valueColumnBase, identityUserToken.FindProperty("Value")!, microsoftAspNetCoreIdentityIdentityUserTokenstringMappingBase);
+            microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidTableBase.Columns.Add("value", valueColumnBase);
+            relationalModel.DefaultTables.Add("Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>", microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidTableBase);
+            var microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidMappingBase = new TableMappingBase<ColumnMappingBase>(identityUserToken, microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidTableBase, true);
+            microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidTableBase.AddTypeMapping(microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidMappingBase, false);
+            defaultTableMappings4.Add(microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)login_providerColumnBase0, identityUserToken.FindProperty("LoginProvider")!, microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)nameColumnBase0, identityUserToken.FindProperty("Name")!, microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)user_idColumnBase2, identityUserToken.FindProperty("UserId")!, microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidMappingBase);
+            RelationalModel.CreateColumnMapping((ColumnBase<ColumnMappingBase>)valueColumnBase, identityUserToken.FindProperty("Value")!, microsoftAspNetCoreIdentityIdentityUserTokenSystemGuidMappingBase);
 
             var tableMappings4 = new List<TableMapping>();
             identityUserToken.SetRuntimeAnnotation("Relational:TableMappings", tableMappings4);
             var aspNetUserTokensTable = new Table("AspNetUserTokens", null, relationalModel);
-            var user_idColumn2 = new Column("user_id", "text", aspNetUserTokensTable);
+            var user_idColumn2 = new Column("user_id", "uuid", aspNetUserTokensTable);
             aspNetUserTokensTable.Columns.Add("user_id", user_idColumn2);
             var login_providerColumn0 = new Column("login_provider", "text", aspNetUserTokensTable);
             aspNetUserTokensTable.Columns.Add("login_provider", login_providerColumn0);
@@ -435,7 +435,7 @@ namespace RentCar.Infrastructure.Data.CompiledModels
             var pk_asp_net_user_tokens = new UniqueConstraint("pk_asp_net_user_tokens", aspNetUserTokensTable, new[] { user_idColumn2, login_providerColumn0, nameColumn0 });
             aspNetUserTokensTable.PrimaryKey = pk_asp_net_user_tokens;
             var pk_asp_net_user_tokensUc = RelationalModel.GetKey(this,
-                "Microsoft.AspNetCore.Identity.IdentityUserToken<string>",
+                "Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>",
                 new[] { "UserId", "LoginProvider", "Name" });
             pk_asp_net_user_tokens.MappedKeys.Add(pk_asp_net_user_tokensUc);
             RelationalModel.GetOrCreateUniqueConstraints(pk_asp_net_user_tokensUc).Add(pk_asp_net_user_tokens);
@@ -701,15 +701,12 @@ namespace RentCar.Infrastructure.Data.CompiledModels
                 IsNullable = true
             };
             rentCarCoreEntitiesRentalTableBase.Columns.Add("total_price", total_priceColumnBase);
-            var user_idColumnBase3 = new ColumnBase<ColumnMappingBase>("user_id", "character varying(50)", rentCarCoreEntitiesRentalTableBase)
+            var user_idColumnBase3 = new ColumnBase<ColumnMappingBase>("user_id", "uuid", rentCarCoreEntitiesRentalTableBase)
             {
                 IsNullable = true
             };
             rentCarCoreEntitiesRentalTableBase.Columns.Add("user_id", user_idColumnBase3);
-            var vehicle_idColumnBase0 = new ColumnBase<ColumnMappingBase>("vehicle_id", "uuid", rentCarCoreEntitiesRentalTableBase)
-            {
-                IsNullable = true
-            };
+            var vehicle_idColumnBase0 = new ColumnBase<ColumnMappingBase>("vehicle_id", "uuid", rentCarCoreEntitiesRentalTableBase);
             rentCarCoreEntitiesRentalTableBase.Columns.Add("vehicle_id", vehicle_idColumnBase0);
             relationalModel.DefaultTables.Add("RentCar.Core.Entities.Rental", rentCarCoreEntitiesRentalTableBase);
             var rentCarCoreEntitiesRentalMappingBase = new TableMappingBase<ColumnMappingBase>(rental, rentCarCoreEntitiesRentalTableBase, true);
@@ -754,15 +751,12 @@ namespace RentCar.Infrastructure.Data.CompiledModels
                 IsNullable = true
             };
             rentalsTable.Columns.Add("total_price", total_priceColumn);
-            var user_idColumn3 = new Column("user_id", "character varying(50)", rentalsTable)
+            var user_idColumn3 = new Column("user_id", "uuid", rentalsTable)
             {
                 IsNullable = true
             };
             rentalsTable.Columns.Add("user_id", user_idColumn3);
-            var vehicle_idColumn0 = new Column("vehicle_id", "uuid", rentalsTable)
-            {
-                IsNullable = true
-            };
+            var vehicle_idColumn0 = new Column("vehicle_id", "uuid", rentalsTable);
             rentalsTable.Columns.Add("vehicle_id", vehicle_idColumn0);
             var pk_rentals = new UniqueConstraint("pk_rentals", rentalsTable, new[] { idColumn5 });
             rentalsTable.PrimaryKey = pk_rentals;
@@ -949,7 +943,7 @@ namespace RentCar.Infrastructure.Data.CompiledModels
             rentCarCoreIdentityApplicationUserTableBase.Columns.Add("email_confirmed", email_confirmedColumnBase);
             var first_nameColumnBase = new ColumnBase<ColumnMappingBase>("first_name", "character varying(50)", rentCarCoreIdentityApplicationUserTableBase);
             rentCarCoreIdentityApplicationUserTableBase.Columns.Add("first_name", first_nameColumnBase);
-            var idColumnBase7 = new ColumnBase<ColumnMappingBase>("id", "text", rentCarCoreIdentityApplicationUserTableBase);
+            var idColumnBase7 = new ColumnBase<ColumnMappingBase>("id", "uuid", rentCarCoreIdentityApplicationUserTableBase);
             rentCarCoreIdentityApplicationUserTableBase.Columns.Add("id", idColumnBase7);
             var last_nameColumnBase = new ColumnBase<ColumnMappingBase>("last_name", "character varying(20)", rentCarCoreIdentityApplicationUserTableBase);
             rentCarCoreIdentityApplicationUserTableBase.Columns.Add("last_name", last_nameColumnBase);
@@ -1028,7 +1022,7 @@ namespace RentCar.Infrastructure.Data.CompiledModels
             var tableMappings10 = new List<TableMapping>();
             applicationUser.SetRuntimeAnnotation("Relational:TableMappings", tableMappings10);
             var aspNetUsersTable = new Table("AspNetUsers", null, relationalModel);
-            var idColumn7 = new Column("id", "text", aspNetUsersTable);
+            var idColumn7 = new Column("id", "uuid", aspNetUsersTable);
             aspNetUsersTable.Columns.Add("id", idColumn7);
             var access_failed_countColumn = new Column("access_failed_count", "integer", aspNetUsersTable);
             aspNetUsersTable.Columns.Add("access_failed_count", access_failed_countColumn);
@@ -1157,9 +1151,9 @@ namespace RentCar.Infrastructure.Data.CompiledModels
                 new[] { role_idColumn },
                 aspNetRolesTable.FindUniqueConstraint("pk_asp_net_roles")!, ReferentialAction.Cascade);
             var fk_asp_net_role_claims_asp_net_roles_role_idFk = RelationalModel.GetForeignKey(this,
-                "Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>",
+                "Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>",
                 new[] { "RoleId" },
-                "Microsoft.AspNetCore.Identity.IdentityRole",
+                "Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>",
                 new[] { "Id" });
             fk_asp_net_role_claims_asp_net_roles_role_id.MappedForeignKeys.Add(fk_asp_net_role_claims_asp_net_roles_role_idFk);
             RelationalModel.GetOrCreateForeignKeyConstraints(fk_asp_net_role_claims_asp_net_roles_role_idFk).Add(fk_asp_net_role_claims_asp_net_roles_role_id);
@@ -1170,7 +1164,7 @@ namespace RentCar.Infrastructure.Data.CompiledModels
                 new[] { user_idColumn },
                 aspNetUsersTable.FindUniqueConstraint("pk_asp_net_users")!, ReferentialAction.Cascade);
             var fk_asp_net_user_claims_asp_net_users_user_idFk = RelationalModel.GetForeignKey(this,
-                "Microsoft.AspNetCore.Identity.IdentityUserClaim<string>",
+                "Microsoft.AspNetCore.Identity.IdentityUserClaim<System.Guid>",
                 new[] { "UserId" },
                 "RentCar.Core.Identity.ApplicationUser",
                 new[] { "Id" });
@@ -1183,7 +1177,7 @@ namespace RentCar.Infrastructure.Data.CompiledModels
                 new[] { user_idColumn0 },
                 aspNetUsersTable.FindUniqueConstraint("pk_asp_net_users")!, ReferentialAction.Cascade);
             var fk_asp_net_user_logins_asp_net_users_user_idFk = RelationalModel.GetForeignKey(this,
-                "Microsoft.AspNetCore.Identity.IdentityUserLogin<string>",
+                "Microsoft.AspNetCore.Identity.IdentityUserLogin<System.Guid>",
                 new[] { "UserId" },
                 "RentCar.Core.Identity.ApplicationUser",
                 new[] { "Id" });
@@ -1196,9 +1190,9 @@ namespace RentCar.Infrastructure.Data.CompiledModels
                 new[] { role_idColumn0 },
                 aspNetRolesTable.FindUniqueConstraint("pk_asp_net_roles")!, ReferentialAction.Cascade);
             var fk_asp_net_user_roles_asp_net_roles_role_idFk = RelationalModel.GetForeignKey(this,
-                "Microsoft.AspNetCore.Identity.IdentityUserRole<string>",
+                "Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>",
                 new[] { "RoleId" },
-                "Microsoft.AspNetCore.Identity.IdentityRole",
+                "Microsoft.AspNetCore.Identity.IdentityRole<System.Guid>",
                 new[] { "Id" });
             fk_asp_net_user_roles_asp_net_roles_role_id.MappedForeignKeys.Add(fk_asp_net_user_roles_asp_net_roles_role_idFk);
             RelationalModel.GetOrCreateForeignKeyConstraints(fk_asp_net_user_roles_asp_net_roles_role_idFk).Add(fk_asp_net_user_roles_asp_net_roles_role_id);
@@ -1209,7 +1203,7 @@ namespace RentCar.Infrastructure.Data.CompiledModels
                 new[] { user_idColumn1 },
                 aspNetUsersTable.FindUniqueConstraint("pk_asp_net_users")!, ReferentialAction.Cascade);
             var fk_asp_net_user_roles_asp_net_users_user_idFk = RelationalModel.GetForeignKey(this,
-                "Microsoft.AspNetCore.Identity.IdentityUserRole<string>",
+                "Microsoft.AspNetCore.Identity.IdentityUserRole<System.Guid>",
                 new[] { "UserId" },
                 "RentCar.Core.Identity.ApplicationUser",
                 new[] { "Id" });
@@ -1222,7 +1216,7 @@ namespace RentCar.Infrastructure.Data.CompiledModels
                 new[] { user_idColumn2 },
                 aspNetUsersTable.FindUniqueConstraint("pk_asp_net_users")!, ReferentialAction.Cascade);
             var fk_asp_net_user_tokens_asp_net_users_user_idFk = RelationalModel.GetForeignKey(this,
-                "Microsoft.AspNetCore.Identity.IdentityUserToken<string>",
+                "Microsoft.AspNetCore.Identity.IdentityUserToken<System.Guid>",
                 new[] { "UserId" },
                 "RentCar.Core.Identity.ApplicationUser",
                 new[] { "Id" });

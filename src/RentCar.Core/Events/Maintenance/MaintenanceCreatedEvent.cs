@@ -1,6 +1,8 @@
-﻿namespace RentCar.Core.Events.Maintenance;
+﻿using Ardalis.SharedKernel;
 
-public class MaintenanceCreatedEvent
+namespace RentCar.Core.Events.Maintenance;
+
+public sealed class MaintenanceCreatedEvent(Guid vehicleId) : DomainEventBase
 {
-    
+    public Guid VehicleId { get; set; } = vehicleId;
 }

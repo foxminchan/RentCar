@@ -4,7 +4,6 @@
 using Ardalis.Result;
 using Ardalis.SharedKernel;
 using Ardalis.Specification;
-
 using Mapster;
 
 namespace RentCar.Application.Abstraction.Commands.CreateEntityCommand;

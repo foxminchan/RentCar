@@ -14,7 +14,7 @@ using RentCar.Core.Entities;
 #pragma warning disable 219, 612, 618
 #nullable disable
 
-namespace RentCar.Infrastructure.Data.CompiledModels
+namespace RentCar.Infrastructure.Data.CompliedModels
 {
     internal partial class FeedbackEntityType
     {

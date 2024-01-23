@@ -40,7 +40,7 @@ public sealed class DeveloperPageExceptionFilter : IDeveloperPageExceptionFilter
     }
 }
 
-public class ErrorProblemDetailsResult(Exception ex) : IResult
+public sealed class ErrorProblemDetailsResult(Exception ex) : IResult
 {
     public async Task ExecuteAsync(HttpContext httpContext)
     {

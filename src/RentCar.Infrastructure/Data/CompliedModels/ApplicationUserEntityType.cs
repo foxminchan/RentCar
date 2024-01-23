@@ -16,7 +16,7 @@ using RentCar.Core.ValueObjects;
 #pragma warning disable 219, 612, 618
 #nullable disable
 
-namespace RentCar.Infrastructure.Data.CompiledModels
+namespace RentCar.Infrastructure.Data.CompliedModels
 {
     internal partial class ApplicationUserEntityType
     {
@@ -29,33 +29,35 @@ namespace RentCar.Infrastructure.Data.CompiledModels
 
             var id = runtimeEntityType.AddProperty(
                 "Id",
-                typeof(string),
-                propertyInfo: typeof(IdentityUser<string>).GetProperty("Id", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                fieldInfo: typeof(IdentityUser<string>).GetField("<Id>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                afterSaveBehavior: PropertySaveBehavior.Throw);
-            id.TypeMapping = StringTypeMapping.Default.Clone(
-                comparer: new ValueComparer<string>(
-                    (string v1, string v2) => v1 == v2,
-                    (string v) => v.GetHashCode(),
-                    (string v) => v),
-                keyComparer: new ValueComparer<string>(
-                    (string v1, string v2) => v1 == v2,
-                    (string v) => v.GetHashCode(),
-                    (string v) => v),
-                providerValueComparer: new ValueComparer<string>(
-                    (string v1, string v2) => v1 == v2,
-                    (string v) => v.GetHashCode(),
-                    (string v) => v),
+                typeof(Guid),
+                propertyInfo: typeof(IdentityUser<Guid>).GetProperty("Id", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(IdentityUser<Guid>).GetField("<Id>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                valueGenerated: ValueGenerated.OnAdd,
+                afterSaveBehavior: PropertySaveBehavior.Throw,
+                sentinel: new Guid("00000000-0000-0000-0000-000000000000"));
+            id.TypeMapping = GuidTypeMapping.Default.Clone(
+                comparer: new ValueComparer<Guid>(
+                    (Guid v1, Guid v2) => v1 == v2,
+                    (Guid v) => v.GetHashCode(),
+                    (Guid v) => v),
+                keyComparer: new ValueComparer<Guid>(
+                    (Guid v1, Guid v2) => v1 == v2,
+                    (Guid v) => v.GetHashCode(),
+                    (Guid v) => v),
+                providerValueComparer: new ValueComparer<Guid>(
+                    (Guid v1, Guid v2) => v1 == v2,
+                    (Guid v) => v.GetHashCode(),
+                    (Guid v) => v),
                 mappingInfo: new RelationalTypeMappingInfo(
-                    dbType: System.Data.DbType.String));
+                    storeTypeName: "uuid"));
             id.AddAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.None);
             id.AddAnnotation("Relational:ColumnName", "id");
 
             var accessFailedCount = runtimeEntityType.AddProperty(
                 "AccessFailedCount",
                 typeof(int),
-                propertyInfo: typeof(IdentityUser<string>).GetProperty("AccessFailedCount", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-                fieldInfo: typeof(IdentityUser<string>).GetField("<AccessFailedCount>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                propertyInfo: typeof(IdentityUser<Guid>).GetProperty("AccessFailedCount", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+                fieldInfo: typeof(IdentityUser<Guid>).GetField("<AccessFailedCount>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
                 sentinel: 0);
             accessFailedCount.TypeMapping = IntTypeMapping.Default.Clone(
                 comparer: new ValueComparer<int>(
@@ -129,8 +131,8 @@ namespace RentCar.Infrastructure.Data.CompiledModels
         var concurrencyStamp = runtimeEntityType.AddProperty(
             "ConcurrencyStamp",
             typeof(string),
-            propertyInfo: typeof(IdentityUser<string>).GetProperty("ConcurrencyStamp", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-            fieldInfo: typeof(IdentityUser<string>).GetField("<ConcurrencyStamp>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+            propertyInfo: typeof(IdentityUser<Guid>).GetProperty("ConcurrencyStamp", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+            fieldInfo: typeof(IdentityUser<Guid>).GetField("<ConcurrencyStamp>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
             nullable: true,
             concurrencyToken: true);
         concurrencyStamp.TypeMapping = StringTypeMapping.Default.Clone(
@@ -176,8 +178,8 @@ namespace RentCar.Infrastructure.Data.CompiledModels
         var email = runtimeEntityType.AddProperty(
             "Email",
             typeof(string),
-            propertyInfo: typeof(IdentityUser<string>).GetProperty("Email", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-            fieldInfo: typeof(IdentityUser<string>).GetField("<Email>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+            propertyInfo: typeof(IdentityUser<Guid>).GetProperty("Email", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+            fieldInfo: typeof(IdentityUser<Guid>).GetField("<Email>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
             nullable: true,
             maxLength: 256);
         email.TypeMapping = NpgsqlStringTypeMapping.Default.Clone(
@@ -203,8 +205,8 @@ namespace RentCar.Infrastructure.Data.CompiledModels
     var emailConfirmed = runtimeEntityType.AddProperty(
         "EmailConfirmed",
         typeof(bool),
-        propertyInfo: typeof(IdentityUser<string>).GetProperty("EmailConfirmed", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-        fieldInfo: typeof(IdentityUser<string>).GetField("<EmailConfirmed>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+        propertyInfo: typeof(IdentityUser<Guid>).GetProperty("EmailConfirmed", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+        fieldInfo: typeof(IdentityUser<Guid>).GetField("<EmailConfirmed>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
         sentinel: false);
     emailConfirmed.TypeMapping = NpgsqlBoolTypeMapping.Default.Clone(
         comparer: new ValueComparer<bool>(
@@ -337,8 +339,8 @@ licenseType.AddAnnotation("Relational:ColumnName", "license_type");
 var lockoutEnabled = runtimeEntityType.AddProperty(
     "LockoutEnabled",
     typeof(bool),
-    propertyInfo: typeof(IdentityUser<string>).GetProperty("LockoutEnabled", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-    fieldInfo: typeof(IdentityUser<string>).GetField("<LockoutEnabled>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    propertyInfo: typeof(IdentityUser<Guid>).GetProperty("LockoutEnabled", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    fieldInfo: typeof(IdentityUser<Guid>).GetField("<LockoutEnabled>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
     sentinel: false);
 lockoutEnabled.TypeMapping = NpgsqlBoolTypeMapping.Default.Clone(
     comparer: new ValueComparer<bool>(
@@ -359,8 +361,8 @@ lockoutEnabled.AddAnnotation("Relational:ColumnName", "lockout_enabled");
 var lockoutEnd = runtimeEntityType.AddProperty(
     "LockoutEnd",
     typeof(DateTimeOffset?),
-    propertyInfo: typeof(IdentityUser<string>).GetProperty("LockoutEnd", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-    fieldInfo: typeof(IdentityUser<string>).GetField("<LockoutEnd>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    propertyInfo: typeof(IdentityUser<Guid>).GetProperty("LockoutEnd", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    fieldInfo: typeof(IdentityUser<Guid>).GetField("<LockoutEnd>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
     nullable: true);
 lockoutEnd.TypeMapping = NpgsqlTimestampTzTypeMapping.Default.Clone(
     comparer: new ValueComparer<DateTimeOffset?>(
@@ -377,14 +379,14 @@ lockoutEnd.TypeMapping = NpgsqlTimestampTzTypeMapping.Default.Clone(
         (Nullable<DateTimeOffset> v) => v.HasValue ? (Nullable<DateTimeOffset>)(DateTimeOffset)v : default(Nullable<DateTimeOffset>)),
     clrType: typeof(DateTimeOffset),
     jsonValueReaderWriter: new NpgsqlTimestampTzTypeMapping(typeof(DateTimeOffset)).JsonValueReaderWriter);
-lockoutEnd.AddAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.None);
+            lockoutEnd.AddAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.None);
 lockoutEnd.AddAnnotation("Relational:ColumnName", "lockout_end");
 
 var normalizedEmail = runtimeEntityType.AddProperty(
     "NormalizedEmail",
     typeof(string),
-    propertyInfo: typeof(IdentityUser<string>).GetProperty("NormalizedEmail", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-    fieldInfo: typeof(IdentityUser<string>).GetField("<NormalizedEmail>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    propertyInfo: typeof(IdentityUser<Guid>).GetProperty("NormalizedEmail", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    fieldInfo: typeof(IdentityUser<Guid>).GetField("<NormalizedEmail>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
     nullable: true,
     maxLength: 256);
 normalizedEmail.TypeMapping = NpgsqlStringTypeMapping.Default.Clone(
@@ -410,8 +412,8 @@ normalizedEmail.AddAnnotation("Relational:ColumnName", "normalized_email");
 var normalizedUserName = runtimeEntityType.AddProperty(
     "NormalizedUserName",
     typeof(string),
-    propertyInfo: typeof(IdentityUser<string>).GetProperty("NormalizedUserName", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-    fieldInfo: typeof(IdentityUser<string>).GetField("<NormalizedUserName>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    propertyInfo: typeof(IdentityUser<Guid>).GetProperty("NormalizedUserName", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    fieldInfo: typeof(IdentityUser<Guid>).GetField("<NormalizedUserName>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
     nullable: true,
     maxLength: 256);
 normalizedUserName.TypeMapping = NpgsqlStringTypeMapping.Default.Clone(
@@ -437,8 +439,8 @@ normalizedUserName.AddAnnotation("Relational:ColumnName", "normalized_user_name"
 var passwordHash = runtimeEntityType.AddProperty(
     "PasswordHash",
     typeof(string),
-    propertyInfo: typeof(IdentityUser<string>).GetProperty("PasswordHash", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-    fieldInfo: typeof(IdentityUser<string>).GetField("<PasswordHash>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    propertyInfo: typeof(IdentityUser<Guid>).GetProperty("PasswordHash", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    fieldInfo: typeof(IdentityUser<Guid>).GetField("<PasswordHash>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
     nullable: true);
 passwordHash.TypeMapping = StringTypeMapping.Default.Clone(
     comparer: new ValueComparer<string>(
@@ -461,8 +463,8 @@ passwordHash.AddAnnotation("Relational:ColumnName", "password_hash");
 var phoneNumber = runtimeEntityType.AddProperty(
     "PhoneNumber",
     typeof(string),
-    propertyInfo: typeof(IdentityUser<string>).GetProperty("PhoneNumber", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-    fieldInfo: typeof(IdentityUser<string>).GetField("<PhoneNumber>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    propertyInfo: typeof(IdentityUser<Guid>).GetProperty("PhoneNumber", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    fieldInfo: typeof(IdentityUser<Guid>).GetField("<PhoneNumber>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
     nullable: true);
 phoneNumber.TypeMapping = StringTypeMapping.Default.Clone(
     comparer: new ValueComparer<string>(
@@ -485,8 +487,8 @@ phoneNumber.AddAnnotation("Relational:ColumnName", "phone_number");
 var phoneNumberConfirmed = runtimeEntityType.AddProperty(
     "PhoneNumberConfirmed",
     typeof(bool),
-    propertyInfo: typeof(IdentityUser<string>).GetProperty("PhoneNumberConfirmed", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-    fieldInfo: typeof(IdentityUser<string>).GetField("<PhoneNumberConfirmed>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    propertyInfo: typeof(IdentityUser<Guid>).GetProperty("PhoneNumberConfirmed", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    fieldInfo: typeof(IdentityUser<Guid>).GetField("<PhoneNumberConfirmed>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
     sentinel: false);
 phoneNumberConfirmed.TypeMapping = NpgsqlBoolTypeMapping.Default.Clone(
     comparer: new ValueComparer<bool>(
@@ -507,8 +509,8 @@ phoneNumberConfirmed.AddAnnotation("Relational:ColumnName", "phone_number_confir
 var securityStamp = runtimeEntityType.AddProperty(
     "SecurityStamp",
     typeof(string),
-    propertyInfo: typeof(IdentityUser<string>).GetProperty("SecurityStamp", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-    fieldInfo: typeof(IdentityUser<string>).GetField("<SecurityStamp>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    propertyInfo: typeof(IdentityUser<Guid>).GetProperty("SecurityStamp", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    fieldInfo: typeof(IdentityUser<Guid>).GetField("<SecurityStamp>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
     nullable: true);
 securityStamp.TypeMapping = StringTypeMapping.Default.Clone(
     comparer: new ValueComparer<string>(
@@ -531,8 +533,8 @@ securityStamp.AddAnnotation("Relational:ColumnName", "security_stamp");
 var twoFactorEnabled = runtimeEntityType.AddProperty(
     "TwoFactorEnabled",
     typeof(bool),
-    propertyInfo: typeof(IdentityUser<string>).GetProperty("TwoFactorEnabled", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-    fieldInfo: typeof(IdentityUser<string>).GetField("<TwoFactorEnabled>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    propertyInfo: typeof(IdentityUser<Guid>).GetProperty("TwoFactorEnabled", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    fieldInfo: typeof(IdentityUser<Guid>).GetField("<TwoFactorEnabled>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
     sentinel: false);
 twoFactorEnabled.TypeMapping = NpgsqlBoolTypeMapping.Default.Clone(
     comparer: new ValueComparer<bool>(
@@ -553,8 +555,8 @@ twoFactorEnabled.AddAnnotation("Relational:ColumnName", "two_factor_enabled");
 var userName = runtimeEntityType.AddProperty(
     "UserName",
     typeof(string),
-    propertyInfo: typeof(IdentityUser<string>).GetProperty("UserName", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
-    fieldInfo: typeof(IdentityUser<string>).GetField("<UserName>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    propertyInfo: typeof(IdentityUser<Guid>).GetProperty("UserName", BindingFlags.Public | BindingFlags.Instance | BindingFlags.DeclaredOnly),
+    fieldInfo: typeof(IdentityUser<Guid>).GetField("<UserName>k__BackingField", BindingFlags.NonPublic | BindingFlags.Instance | BindingFlags.DeclaredOnly),
     nullable: true,
     maxLength: 256);
 userName.TypeMapping = NpgsqlStringTypeMapping.Default.Clone(

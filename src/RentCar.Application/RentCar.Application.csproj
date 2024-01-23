@@ -17,10 +17,13 @@
         <Folder Include="Feedback\Queries\GetFeedbackQuery\" />
         <Folder Include="Feedback\Queries\GetFeedbacksQuery\" />
         <Folder Include="Feedback\Queries\GetFeedbackByVehicleQuery\" />
-        <Folder Include="Maintenance\Dto\" />
-        <Folder Include="Maintenance\Commands\" />
+        <Folder Include="Maintenance\Commands\CreateMaintenanceCommand\" />
+        <Folder Include="Maintenance\Commands\DeleteMaintenanceCommand\" />
+        <Folder Include="Maintenance\Commands\UpdateMaintenanceCommand\" />
         <Folder Include="Maintenance\Handlers\" />
-        <Folder Include="Maintenance\Queries\" />
+        <Folder Include="Maintenance\Queries\GetMaintenanceQuery\" />
+        <Folder Include="Maintenance\Queries\GetMaintenancesQuery\" />
+        <Folder Include="Maintenance\Queries\GetMaintenanceByVehicleQuery\" />
         <Folder Include="Payment\Commands\" />
         <Folder Include="Payment\Dto\" />
         <Folder Include="Payment\Validators\" />
