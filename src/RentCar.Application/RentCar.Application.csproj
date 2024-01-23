@@ -11,21 +11,26 @@
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="Mapster" Version="7.4.0" />
-    </ItemGroup>
-
-    <ItemGroup>
+        <Folder Include="Feedback\Commands\CreateFeedbackCommand\" />
+        <Folder Include="Feedback\Commands\UpdateFeedbackCommand\" />
+        <Folder Include="Feedback\Dto\" />
+        <Folder Include="Feedback\Queries\GetFeedbackQuery\" />
+        <Folder Include="Feedback\Queries\GetFeedbacksQuery\" />
+        <Folder Include="Feedback\Queries\GetFeedbackByVehicleQuery\" />
         <Folder Include="Maintenance\Dto\" />
         <Folder Include="Maintenance\Commands\" />
         <Folder Include="Maintenance\Handlers\" />
-        <Folder Include="Maintenance\Validators\" />
         <Folder Include="Maintenance\Queries\" />
+        <Folder Include="Payment\Commands\" />
+        <Folder Include="Payment\Dto\" />
+        <Folder Include="Payment\Validators\" />
+        <Folder Include="Payment\Queries\" />
         <Folder Include="Rental\Commands\CreateRentalCommand\" />
         <Folder Include="Rental\Commands\DeleteRentalCommand\" />
         <Folder Include="Rental\Commands\UpdateRentalCommand\" />
         <Folder Include="Rental\Jobs\" />
+        <Folder Include="Rental\Validators\" />
         <Folder Include="Rental\Queries\GetRentalsQuery\" />
-        <Folder Include="Rental\Queries\GetRentalAmountQuery\" />
         <Folder Include="User\Commands\DeleteUserCommand\" />
         <Folder Include="User\Commands\UpdateUserCommand\" />
         <Folder Include="User\Queries\GetUserQuery\" />

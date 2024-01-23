@@ -13,6 +13,6 @@ public sealed record RentalDto
     public decimal? TotalPrice { get; set; }
     public RentStatus? Status { get; set; }
     public Guid VehicleId { get; set; }
-    public string? UserId { get; set; }
+    public Guid? UserId { get; set; }
     public Guid? PaymentId { get; set; }
 }

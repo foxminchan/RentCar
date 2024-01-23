@@ -1,11 +1,9 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
-using Ardalis.Result;
-using Ardalis.SharedKernel;
 using RentCar.Core.Enums;
-using RentCar.Core.Interfaces;
 using RentCar.Core.ValueObjects;
+using RentCar.Infrastructure.Abstraction.Commands.CreateEntityCommand;
 
 namespace RentCar.Application.User.Commands.CreateUserCommand;
 
@@ -19,4 +17,4 @@ public sealed record CreateUserCommand(
     DateOnly DateOfBirth,
     string Email,
     string Password,
-    string ConfirmPassword) : ICommand<Result<string>>, ITransactionRequest;
+    string ConfirmPassword) : CreateEntityCommand;

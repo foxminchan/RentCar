@@ -4,6 +4,6 @@
 using Ardalis.Result;
 using Ardalis.SharedKernel;
 
-namespace RentCar.Application.Rental.Queries.GetRentalAmountQuery;
+namespace RentCar.Infrastructure.Abstraction.Queries.GetEntityQuery;
 
-public sealed record GetRentalAmountQuery(string? UserId = null) : IQuery<Result<int>>;
+public record GetEntityQuery<T>(Guid Id) : IQuery<Result<T>> where T : notnull;

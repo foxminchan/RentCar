@@ -26,7 +26,7 @@ public sealed class UpdateUserCommandHandler(UserManager<ApplicationUser> userMa
         if (userManager.Users.Any(u => u.Email == request.Email))
             return Result.Invalid(new ValidationError("Email already exists"));
 
-        var user = await userManager.FindByIdAsync(request.Id);
+        var user = await userManager.FindByIdAsync(request.Id.ToString());
 
         Guard.Against.NotFound(entity.Id, user);
 

@@ -8,7 +8,7 @@ using RentCar.Core.ValueObjects;
 
 namespace RentCar.Core.Identity;
 
-public class ApplicationUser : IdentityUser
+public class ApplicationUser : IdentityUser<Guid>
 {
     [PersonalData] public virtual string? FirstName { get; set; }
     [PersonalData] public virtual string? LastName { get; set; }

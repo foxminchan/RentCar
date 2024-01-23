@@ -9,7 +9,6 @@ using RentCar.Application.Rental.Commands.CreateRentalCommand;
 using RentCar.Application.Rental.Commands.DeleteRentalCommand;
 using RentCar.Application.Rental.Commands.UpdateRentalCommand;
 using RentCar.Application.Rental.Dto;
-using RentCar.Application.Rental.Queries.GetRentalAmountQuery;
 using RentCar.Application.Rental.Queries.GetRentalQuery;
 using RentCar.Application.Rental.Queries.GetRentalsByUserQuery;
 using RentCar.Application.Rental.Queries.GetRentalsQuery;
@@ -33,28 +32,21 @@ public sealed class RentalEndpoint : ICarterModule
         group.MapDelete("{id:guid}", DeleteRental).WithName(nameof(DeleteRental));
     }
 
-    private static async Task<Result<(IEnumerable<RentalDto>, int)>> GetRentals(
+    private static async Task<Result<PagedResult<IEnumerable<RentalDto>>>> GetRentals(
         [AsParameters] GetRentalsQuery request,
         [FromServices] ISender sender)
-    {
-        var result = await sender.Send(request);
-        var count = await sender.Send(new GetRentalAmountQuery());
-        return Result.Success((result.Value, count.Value));
-    }
+        => await sender.Send(request);
+
 
     private static async Task<Result<RentalDto>> GetRental(
         [FromRoute] Guid id,
         [FromServices] ISender sender)
         => await sender.Send(new GetRentalQuery(id));
 
-    private static async Task<Result<(IEnumerable<RentalDto>, int)>> GetRentalsByUser(
+    private static async Task<Result<PagedResult<IEnumerable<RentalDto>>>> GetRentalsByUser(
         [AsParameters] GetRentalsByUserQuery request,
         [FromServices] ISender sender)
-    {
-        var result = await sender.Send(request);
-        var count = await sender.Send(new GetRentalAmountQuery(request.UserId));
-        return Result.Success((result.Value, count.Value));
-    }
+        => await sender.Send(request);
 
     private static async Task<Result<Guid>> AddRental(
         [FromBody] CreateRentalCommand request,

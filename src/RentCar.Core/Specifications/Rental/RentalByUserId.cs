@@ -7,7 +7,7 @@ namespace RentCar.Core.Specifications.Rental;
 
 public sealed class RentalByUserId : Specification<Entities.Rental>
 {
-    public RentalByUserId(string userId)
+    public RentalByUserId(Guid userId)
     {
         Query.Where(x => x.UserId == userId);
     }

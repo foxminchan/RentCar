@@ -7,10 +7,14 @@ namespace RentCar.Core.Specifications.Rental;
 
 public sealed class RentalFilterPaginated : Specification<Entities.Rental>
 {
-    public RentalFilterPaginated(int skip, int take, string orderBy)
+    public RentalFilterPaginated(SpecificationBase spec)
     {
-        Query.Skip(skip);
-        Query.Take(take);
-        Query.OrderBy(x => x.GetType().GetProperty(orderBy)!.GetValue(x, null));
+        Query.Take((int)spec.PageSize);
+        Query.Skip((int)((spec.PageNumber - 1) * spec.PageSize));
+
+        if (spec.IsAscending)
+            Query.OrderBy(x => x.GetType().GetProperty(spec.OrderBy)!.GetValue(x, null));
+        else
+            Query.OrderByDescending(x => x.GetType().GetProperty(spec.OrderBy)!.GetValue(x, null));
     }
 }

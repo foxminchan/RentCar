@@ -1,11 +1,10 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
-using Ardalis.Result;
-using Ardalis.SharedKernel;
 using RentCar.Application.Rental.Dto;
+using RentCar.Core.Specifications;
+using RentCar.Infrastructure.Abstraction.Queries.GetEntitiesQuery;
 
 namespace RentCar.Application.Rental.Queries.GetRentalsQuery;
 
-public sealed record GetRentalsQuery(int Skip = 0, int Take = 20, string OrderBy = "Id")
-    : IQuery<Result<IEnumerable<RentalDto>>>;
+public sealed record GetRentalsQuery(SpecificationBase Spec) : GetEntitiesQuery<RentalDto>(Spec);

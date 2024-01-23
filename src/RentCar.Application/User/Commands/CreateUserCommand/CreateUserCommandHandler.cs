@@ -14,9 +14,9 @@ using System.Security.Claims;
 namespace RentCar.Application.User.Commands.CreateUserCommand;
 
 public sealed class CreateUserCommandHandler(UserManager<ApplicationUser> userManager)
-    : ICommandHandler<CreateUserCommand, Result<string>>
+    : ICommandHandler<CreateUserCommand, Result<Guid>>
 {
-    public async Task<Result<string>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
+    public async Task<Result<Guid>> Handle(CreateUserCommand request, CancellationToken cancellationToken)
     {
         var entity = request.Adapt<ApplicationUser>();
 

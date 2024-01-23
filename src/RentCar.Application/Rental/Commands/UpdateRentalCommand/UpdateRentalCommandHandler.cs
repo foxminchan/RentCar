@@ -57,6 +57,6 @@ public sealed class UpdateRentalCommandValidator : AbstractValidator<UpdateRenta
             .SetValidator(vehicleIdValidator);
 
         RuleFor(x => x.UserId)
-            .SetValidator(userIdValidator!);
+            .SetValidator(userIdValidator);
     }
 }

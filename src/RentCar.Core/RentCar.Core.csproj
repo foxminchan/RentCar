@@ -20,4 +20,8 @@
         <PackageReference Include="Ardalis.Result.FluentValidation" Version="7.2.0" />
     </ItemGroup>
 
+    <ItemGroup>
+      <Folder Include="Specifications\Feedback\" />
+    </ItemGroup>
+
 </Project>

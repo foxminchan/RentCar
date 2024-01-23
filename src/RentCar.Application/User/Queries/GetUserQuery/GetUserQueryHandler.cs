@@ -16,7 +16,8 @@ public sealed class GetUserQueryHandler(UserManager<ApplicationUser> userManager
 {
     public async Task<Result<UserDto>> Handle(GetUserQuery request, CancellationToken cancellationToken)
     {
-        var user = await userManager.FindByIdAsync(request.Id);
+        Guard.Against.NullOrEmpty(request.Id, nameof(request));
+        var user = await userManager.FindByIdAsync(request.Id.ToString());
         Guard.Against.NotFound(request.Id, user);
         return Result<UserDto>.Success(user.Adapt<UserDto>());
     }

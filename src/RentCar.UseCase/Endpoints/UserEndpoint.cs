@@ -21,23 +21,23 @@ public sealed class UserEndpoint : ICarterModule
             .WithTags("User");
         group.RequirePerUserRateLimit();
         group.MapGet("", GetUsers).WithName(nameof(GetUsers));
-        group.MapGet("{id}", GetUser).WithName(nameof(GetUser));
+        group.MapGet("{id:guid}", GetUser).WithName(nameof(GetUser));
         group.MapPost("", AddUser).WithName(nameof(AddUser));
         group.MapPut("", UpdateUser).WithName(nameof(UpdateUser));
-        group.MapDelete("{id}", DeleteUser).WithName(nameof(DeleteUser));
+        group.MapDelete("{id:guid}", DeleteUser).WithName(nameof(DeleteUser));
     }
 
-    private static async Task<Result<IEnumerable<UserDto>>> GetUsers(
+    private static async Task<PagedResult<IEnumerable<UserDto>>> GetUsers(
         [AsParameters] GetUsersQuery request,
         [FromServices] ISender sender)
         => await sender.Send(request);
 
     private static async Task<Result<UserDto>> GetUser(
-        [FromRoute] string id,
+        [FromRoute] Guid id,
         [FromServices] ISender sender)
         => await sender.Send(new GetUserQuery(id));
 
-    private static async Task<Result<string>> AddUser(
+    private static async Task<Result<Guid>> AddUser(
         [FromBody] CreateUserCommand request,
         [FromServices] ISender sender)
         => await sender.Send(request);
@@ -48,7 +48,7 @@ public sealed class UserEndpoint : ICarterModule
         => await sender.Send(request);
 
     private static async Task<Result> DeleteUser(
-        [FromRoute] string id,
+        [FromRoute] Guid id,
         [FromServices] ISender sender)
         => await sender.Send(new DeleteUserCommand(id));
 }

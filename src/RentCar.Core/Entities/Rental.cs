@@ -18,7 +18,7 @@ public sealed class Rental : EntityBase<Guid>, IAggregateRoot
     public RentStatus? Status { get; set; } = RentStatus.Renting;
     public Guid VehicleId { get; set; }
     [JsonIgnore] public Vehicle? Vehicle { get; set; }
-    public string? UserId { get; set; }
+    public Guid? UserId { get; set; }
     [JsonIgnore] public ApplicationUser? User { get; set; }
     public Guid? PaymentId { get; set; }
     [JsonIgnore] public Payment? Payment { get; set; }

@@ -1,15 +1,16 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
+using Ardalis.Specification;
 using MediatR;
 using Microsoft.Extensions.Hosting;
 using RentCar.Application.Rental.Commands.UpdateRentalCommand;
-using RentCar.Application.Rental.Queries.GetRentalsQuery;
 using RentCar.Core.Enums;
 
 namespace RentCar.Application.Rental.Jobs;
 
-public sealed class RentalExpirationService(ISender sender) : BackgroundService
+public sealed class RentalExpirationService(ISender sender, IReadRepositoryBase<Core.Entities.Rental> repository)
+    : BackgroundService
 {
     protected override async Task ExecuteAsync(CancellationToken stoppingToken)
     {
@@ -22,26 +23,24 @@ public sealed class RentalExpirationService(ISender sender) : BackgroundService
 
     private async Task UpdateRentalStatusAsync(CancellationToken stoppingToken)
     {
-        var rentals = await sender.Send(new GetRentalsQuery(), stoppingToken);
+        var rentals = await repository.ListAsync(stoppingToken);
 
-        if (!rentals.Value.Any())
+        if (rentals.Count == 0)
             return;
 
-        foreach (var rental in rentals.Value)
+        foreach (var rental in rentals.Where(rental =>
+                     rental.EndDate <= DateTime.UtcNow && rental.Status.Equals(RentStatus.Renting)))
         {
-            if (rental.EndDate <= DateTime.UtcNow && rental.Status == RentStatus.Renting)
-            {
-                await sender.Send(new UpdateRentalCommand(
-                    rental.Id,
-                    rental.StartDate,
-                    rental.EndDate,
-                    rental.TotalPrice,
-                    RentStatus.Cancelled,
-                    rental.VehicleId,
-                    rental.UserId,
-                    rental.PaymentId
-                ), stoppingToken);
-            }
+            await sender.Send(new UpdateRentalCommand(
+                rental.Id,
+                rental.StartDate,
+                rental.EndDate,
+                rental.TotalPrice,
+                RentStatus.Overdue,
+                rental.VehicleId,
+                rental.UserId,
+                rental.PaymentId
+            ), stoppingToken);
         }
     }
 }

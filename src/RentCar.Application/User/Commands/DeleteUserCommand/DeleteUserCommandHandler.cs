@@ -4,7 +4,6 @@
 using Ardalis.GuardClauses;
 using Ardalis.Result;
 using Ardalis.SharedKernel;
-using FluentValidation;
 using Microsoft.AspNetCore.Identity;
 using RentCar.Core.Identity;
 
@@ -15,19 +14,10 @@ public sealed class DeleteUserCommandHandler(UserManager<ApplicationUser> userMa
 {
     public async Task<Result> Handle(DeleteUserCommand request, CancellationToken cancellationToken)
     {
-        var user = await userManager.FindByIdAsync(request.Id);
+        Guard.Against.NullOrEmpty(request.Id, nameof(request));
+        var user = await userManager.FindByIdAsync(request.Id.ToString());
         Guard.Against.NotFound(request.Id, user);
         await userManager.DeleteAsync(user);
         return Result.Success();
-    }
-}
-
-public sealed class DeleteUserCommandValidator : AbstractValidator<DeleteUserCommand>
-{
-    public DeleteUserCommandValidator()
-    {
-        RuleFor(x => x.Id)
-            .NotEmpty()
-            .WithMessage("Id is required");
     }
 }

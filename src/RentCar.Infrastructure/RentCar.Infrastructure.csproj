@@ -35,6 +35,7 @@
     </ItemGroup>
 
     <ItemGroup>
+        <PackageReference Include="Mapster" Version="7.4.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
         <PackageReference Include="FluentValidation" Version="11.9.0" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
@@ -56,6 +57,11 @@
     </ItemGroup>    
 
     <ItemGroup>
+        <Folder Include="Abstraction\Commands\CreateEntityCommand\" />
+        <Folder Include="Abstraction\Commands\DeleteEntityCommand\" />
+        <Folder Include="Abstraction\Commands\UpdateEntityCommand\" />
+        <Folder Include="Abstraction\Queries\GetEntitiesQuery\" />
+        <Folder Include="Abstraction\Queries\GetEntitiesByFieldQuery\" />
         <Folder Include="OpenTelemetry\" />
         <Folder Include="Swagger\" />
     </ItemGroup>

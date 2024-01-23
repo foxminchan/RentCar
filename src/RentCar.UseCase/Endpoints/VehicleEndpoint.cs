@@ -9,7 +9,6 @@ using RentCar.Application.Vehicle.Commands.CreateVehicleCommand;
 using RentCar.Application.Vehicle.Commands.DeleteVehicleCommand;
 using RentCar.Application.Vehicle.Commands.UpdateVehicleCommand;
 using RentCar.Application.Vehicle.Dto;
-using RentCar.Application.Vehicle.Queries.GetVehicleAmountQuery;
 using RentCar.Application.Vehicle.Queries.GetVehicleQuery;
 using RentCar.Application.Vehicle.Queries.GetVehiclesQuery;
 using RentCar.UseCase.Extensions;
@@ -31,14 +30,10 @@ public sealed class VehicleEndpoint : ICarterModule
         group.MapDelete("{id:guid}", DeleteVehicle).WithName(nameof(DeleteVehicle));
     }
 
-    private static async Task<Result<(IEnumerable<VehicleDto>, int)>> GetVehicles(
+    private static async Task<PagedResult<IEnumerable<VehicleDto>>> GetVehicles(
         [AsParameters] GetVehiclesQuery request,
         [FromServices] ISender sender)
-    {
-        var result = await sender.Send(request);
-        var count = await sender.Send(new GetVehicleAmountQuery());
-        return Result.Success((result.Value, count.Value));
-    }
+        => await sender.Send(request);
 
     private static async Task<Result<VehicleDto>> GetVehicle(
         [FromRoute] Guid id,
