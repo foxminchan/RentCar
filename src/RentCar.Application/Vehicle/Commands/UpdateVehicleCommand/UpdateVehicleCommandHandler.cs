@@ -14,8 +14,7 @@ namespace RentCar.Application.Vehicle.Commands.UpdateVehicleCommand;
 
 public sealed class UpdateVehicleCommandHandler(
     Repository<Core.Entities.Vehicle> repository,
-    ICloudinaryService cloudinaryService)
-    : ICommandHandler<UpdateVehicleCommand, Result>
+    ICloudinaryService cloudinaryService) : ICommandHandler<UpdateVehicleCommand, Result>
 {
     public async Task<Result> Handle(UpdateVehicleCommand request, CancellationToken cancellationToken)
     {

@@ -13,8 +13,7 @@ namespace RentCar.Application.Vehicle.Commands.CreateVehicleCommand;
 
 public sealed class CreateVehicleCommandHandler(
     Repository<Core.Entities.Vehicle> repository,
-    ICloudinaryService cloudinaryService)
-    : ICommandHandler<CreateVehicleCommand, Result<Guid>>
+    ICloudinaryService cloudinaryService) : ICommandHandler<CreateVehicleCommand, Result<Guid>>
 {
     public async Task<Result<Guid>> Handle(CreateVehicleCommand request, CancellationToken cancellationToken)
     {

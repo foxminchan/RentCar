@@ -5,7 +5,7 @@
 ## Description
 
 <p align="justify">
-The "RentCar" repository is a software project dedicated to facilitating car rental operations. It encompasses features like user interfaces for customers to reserve vehicles, administrative tools for fleet management, reservation handling, vehicle availability tracking, and potentially payment processing integration. The repository aims to optimize the processes associated with renting and managing a fleet of cars.
+<b>RentCar</b> adopts Clean Architecture and Domain-Driven Design (DDD) to optimize car rental processes, featuring reservation interfaces, fleet management tools, availability tracking, and potential payment integration. The emphasis is on achieving a scalable, maintainable, and domain-centric design.
 </p>
 
 ## Prerequisites
@@ -61,6 +61,20 @@ docker-compose ./docker/docker-compose.o11y.yml up
 > ```bash
 > sudo sysctl -w vm.max_map_count=262144
 > ```
+
+## Cloudinary Configuration
+
+<p align="justify">
+Navigate to the <a href="https://cloudinary.com/console">Cloudinary Console</a> and create a new Cloudinary account. Once you have created your account, you will be able to view your account's <b>Cloud name</b>, <b>API Key</b>, and <b>API Secret</b> in the <b>Dashboard</b> section. Then, you need to add the following configuration to the `appsettings.json` file:
+</p>
+
+```json
+"CloudinarySetting": {
+  "CloudName": "Enter your cloud name",
+  "ApiKey": "Enter your api key",
+  "ApiSecret": "Enter your api secret"
+},
+```
 
 ## Start HashiCorp Stack
 

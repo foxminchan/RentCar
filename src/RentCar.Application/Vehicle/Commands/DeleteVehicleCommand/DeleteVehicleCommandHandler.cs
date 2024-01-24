@@ -11,8 +11,7 @@ namespace RentCar.Application.Vehicle.Commands.DeleteVehicleCommand;
 
 public sealed class DeleteVehicleCommandHandler(
     Repository<Core.Entities.Vehicle> repository,
-    ICloudinaryService cloudinaryService)
-    : ICommandHandler<DeleteVehicleCommand, Result>
+    ICloudinaryService cloudinaryService) : ICommandHandler<DeleteVehicleCommand, Result>
 {
     public async Task<Result> Handle(DeleteVehicleCommand request, CancellationToken cancellationToken)
     {

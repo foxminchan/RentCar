@@ -23,10 +23,11 @@
         <Folder Include="Maintenance\Queries\GetMaintenanceQuery\" />
         <Folder Include="Maintenance\Queries\GetMaintenancesQuery\" />
         <Folder Include="Maintenance\Queries\GetMaintenanceByVehicleQuery\" />
-        <Folder Include="Payment\Commands\" />
+        <Folder Include="Payment\Commands\DeletePaymentCommand\" />
+        <Folder Include="Payment\Commands\UpdatePaymentCommand\" />
         <Folder Include="Payment\Dto\" />
+        <Folder Include="Payment\Queries\GetPaymentsQuery\" />
         <Folder Include="Payment\Validators\" />
-        <Folder Include="Payment\Queries\" />
         <Folder Include="Rental\Commands\CreateRentalCommand\" />
         <Folder Include="Rental\Commands\DeleteRentalCommand\" />
         <Folder Include="Rental\Commands\UpdateRentalCommand\" />

@@ -6,13 +6,14 @@ using Ardalis.Result;
 using Ardalis.SharedKernel;
 using FluentValidation;
 using Mapster;
+using RentCar.Application.Payment.Validators;
 using RentCar.Application.User.Validators;
 using RentCar.Application.Vehicle.Validators;
 using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Rental.Commands.UpdateRentalCommand;
 
-public sealed class UpdateRentalCommandHandler(Repository<Core.Entities.Rental> repository) 
+public sealed class UpdateRentalCommandHandler(Repository<Core.Entities.Rental> repository)
     : ICommandHandler<UpdateRentalCommand, Result>
 {
     public async Task<Result> Handle(UpdateRentalCommand request, CancellationToken cancellationToken)
@@ -29,7 +30,7 @@ public sealed class UpdateRentalCommandHandler(Repository<Core.Entities.Rental> 
 public sealed class UpdateRentalCommandValidator : AbstractValidator<UpdateRentalCommand>
 {
     public UpdateRentalCommandValidator(
-        VehicleIdValidator vehicleIdValidator, UserIdValidator userIdValidator)
+        VehicleIdValidator vehicleIdValidator, UserIdValidator userIdValidator, PaymentIdValidator paymentIdValidator)
     {
         RuleFor(x => x.Id)
             .NotEmpty()
@@ -57,5 +58,8 @@ public sealed class UpdateRentalCommandValidator : AbstractValidator<UpdateRenta
 
         RuleFor(x => x.UserId)
             .SetValidator(userIdValidator);
+
+        RuleFor(x => x.PaymentId)
+            .SetValidator(paymentIdValidator);
     }
 }

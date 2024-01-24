@@ -3,9 +3,9 @@
 
 using Ardalis.Result;
 using Ardalis.SharedKernel;
-using Ardalis.Specification;
 using FluentValidation;
 using Mapster;
+using RentCar.Application.Payment.Validators;
 using RentCar.Application.User.Validators;
 using RentCar.Application.Vehicle.Validators;
 using RentCar.Infrastructure.Data;
@@ -27,7 +27,7 @@ public sealed class CreateRentalCommandHandler(Repository<Core.Entities.Rental> 
 public sealed class CreateRentalCommandValidator : AbstractValidator<CreateRentalCommand>
 {
     public CreateRentalCommandValidator(
-        VehicleIdValidator vehicleIdValidator, UserIdValidator userIdValidator)
+        VehicleIdValidator vehicleIdValidator, UserIdValidator userIdValidator, PaymentIdValidator paymentIdValidator)
     {
         RuleFor(x => x.StartDate)
             .NotEmpty()
@@ -51,5 +51,8 @@ public sealed class CreateRentalCommandValidator : AbstractValidator<CreateRenta
 
         RuleFor(x => x.UserId)
             .SetValidator(userIdValidator);
+
+        RuleFor(x => x.PaymentId)
+            .SetValidator(paymentIdValidator);
     }
 }
