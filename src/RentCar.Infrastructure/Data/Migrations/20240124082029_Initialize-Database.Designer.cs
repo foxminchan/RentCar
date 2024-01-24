@@ -13,8 +13,8 @@ using RentCar.Infrastructure.Data;
 namespace RentCar.Infrastructure.Data.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20240123175012_DomainConfig")]
-    partial class DomainConfig
+    [Migration("20240124082029_Initialize-Database")]
+    partial class InitializeDatabase
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)

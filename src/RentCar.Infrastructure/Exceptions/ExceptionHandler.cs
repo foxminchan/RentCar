@@ -32,13 +32,12 @@ public sealed class ExceptionHandler(ILogger<ExceptionHandler> logger) : IExcept
         return true;
     }
 
-
     private static async Task HandleNotFoundException(
         HttpContext httpContext,
         Exception notFoundException,
         CancellationToken cancellationToken)
     {
-        var notFoundErrorModel = Result<string>.Error(notFoundException.Message, "Not Found Error.");
+        var notFoundErrorModel = Result.Error(notFoundException.Message);
         httpContext.Response.StatusCode = StatusCodes.Status404NotFound;
         await httpContext.Response.WriteAsJsonAsync(notFoundErrorModel, cancellationToken);
     }
@@ -49,7 +48,7 @@ public sealed class ExceptionHandler(ILogger<ExceptionHandler> logger) : IExcept
         CancellationToken cancellationToken)
     {
         var unauthorizedErrorModel =
-            Result<string>.Error(unauthorizedAccessException.Message, "Unauthorized Error.");
+            Result.Error(unauthorizedAccessException.Message);
         httpContext.Response.StatusCode = StatusCodes.Status401Unauthorized;
         await httpContext.Response.WriteAsJsonAsync(unauthorizedErrorModel, cancellationToken);
     }
