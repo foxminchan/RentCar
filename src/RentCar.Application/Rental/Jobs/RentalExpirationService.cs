@@ -1,29 +1,22 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
-using Ardalis.Specification;
 using MediatR;
-using Microsoft.Extensions.Hosting;
+using Microsoft.EntityFrameworkCore;
+using Quartz;
 using RentCar.Application.Rental.Commands.UpdateRentalCommand;
 using RentCar.Core.Enums;
+using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Rental.Jobs;
 
-public sealed class RentalExpirationService(ISender sender, IReadRepositoryBase<Core.Entities.Rental> repository)
-    : BackgroundService
+[DisallowConcurrentExecution]
+public sealed class RentalExpirationService(ISender sender, ApplicationDbContext db)
+    : IJob
 {
-    protected override async Task ExecuteAsync(CancellationToken stoppingToken)
+    public async Task Execute(IJobExecutionContext context)
     {
-        while (!stoppingToken.IsCancellationRequested)
-        {
-            await UpdateRentalStatusAsync(stoppingToken);
-            await Task.Delay(TimeSpan.FromHours(12), stoppingToken);
-        }
-    }
-
-    private async Task UpdateRentalStatusAsync(CancellationToken stoppingToken)
-    {
-        var rentals = await repository.ListAsync(stoppingToken);
+        var rentals = await db.Rentals.ToListAsync();
 
         if (rentals.Count == 0)
             return;
@@ -40,7 +33,7 @@ public sealed class RentalExpirationService(ISender sender, IReadRepositoryBase<
                 rental.VehicleId,
                 rental.UserId,
                 rental.PaymentId
-            ), stoppingToken);
+            ));
         }
     }
 }
