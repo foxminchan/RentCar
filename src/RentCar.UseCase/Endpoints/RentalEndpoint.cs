@@ -12,6 +12,7 @@ using RentCar.Application.Rental.Dto;
 using RentCar.Application.Rental.Queries.GetRentalQuery;
 using RentCar.Application.Rental.Queries.GetRentalsByUserQuery;
 using RentCar.Application.Rental.Queries.GetRentalsQuery;
+using RentCar.Core.Constants;
 using RentCar.Core.Specifications;
 using RentCar.UseCase.Extensions;
 
@@ -25,6 +26,7 @@ public sealed class RentalEndpoint : ICarterModule
             .MapGroup("/api/rental/")
             .WithTags("Rental");
         group.RequirePerUserRateLimit();
+        group.RequireAuthorization(Policies.Admin);
         group.MapGet("", GetRentals).WithName(nameof(GetRentals));
         group.MapGet("{id:guid}", GetRental).WithName(nameof(GetRental));
         group.MapGet("user/{id:guid}", GetRentalsByUser).WithName(nameof(GetRentalsByUser));

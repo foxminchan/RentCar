@@ -11,6 +11,7 @@ using RentCar.Application.Payment.Commands.UpdatePaymentCommand;
 using RentCar.Application.Payment.Dto;
 using RentCar.Application.Payment.Queries.GetPaymentQuery;
 using RentCar.Application.Payment.Queries.GetPaymentsQuery;
+using RentCar.Core.Constants;
 using RentCar.Core.Specifications;
 using RentCar.UseCase.Extensions;
 
@@ -24,8 +25,8 @@ public class PaymentEndpoint : ICarterModule
             .MapGroup("/api/payment/")
             .WithTags("Payment");
         group.RequirePerUserRateLimit();
-        group.MapGet("", GetPayments).WithName(nameof(GetPayments));
-        group.MapGet("{id:guid}", GetPayment).WithName(nameof(GetPayment));
+        group.MapGet("", GetPayments).WithName(nameof(GetPayments)).RequireAuthorization(Policies.Admin);
+        group.MapGet("{id:guid}", GetPayment).WithName(nameof(GetPayment)).RequireAuthorization(Policies.Customer);
         group.MapPost("", AddPayment).WithName(nameof(AddPayment));
         group.MapPut("", UpdatePayment).WithName(nameof(UpdatePayment));
         group.MapDelete("{id:guid}", DeletePayment).WithName(nameof(DeletePayment));

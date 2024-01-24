@@ -11,6 +11,7 @@ using RentCar.Application.User.Commands.UpdateUserCommand;
 using RentCar.Application.User.Dto;
 using RentCar.Application.User.Queries.GetUserQuery;
 using RentCar.Application.User.Queries.GetUsersQuery;
+using RentCar.Core.Constants;
 using RentCar.Core.Specifications;
 using RentCar.UseCase.Extensions;
 
@@ -23,6 +24,7 @@ public sealed class UserEndpoint : ICarterModule
         var group = app
             .MapGroup("/api/user/")
             .WithTags("User");
+        group.RequireAuthorization(Policies.Admin);
         group.RequirePerUserRateLimit();
         group.MapGet("", GetUsers).WithName(nameof(GetUsers));
         group.MapGet("{id:guid}", GetUser).WithName(nameof(GetUser));

@@ -12,6 +12,7 @@ using RentCar.Application.Maintenance.Dto;
 using RentCar.Application.Maintenance.Queries.GetMaintenanceByVehicleQuery;
 using RentCar.Application.Maintenance.Queries.GetMaintenanceQuery;
 using RentCar.Application.Maintenance.Queries.GetMaintenancesQuery;
+using RentCar.Core.Constants;
 using RentCar.Core.Specifications;
 using RentCar.UseCase.Extensions;
 
@@ -25,6 +26,7 @@ public sealed class MaintenanceEndpoint : ICarterModule
             .MapGroup("/api/maintenance/")
             .WithTags("Maintenance");
         group.RequirePerUserRateLimit();
+        group.RequireAuthorization(Policies.Admin);
         group.MapGet("", GetMaintenances).WithName(nameof(GetMaintenances));
         group.MapGet("{id:guid}", GetMaintenance).WithName(nameof(GetMaintenance));
         group.MapGet("vehicle/{id:guid}", GetMaintenancesByVehicle).WithName(nameof(GetMaintenancesByVehicle));

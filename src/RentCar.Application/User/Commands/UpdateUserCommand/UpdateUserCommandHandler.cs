@@ -127,7 +127,7 @@ public sealed class UpdateUserCommandValidator : AbstractValidator<UpdateUserCom
         RuleFor(x => x.Policies)
             .Must(policies => 
                 policies is null 
-                || policies.All(policy => policy is Policies.Create or Policies.Read or Policies.Update or Policies.Delete))
+                || policies.All(policy => policy is Claims.Create or Claims.Read or Claims.Update or Claims.Delete))
             .WithMessage("Invalid policy in the list");
     }
 }

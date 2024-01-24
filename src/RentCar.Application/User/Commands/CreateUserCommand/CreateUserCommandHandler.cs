@@ -46,8 +46,8 @@ public sealed class CreateUserCommandHandler(UserManager<ApplicationUser> userMa
                 result.Errors.Select(e => new ValidationError(e.Description))));
 
         await userManager.AddToRoleAsync(user, Roles.Customer);
-        await userManager.AddClaimAsync(user, new(ClaimTypes.Role, Policies.Create));
-        await userManager.AddClaimAsync(user, new(ClaimTypes.Role, Policies.Read));
+        await userManager.AddClaimAsync(user, new(ClaimTypes.Role, Claims.Create));
+        await userManager.AddClaimAsync(user, new(ClaimTypes.Role, Claims.Read));
 
         return Result.Success(user.Id);
     }
