@@ -65,7 +65,7 @@ docker-compose ./docker/docker-compose.o11y.yml up
 ## Cloudinary Configuration
 
 <p align="justify">
-Navigate to the <a href="https://cloudinary.com/console">Cloudinary Console</a> and create a new Cloudinary account. Once you have created your account, you will be able to view your account's <b>Cloud name</b>, <b>API Key</b>, and <b>API Secret</b> in the <b>Dashboard</b> section. Then, you need to add the following configuration to the `appsettings.json` file:
+Navigate to the <a href="https://cloudinary.com/console">Cloudinary Console</a> and create a new Cloudinary account. Once you have created your account, you will be able to view your account's <b>Cloud name</b>, <b>API Key</b>, and <b>API Secret</b> in the <b>Dashboard</b> section. Then, you need to add the following configuration to the <code>appsettings.json</code> file:
 </p>
 
 ```json

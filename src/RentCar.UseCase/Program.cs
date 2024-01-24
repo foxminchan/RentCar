@@ -42,16 +42,9 @@ builder.Services.AddCors(options => options
             .AllowAnyHeader()));
 
 builder.Services.AddCarter();
-builder.Services.AddSwaggerGen();
 builder.Services.AddExceptionHandler<ExceptionHandler>();
 
 var app = builder.Build();
-
-if (app.Environment.IsDevelopment())
-{
-    app.UseSwagger();
-    app.UseSwaggerUI();
-}
 
 app.MapCarter();
 

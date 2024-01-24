@@ -11,6 +11,7 @@ using RentCar.Infrastructure.Data;
 using RentCar.Infrastructure.Filters;
 using RentCar.Infrastructure.HealthCheck;
 using RentCar.Infrastructure.Logging;
+using RentCar.Infrastructure.Swagger;
 
 namespace RentCar.Infrastructure;
 
@@ -22,6 +23,7 @@ public static class Extension
         builder.AddSerilog(builder.Environment.ApplicationName);
 
         services
+            .AddOpenApi()
             .AddProblemDetails()
             .AddHttpContextAccessor()
             .AddApplicationIdentity();
@@ -37,6 +39,7 @@ public static class Extension
     {
         app.MapIdentity();
         app.MapHealthCheck();
+        app.UseOpenApi();
         app.Map("/", () => Results.Redirect("/swagger"));
         app.Map("/error",
                 () => Results.Problem("An unexpected error occurred.", statusCode: StatusCodes.Status500InternalServerError))

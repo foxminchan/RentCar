@@ -36,6 +36,7 @@
     <ItemGroup>
         <PackageReference Include="Mapster" Version="7.4.0" />
         <PackageReference Include="Swashbuckle.AspNetCore" Version="6.5.0" />
+        <PackageReference Include="MicroElements.Swashbuckle.FluentValidation" Version="6.0.0" />
         <PackageReference Include="FluentValidation" Version="11.9.0" />
         <PackageReference Include="FluentValidation.DependencyInjectionExtensions" Version="11.9.0" />
         <PackageReference Include="CloudinaryDotNet" Version="1.25.0" />
