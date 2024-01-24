@@ -46,7 +46,7 @@ public sealed class VehicleEndpoint : ICarterModule
         [FromServices] ISender sender)
         => await sender.Send(request);
 
-    private static async Task<Result<Unit>> UpdateVehicle(
+    private static async Task<Result> UpdateVehicle(
         [FromBody] UpdateVehicleCommand request,
         [FromServices] ISender sender)
         => await sender.Send(request);

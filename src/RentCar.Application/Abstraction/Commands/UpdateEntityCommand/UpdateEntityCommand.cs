@@ -3,11 +3,8 @@
 
 using Ardalis.Result;
 using Ardalis.SharedKernel;
-
-using MediatR;
-
 using RentCar.Core.Interfaces;
 
 namespace RentCar.Application.Abstraction.Commands.UpdateEntityCommand;
 
-public record UpdateEntityCommand : ICommand<Result<Unit>>, ITransactionRequest;
+public record UpdateEntityCommand : ICommand<Result>, ITransactionRequest;

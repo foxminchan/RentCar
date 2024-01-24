@@ -20,7 +20,6 @@
         <Folder Include="Maintenance\Commands\CreateMaintenanceCommand\" />
         <Folder Include="Maintenance\Commands\DeleteMaintenanceCommand\" />
         <Folder Include="Maintenance\Commands\UpdateMaintenanceCommand\" />
-        <Folder Include="Maintenance\Handlers\" />
         <Folder Include="Maintenance\Queries\GetMaintenanceQuery\" />
         <Folder Include="Maintenance\Queries\GetMaintenancesQuery\" />
         <Folder Include="Maintenance\Queries\GetMaintenanceByVehicleQuery\" />

@@ -6,7 +6,6 @@ using Ardalis.Result;
 using Ardalis.SharedKernel;
 using FluentValidation;
 using Mapster;
-using MediatR;
 using RentCar.Application.User.Validators;
 using RentCar.Application.Vehicle.Validators;
 using RentCar.Infrastructure.Data;
@@ -14,16 +13,16 @@ using RentCar.Infrastructure.Data;
 namespace RentCar.Application.Rental.Commands.UpdateRentalCommand;
 
 public sealed class UpdateRentalCommandHandler(Repository<Core.Entities.Rental> repository) 
-    : ICommandHandler<UpdateRentalCommand, Result<Unit>>
+    : ICommandHandler<UpdateRentalCommand, Result>
 {
-    public async Task<Result<Unit>> Handle(UpdateRentalCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(UpdateRentalCommand request, CancellationToken cancellationToken)
     {
         var entity = request.Adapt<Core.Entities.Rental>();
         var existItem = await repository.GetByIdAsync(entity.Id, cancellationToken);
         Guard.Against.NotFound(entity.Id, existItem);
         await repository.UpdateAsync(entity, cancellationToken);
         existItem.UpdateRental(entity.Id, entity.VehicleId, entity.Status);
-        return Result.Success(Unit.Value);
+        return Result.Success();
     }
 }
 

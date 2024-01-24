@@ -10,7 +10,7 @@ using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Maintenance.Handlers;
 
-public class MaintenanceCreatedEventHandler(Repository<Core.Entities.Vehicle> repository)
+public sealed class MaintenanceCreatedEventHandler(Repository<Core.Entities.Vehicle> repository)
     : INotificationHandler<MaintenanceCreatedEvent>
 {
     public async Task Handle(MaintenanceCreatedEvent notification, CancellationToken cancellationToken)

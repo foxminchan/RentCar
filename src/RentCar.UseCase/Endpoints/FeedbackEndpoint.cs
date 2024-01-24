@@ -38,7 +38,7 @@ public sealed class FeedbackEndpoint : ICarterModule
         [FromServices] ISender sender)
         => await sender.Send(request);
 
-    private static async Task<Result<Unit>> UpdateFeedback(
+    private static async Task<Result> UpdateFeedback(
         [FromBody] UpdateFeedbackCommand request,
         [FromServices] ISender sender)
         => await sender.Send(request);

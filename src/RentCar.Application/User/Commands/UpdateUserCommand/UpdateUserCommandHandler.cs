@@ -2,13 +2,11 @@
 // Licensed under the MIT License
 
 using System.Security.Claims;
-
 using Ardalis.GuardClauses;
 using Ardalis.Result;
 using Ardalis.SharedKernel;
 using FluentValidation;
 using Mapster;
-using MediatR;
 using Microsoft.AspNetCore.Identity;
 using RentCar.Application.User.Validators;
 using RentCar.Core.Constants;
@@ -17,9 +15,9 @@ using RentCar.Core.Identity;
 namespace RentCar.Application.User.Commands.UpdateUserCommand;
 
 public sealed class UpdateUserCommandHandler(UserManager<ApplicationUser> userManager)
-    : ICommandHandler<UpdateUserCommand, Result<Unit>>
+    : ICommandHandler<UpdateUserCommand, Result>
 {
-    public async Task<Result<Unit>> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(UpdateUserCommand request, CancellationToken cancellationToken)
     {
         var entity = request.Adapt<ApplicationUser>();
 
@@ -57,7 +55,7 @@ public sealed class UpdateUserCommandHandler(UserManager<ApplicationUser> userMa
         return !result.Succeeded
             ? Result.Invalid(new List<ValidationError>(
                 result.Errors.Select(e => new ValidationError(e.Description))))
-            : Result.Success(Unit.Value);
+            : Result.Success();
     }
 }
 

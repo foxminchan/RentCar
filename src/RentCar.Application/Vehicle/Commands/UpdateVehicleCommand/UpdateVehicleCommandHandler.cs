@@ -6,7 +6,6 @@ using Ardalis.Result;
 using Ardalis.SharedKernel;
 using FluentValidation;
 using Mapster;
-using MediatR;
 using Microsoft.AspNetCore.Http;
 using RentCar.Infrastructure.Cloudinary;
 using RentCar.Infrastructure.Data;
@@ -16,9 +15,9 @@ namespace RentCar.Application.Vehicle.Commands.UpdateVehicleCommand;
 public sealed class UpdateVehicleCommandHandler(
     Repository<Core.Entities.Vehicle> repository,
     ICloudinaryService cloudinaryService)
-    : ICommandHandler<UpdateVehicleCommand, Result<Unit>>
+    : ICommandHandler<UpdateVehicleCommand, Result>
 {
-    public async Task<Result<Unit>> Handle(UpdateVehicleCommand request, CancellationToken cancellationToken)
+    public async Task<Result> Handle(UpdateVehicleCommand request, CancellationToken cancellationToken)
     {
         var entity = request.Adapt<Core.Entities.Vehicle>();
         var existItem = await repository.GetByIdAsync(entity.Id, cancellationToken);
@@ -37,7 +36,7 @@ public sealed class UpdateVehicleCommandHandler(
         }
 
         await repository.UpdateAsync(entity, cancellationToken);
-        return Result.Success(Unit.Value);
+        return Result.Success();
     }
 }
 

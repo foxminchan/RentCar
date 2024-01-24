@@ -55,7 +55,7 @@ public sealed class RentalEndpoint : ICarterModule
         [FromServices] ISender sender)
         => await sender.Send(request);
 
-    private static async Task<Result<Unit>> UpdateRental(
+    private static async Task<Result> UpdateRental(
         [FromBody] UpdateRentalCommand request,
         [FromServices] ISender sender)
         => await sender.Send(request);

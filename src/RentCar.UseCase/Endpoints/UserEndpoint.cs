@@ -46,7 +46,7 @@ public sealed class UserEndpoint : ICarterModule
         [FromServices] ISender sender)
         => await sender.Send(request);
 
-    private static async Task<Result<Unit>> UpdateUser(
+    private static async Task<Result> UpdateUser(
         [FromBody] UpdateUserCommand request,
         [FromServices] ISender sender)
         => await sender.Send(request);
