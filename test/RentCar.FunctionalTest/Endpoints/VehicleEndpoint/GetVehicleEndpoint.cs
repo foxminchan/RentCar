@@ -6,9 +6,9 @@ using System.Net.Http.Json;
 using System.Net;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
 using RentCar.Application.Vehicle.Dto;
-using RentCar.Functional.Test.Endpoints.Fakers;
 using RentCar.Functional.Test.Extensions;
 using RentCar.Functional.Test.Fixtures;
+using RentCar.Functional.Test.Fakers;
 
 namespace RentCar.Functional.Test.Endpoints.VehicleEndpoint;
 

@@ -4,8 +4,8 @@
 using System.Net;
 using FluentAssertions;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
-using RentCar.Functional.Test.Endpoints.Fakers;
 using RentCar.Functional.Test.Extensions;
+using RentCar.Functional.Test.Fakers;
 using RentCar.Functional.Test.Fixtures;
 
 namespace RentCar.Functional.Test.Endpoints.VehicleEndpoint;
