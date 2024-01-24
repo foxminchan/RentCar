@@ -21,8 +21,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <Folder Include="Specifications\Feedback\" />
-      <Folder Include="Specifications\Maintenance\" />
+        <PackageReference Include="SonarAnalyzer.CSharp" Version="9.17.0.82934">
+            <PrivateAssets>all</PrivateAssets>
+            <IncludeAssets>runtime; build; native; contentfiles; analyzers</IncludeAssets>
+        </PackageReference>
     </ItemGroup>
 
 </Project>

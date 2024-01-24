@@ -10,6 +10,6 @@ using RentCar.Infrastructure.Data;
 namespace RentCar.Application.Rental.Queries.GetRentalsByUserQuery;
 
 public sealed class GetRentalsByUserQueryHandler(Repository<Core.Entities.Rental> repository)
-    : GetEntitiesByFieldQueryHandler<GetRentalsByUserQuery, Core.Entities.Rental, RentalDto, RentalByUserIdFilterPaginated>(repository);
+    : GetEntitiesByFieldQueryHandler<GetRentalsByUserQuery, Core.Entities.Rental, RentalDto, RentalByUserId>(repository);
 
 public sealed class GetRentalsByUserQueryValidator : PagedValidator<GetRentalsByUserQuery>;

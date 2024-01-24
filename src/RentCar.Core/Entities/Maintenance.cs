@@ -18,7 +18,7 @@ public sealed class Maintenance : EntityBase<Guid>, IAggregateRoot
 
     public void AddMaintenance(Guid vehicleId)
     {
-        Guard.Against.NullOrEmpty(vehicleId, nameof(vehicleId));
+        Guard.Against.NullOrEmpty(vehicleId);
         var @event = new MaintenanceCreatedEvent(vehicleId);
         RegisterDomainEvent(@event);
     }

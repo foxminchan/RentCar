@@ -6,9 +6,9 @@ using Ardalis.Specification;
 
 namespace RentCar.Core.Specifications.Rental;
 
-public sealed class RentalByUserIdFilterPaginated : Specification<Entities.Rental>
+public sealed class RentalByUserId : Specification<Entities.Rental>
 {
-    public RentalByUserIdFilterPaginated(Guid userId, SpecificationBase spec)
+    public RentalByUserId(Guid userId, SpecificationBase spec)
     {
         Query.Take((int)spec.PageSize);
         Query.Skip((int)((spec.PageNumber - 1) * spec.PageSize));

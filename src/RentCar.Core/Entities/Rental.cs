@@ -26,25 +26,25 @@ public sealed class Rental : EntityBase<Guid>, IAggregateRoot
 
     public void AddRental(Guid vehicleId)
     {
-        Guard.Against.NullOrEmpty(vehicleId, nameof(vehicleId));
+        Guard.Against.NullOrEmpty(vehicleId);
         var @event = new RentalCreatedEvent(vehicleId);
         RegisterDomainEvent(@event);
     }
 
     public void DeleteRental(Guid vehicleId, Guid rentalId, DateTime? endDate)
     {
-        Guard.Against.NullOrEmpty(vehicleId, nameof(vehicleId));
-        Guard.Against.NullOrEmpty(rentalId, nameof(rentalId));
-        Guard.Against.Null(endDate, nameof(endDate));
+        Guard.Against.NullOrEmpty(vehicleId);
+        Guard.Against.NullOrEmpty(rentalId);
+        Guard.Against.Null(endDate);
         var @event = new RentalDeletedEvent(vehicleId, rentalId, endDate);
         RegisterDomainEvent(@event);
     }
 
     public void UpdateRental(Guid vehicleId, Guid rentalId, RentStatus? status)
     {
-        Guard.Against.NullOrEmpty(vehicleId, nameof(vehicleId));
-        Guard.Against.NullOrEmpty(rentalId, nameof(rentalId));
-        Guard.Against.Null(status, nameof(status));
+        Guard.Against.NullOrEmpty(vehicleId);
+        Guard.Against.NullOrEmpty(rentalId);
+        Guard.Against.Null(status);
         var @event = new RentalUpdatedEvent(vehicleId, rentalId, status);
         RegisterDomainEvent(@event);
     }
