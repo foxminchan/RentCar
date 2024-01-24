@@ -4,11 +4,11 @@
 using Ardalis.GuardClauses;
 using Ardalis.Result;
 using Ardalis.SharedKernel;
-using Ardalis.Specification;
+using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Abstraction.Commands.DeleteEntityCommand;
 
-public class DeleteEntityCommandHandler<TCommand, TEntity>(IRepositoryBase<TEntity> repository)
+public class DeleteEntityCommandHandler<TCommand, TEntity>(Repository<TEntity> repository)
     : ICommandHandler<TCommand, Result>
     where TCommand : DeleteEntityCommand
     where TEntity : EntityBase<Guid>

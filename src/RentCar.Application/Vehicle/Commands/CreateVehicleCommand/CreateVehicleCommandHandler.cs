@@ -3,16 +3,16 @@
 
 using Ardalis.Result;
 using Ardalis.SharedKernel;
-using Ardalis.Specification;
 using FluentValidation;
 using Mapster;
 using Microsoft.AspNetCore.Http;
 using RentCar.Infrastructure.Cloudinary;
+using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Vehicle.Commands.CreateVehicleCommand;
 
 public sealed class CreateVehicleCommandHandler(
-    IRepositoryBase<Core.Entities.Vehicle> repository,
+    Repository<Core.Entities.Vehicle> repository,
     ICloudinaryService cloudinaryService)
     : ICommandHandler<CreateVehicleCommand, Result<Guid>>
 {

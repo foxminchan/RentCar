@@ -1,9 +1,6 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
-// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
-// Licensed under the MIT License
-
 using Ardalis.Result;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
@@ -21,7 +18,7 @@ public sealed class ExceptionHandler(ILogger<ExceptionHandler> logger) : IExcept
 
         switch (exception)
         {
-            case NotFoundException notFoundException:
+            case Ardalis.GuardClauses.NotFoundException notFoundException:
                 await HandleNotFoundException(httpContext, notFoundException, cancellationToken);
                 break;
             case UnauthorizedAccessException unauthorizedAccessException:

@@ -3,14 +3,14 @@
 
 using Ardalis.Result;
 using Ardalis.SharedKernel;
-using Ardalis.Specification;
 using FluentValidation;
 using Mapster;
 using RentCar.Application.Vehicle.Validators;
+using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Maintenance.Commands.CreateMaintenanceCommand;
 
-public sealed class CreateMaintenanceCommandHandler(IRepositoryBase<Core.Entities.Maintenance> repository)
+public sealed class CreateMaintenanceCommandHandler(Repository<Core.Entities.Maintenance> repository)
     : ICommandHandler<CreateMaintenanceCommand, Result<Guid>>
 {
     public async Task<Result<Guid>> Handle(CreateMaintenanceCommand request, CancellationToken cancellationToken)

@@ -8,9 +8,11 @@ using Ardalis.Specification;
 
 using Mapster;
 
+using RentCar.Infrastructure.Data;
+
 namespace RentCar.Application.Abstraction.Queries.GetEntityQuery;
 
-public class GetEntityQueryHandler<TQuery, TEntity, TResult, TSpec>(IReadRepositoryBase<TEntity> repository)
+public class GetEntityQueryHandler<TQuery, TEntity, TResult, TSpec>(Repository<TEntity> repository)
     : IQueryHandler<TQuery, Result<TResult>>
     where TQuery : GetEntityQuery<TResult>
     where TEntity : class

@@ -5,12 +5,12 @@ using Ardalis.GuardClauses;
 using Ardalis.Result;
 using Ardalis.SharedKernel;
 using Ardalis.Specification;
-
 using Mapster;
+using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Abstraction.Queries.GetEntitiesByFieldQuery;
 
-public class GetEntitiesByFieldQueryHandler<TQuery, TEntity, TResult, TSpec>(IReadRepositoryBase<TEntity> repository)
+public class GetEntitiesByFieldQueryHandler<TQuery, TEntity, TResult, TSpec>(Repository<TEntity> repository)
     : IQueryHandler<TQuery, PagedResult<IEnumerable<TResult>>>
     where TQuery : GetEntitiesByFieldQuery<TResult>
     where TEntity : class

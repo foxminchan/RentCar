@@ -47,8 +47,7 @@ public static class Extension
         });
 
         services.AddScoped<IDatabaseFacade>(p => p.GetRequiredService<ApplicationDbContext>());
-        services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
-        services.AddScoped(typeof(IReadRepository<>), typeof(Repository<>));
+        services.AddScoped( typeof(Repository<>));
 
         return services;
     }

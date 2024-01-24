@@ -4,15 +4,13 @@
 using Ardalis.GuardClauses;
 using Ardalis.Result;
 using Ardalis.SharedKernel;
-using Ardalis.Specification;
-
 using Mapster;
-
 using MediatR;
+using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Abstraction.Commands.UpdateEntityCommand;
 
-public class UpdateEntityCommandHandler<TCommand, TEntity>(IRepositoryBase<TEntity> repository)
+public class UpdateEntityCommandHandler<TCommand, TEntity>(Repository<TEntity> repository)
     : ICommandHandler<TCommand, Result<Unit>>
     where TCommand : UpdateEntityCommand
     where TEntity : EntityBase<Guid>

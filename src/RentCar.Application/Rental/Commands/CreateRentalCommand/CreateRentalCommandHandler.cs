@@ -8,10 +8,11 @@ using FluentValidation;
 using Mapster;
 using RentCar.Application.User.Validators;
 using RentCar.Application.Vehicle.Validators;
+using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Rental.Commands.CreateRentalCommand;
 
-public sealed class CreateRentalCommandHandler(IRepositoryBase<Core.Entities.Rental> repository)
+public sealed class CreateRentalCommandHandler(Repository<Core.Entities.Rental> repository)
     : ICommandHandler<CreateRentalCommand, Result<Guid>>
 {
     public async Task<Result<Guid>> Handle(CreateRentalCommand request, CancellationToken cancellationToken)

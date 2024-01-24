@@ -4,11 +4,11 @@
 using Ardalis.GuardClauses;
 using Ardalis.Result;
 using Ardalis.SharedKernel;
-using Ardalis.Specification;
+using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Rental.Commands.DeleteRentalCommand;
 
-public sealed class DeleteRentalCommandHandler(IRepositoryBase<Core.Entities.Rental> repository)
+public sealed class DeleteRentalCommandHandler(Repository<Core.Entities.Rental> repository)
     : ICommandHandler<DeleteRentalCommand, Result>
 {
     public async Task<Result> Handle(DeleteRentalCommand request, CancellationToken cancellationToken)

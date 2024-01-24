@@ -7,7 +7,7 @@ using MediatR;
 using Microsoft.Extensions.DependencyInjection;
 using RentCar.Infrastructure.Data;
 using RentCar.Infrastructure.Validator;
-using System.Reflection.Metadata;
+
 using Quartz;
 using RentCar.Application.Rental.Jobs;
 
@@ -17,12 +17,12 @@ public static class Extension
 {
     public static void AddApplication(this IServiceCollection services)
     {
-        services.AddValidatorsFromAssemblies(AppDomain.CurrentDomain.GetAssemblies());
+        services.AddValidatorsFromAssemblies(AssemblyReference.AppDomainAssembly);
 
         services
             .AddMediatR(cfg =>
             {
-                cfg.RegisterServicesFromAssemblies([typeof(AssemblyReference).Assembly]);
+                cfg.RegisterServicesFromAssemblies([AssemblyReference.Assembly]);
                 cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(RequestValidationBehavior<,>),
                     ServiceLifetime.Scoped);
                 cfg.AddBehavior(typeof(IPipelineBehavior<,>), typeof(LoggingBehavior<,>),

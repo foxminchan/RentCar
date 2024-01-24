@@ -1,15 +1,14 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
-using Ardalis.Specification;
 using FluentValidation;
-
 using RentCar.Application.Abstraction.Commands.CreateEntityCommand;
 using RentCar.Application.Rental.Validators;
+using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Feedback.Commands.CreateFeedbackCommand;
 
-public sealed class CreateFeedbackCommandHandler(IRepositoryBase<Core.Entities.Feedback> repository)
+public sealed class CreateFeedbackCommandHandler(Repository<Core.Entities.Feedback> repository)
     : CreateEntityCommandHandler<CreateFeedbackCommand, Core.Entities.Feedback>(repository);
 
 public sealed class CreateFeedbackCommandValidator : AbstractValidator<CreateFeedbackCommand>

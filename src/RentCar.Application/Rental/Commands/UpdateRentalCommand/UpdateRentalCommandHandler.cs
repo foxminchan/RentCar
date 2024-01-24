@@ -4,16 +4,16 @@
 using Ardalis.GuardClauses;
 using Ardalis.Result;
 using Ardalis.SharedKernel;
-using Ardalis.Specification;
 using FluentValidation;
 using Mapster;
 using MediatR;
 using RentCar.Application.User.Validators;
 using RentCar.Application.Vehicle.Validators;
+using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Rental.Commands.UpdateRentalCommand;
 
-public sealed class UpdateRentalCommandHandler(IRepositoryBase<Core.Entities.Rental> repository) 
+public sealed class UpdateRentalCommandHandler(Repository<Core.Entities.Rental> repository) 
     : ICommandHandler<UpdateRentalCommand, Result<Unit>>
 {
     public async Task<Result<Unit>> Handle(UpdateRentalCommand request, CancellationToken cancellationToken)

@@ -4,13 +4,13 @@
 using Ardalis.GuardClauses;
 using Ardalis.Result;
 using Ardalis.SharedKernel;
-using Ardalis.Specification;
 using RentCar.Infrastructure.Cloudinary;
+using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Vehicle.Commands.DeleteVehicleCommand;
 
 public sealed class DeleteVehicleCommandHandler(
-    IRepositoryBase<Core.Entities.Vehicle> repository,
+    Repository<Core.Entities.Vehicle> repository,
     ICloudinaryService cloudinaryService)
     : ICommandHandler<DeleteVehicleCommand, Result>
 {

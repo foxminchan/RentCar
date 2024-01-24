@@ -2,15 +2,15 @@
 // Licensed under the MIT License
 
 using Ardalis.GuardClauses;
-using Ardalis.Specification;
 using MediatR;
 using RentCar.Core.Enums;
 using RentCar.Core.Events.Rental;
 using RentCar.Core.Specifications.Vehicle;
+using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Rental.Handlers;
 
-public sealed class RentalDeletedEventHandler(IRepositoryBase<Core.Entities.Vehicle> repository)
+public sealed class RentalDeletedEventHandler(Repository<Core.Entities.Vehicle> repository)
     : INotificationHandler<RentalDeletedEvent>
 {
     public async Task Handle(RentalDeletedEvent notification, CancellationToken cancellationToken)

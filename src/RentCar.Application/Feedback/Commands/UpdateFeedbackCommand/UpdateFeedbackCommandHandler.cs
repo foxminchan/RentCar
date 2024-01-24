@@ -1,15 +1,14 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
-using Ardalis.Specification;
 using FluentValidation;
-
 using RentCar.Application.Abstraction.Commands.UpdateEntityCommand;
 using RentCar.Application.Rental.Validators;
+using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Feedback.Commands.UpdateFeedbackCommand;
 
-public sealed class UpdateFeedbackCommandHandler(IRepositoryBase<Core.Entities.Feedback> repository)
+public sealed class UpdateFeedbackCommandHandler(Repository<Core.Entities.Feedback> repository)
     : UpdateEntityCommandHandler<UpdateEntityCommand, Core.Entities.Feedback>(repository);
 
 public sealed class UpdateFeedbackCommandValidator : AbstractValidator<UpdateFeedbackCommand>

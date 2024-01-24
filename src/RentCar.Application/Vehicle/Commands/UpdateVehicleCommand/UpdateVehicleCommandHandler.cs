@@ -4,17 +4,17 @@
 using Ardalis.GuardClauses;
 using Ardalis.Result;
 using Ardalis.SharedKernel;
-using Ardalis.Specification;
 using FluentValidation;
 using Mapster;
 using MediatR;
 using Microsoft.AspNetCore.Http;
 using RentCar.Infrastructure.Cloudinary;
+using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Vehicle.Commands.UpdateVehicleCommand;
 
 public sealed class UpdateVehicleCommandHandler(
-    IRepositoryBase<Core.Entities.Vehicle> repository,
+    Repository<Core.Entities.Vehicle> repository,
     ICloudinaryService cloudinaryService)
     : ICommandHandler<UpdateVehicleCommand, Result<Unit>>
 {

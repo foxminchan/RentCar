@@ -3,12 +3,12 @@
 
 using Ardalis.Result;
 using Ardalis.SharedKernel;
-using Ardalis.Specification;
 using Mapster;
+using RentCar.Infrastructure.Data;
 
 namespace RentCar.Application.Abstraction.Commands.CreateEntityCommand;
 
-public class CreateEntityCommandHandler<TCommand, TEntity>(IRepositoryBase<TEntity> repository)
+public class CreateEntityCommandHandler<TCommand, TEntity>(Repository<TEntity> repository)
     : ICommandHandler<TCommand, Result<Guid>>
     where TCommand : CreateEntityCommand
     where TEntity : EntityBase<Guid>
