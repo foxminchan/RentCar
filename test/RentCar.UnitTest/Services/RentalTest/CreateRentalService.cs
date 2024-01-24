@@ -12,6 +12,6 @@ public sealed class CreateRentalService
     private readonly Repository<Rental> _repository = Substitute.For<Repository<Rental>>();
 
     [Fact]
-    public async Task InvokesCreateVehicleAsync()
+    public async Task InvokesGetRentalsByUserAsync()
         => await _repository.Received().AddAsync(Arg.Any<Rental>());
 }
