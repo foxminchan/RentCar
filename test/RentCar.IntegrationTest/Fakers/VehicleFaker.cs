@@ -3,12 +3,11 @@
 
 using Bogus;
 
-using RentCar.Core.Entities;
 using RentCar.Core.Enums;
 
-namespace RentCar.Functional.Test.Fakers;
+namespace RentCar.Integration.Test.Fakers;
 
-public sealed class VehicleFaker : Faker<Vehicle>
+public sealed class VehicleFaker : Faker<Core.Entities.Vehicle>
 {
     public VehicleFaker()
     {

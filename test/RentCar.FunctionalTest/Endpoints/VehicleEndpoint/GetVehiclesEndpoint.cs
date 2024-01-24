@@ -3,17 +3,20 @@
 
 using System.Net;
 using System.Net.Http.Json;
+
 using FluentAssertions;
+
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.VisualStudio.TestPlatform.TestHost;
+
 using RentCar.Application.Vehicle.Dto;
-using RentCar.Functional.Test.Endpoints.Fakers;
 using RentCar.Functional.Test.Extensions;
+using RentCar.Functional.Test.Fakers;
 using RentCar.Functional.Test.Fixtures;
 
 namespace RentCar.Functional.Test.Endpoints.VehicleEndpoint;
 
-public class GetVehiclesEndpoint(ApplicationFactory<Program> factory) 
+public sealed class GetVehiclesEndpoint(ApplicationFactory<Program> factory) 
     : IClassFixture<ApplicationFactory<Program>>, IAsyncLifetime
 {
     private readonly ApplicationFactory<Program> _factory = factory.WithDbContainer();
@@ -42,7 +45,7 @@ public class GetVehiclesEndpoint(ApplicationFactory<Program> factory)
             ["IsAscending"] = "true"
         };
 
-        var response = await client.GetAsync(QueryHelpers.AddQueryString("/vehicles", query!));
+        var response = await client.GetAsync(QueryHelpers.AddQueryString("/api/vehicle/", query!));
 
         response.StatusCode.Should().Be(HttpStatusCode.OK);
 

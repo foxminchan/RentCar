@@ -45,8 +45,4 @@
       <ProjectReference Include="..\..\src\RentCar.UseCase\RentCar.UseCase.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <Folder Include="Endpoints\HealthCheckEndpoint\" />
-    </ItemGroup>
-
 </Project>
