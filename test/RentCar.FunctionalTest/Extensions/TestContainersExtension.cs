@@ -2,9 +2,10 @@
 // Licensed under the MIT License
 
 using DotNet.Testcontainers.Containers;
+
 using Polly;
 
-namespace RentCar.Integration.Test.Extensions;
+namespace RentCar.Functional.Test.Extensions;
 
 public static class TestContainersExtension
 {

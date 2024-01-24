@@ -17,6 +17,7 @@
 - [Nomad](https://www.nomadproject.io/)
 - [Consul](https://www.consul.io/)
 - [Vault](https://www.vaultproject.io/)
+- [Terraform](https://www.terraform.io/)
 - [Nuke](https://nuke.build/)
 
 ## Installation and Setup

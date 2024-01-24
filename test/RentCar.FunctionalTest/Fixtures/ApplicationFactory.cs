@@ -6,12 +6,12 @@ using DotNet.Testcontainers.Containers;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging.Abstractions;
 using Microsoft.Extensions.Logging;
-using RentCar.Integration.Test.Extensions;
+using Microsoft.Extensions.Logging.Abstractions;
+using RentCar.Functional.Test.Extensions;
 using Testcontainers.PostgreSql;
 
-namespace RentCar.Integration.Test.Fixtures;
+namespace RentCar.Functional.Test.Fixtures;
 
 public sealed class ApplicationFactory<TProgram>
     : WebApplicationFactory<TProgram>, IAsyncLifetime where TProgram : class

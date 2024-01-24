@@ -1,8 +1,11 @@
-﻿using Microsoft.Extensions.DependencyInjection;
-using RentCar.Infrastructure.Data;
-using RentCar.Integration.Test.Fixtures;
+﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
+// Licensed under the MIT License
 
-namespace RentCar.Integration.Test.Extensions;
+using Microsoft.Extensions.DependencyInjection;
+using RentCar.Functional.Test.Fixtures;
+using RentCar.Infrastructure.Data;
+
+namespace RentCar.Functional.Test.Extensions;
 
 public static class ApplicationExtensions
 {
