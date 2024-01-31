@@ -12,22 +12,28 @@ using Nuke.Common.Tools.ReportGenerator;
 using Nuke.Common.Utilities.Collections;
 using Nuke.Common;
 using System.Linq;
+using Nuke.Common.Tools.Docker;
+using Serilog;
 
 [GitHubActions("ci",
     GitHubActionsImage.UbuntuLatest,
     AutoGenerate = false,
-    OnPushBranches = ["main"], 
+    OnPushBranches = ["main"],
     OnPullRequestBranches = ["main"],
-    InvokedTargets = [nameof(Init), nameof(Lint), nameof(TestWithCoverage), nameof(TestWithoutCoverage)])]
-class Build : NukeBuild
+    EnableGitHubToken = true,
+    InvokedTargets =
+        [nameof(Init), nameof(Lint), nameof(TestWithCoverage), nameof(TestWithoutCoverage), nameof(DockerPush)]
+)]
+public class Build : NukeBuild
 {
-    public static int Main () => Execute<Build>(x => x.Compile);
+    public static int Main() => Execute<Build>(x => x.Compile);
 
-    [Solution]
-    readonly Solution _solution = default!;
+    [Solution] readonly Solution _solution = default!;
 
     [Parameter("Configuration to build - Default is 'Debug' (local) or 'Release' (server)")]
     readonly Configuration _configuration = IsLocalBuild ? Configuration.Debug : Configuration.Release;
+
+    GitHubActions GitHubActions => GitHubActions.Instance;
 
     const string ProjectName = "RentCar.*";
     string ProjectPrefix => $"{ProjectName}*";
@@ -67,8 +73,8 @@ class Build : NukeBuild
                 .SetCommand("lint"));
             _solution.GetAllProjects(ProjectPrefix)
                 .ForEach(project => DotNetTasks.DotNetBuild(s => s
-                        .SetProjectFile(project)
-                        .AddWarningsAsErrors()));
+                    .SetProjectFile(project)
+                    .AddWarningsAsErrors()));
         });
 
     Target Format => d => d
@@ -103,28 +109,53 @@ class Build : NukeBuild
         .DependsOn(Compile)
         .After(Lint)
         .Executes(() => _solution.GetAllProjects(TestWithCoverageSupportProjectPostfix)
-                .ForEach(project => DotNetTasks.DotNetTest(s => s
-                    .SetProjectFile(project)
-                    .SetConfiguration(_configuration)
-                    .SetCollectCoverage(true)
-                    .SetCoverletOutputFormat(CoverletOutputFormat.opencover)
-                    .SetCoverletOutput(RootDirectory / CoverageFolderName / CoverageReportFile)
-                    .SetExcludeByFile("**/Migrations/*.cs%2C**/Function/*.cs")
-                    .SetNoRestore(true)
-                )));
+            .ForEach(project => DotNetTasks.DotNetTest(s => s
+                .SetProjectFile(project)
+                .SetConfiguration(_configuration)
+                .SetCollectCoverage(true)
+                .SetCoverletOutputFormat(CoverletOutputFormat.opencover)
+                .SetCoverletOutput(RootDirectory / CoverageFolderName / CoverageReportFile)
+                .SetExcludeByFile("**/Migrations/*.cs")
+                .SetNoRestore(true)
+            )));
 
     Target TestWithoutCoverage => d => d
         .DependsOn(Compile)
         .After(Lint)
         .Executes(() => _solution.GetAllProjects(TestWithoutCoverageSupportProjectPostfix)
-                .ForEach(project => DotNetTasks.DotNetTest(s => s
-                    .SetProjectFile(project)
-                    .SetConfiguration(_configuration)
-                    .SetNoRestore(true)
-                )));
+            .ForEach(project => DotNetTasks.DotNetTest(s => s
+                .SetProjectFile(project)
+                .SetConfiguration(_configuration)
+                .SetNoRestore(true)
+            )));
+
+    Target Request => d => d
+        .Executes(() => Log.Information("GitHub Token = {Token}", GitHubActions.Token));
+
+    Target DockerBuild => d => d
+        .DependsOn(Compile)
+        .Executes(() => DockerTasks.DockerBuild(s => s
+            .SetFile(RootDirectory / "Dockerfile")
+            .SetTag("rent-car-api:latest")
+            .SetPath(RootDirectory)
+        ));
+
+    Target DockerLogin => d => d
+        .DependsOn([DockerBuild, Request])
+        .Executes(() => DockerTasks.DockerLogin(s => s
+            .SetServer("ghcr.io")
+            .SetUsername("foxminchan")
+            .SetPassword(GitHubActions.Token)
+        ));
+
+    Target DockerPush => d => d
+        .DependsOn([DockerBuild, Request, DockerLogin])
+        .Executes(() => DockerTasks.DockerPush(s => s
+            .SetName("ghcr.io/foxminchan/rent-car-api:latest")
+        ));
 
     Target Ci => d => d
-        .DependsOn(Init, Lint, TestWithCoverage, TestWithoutCoverage);
+        .DependsOn(Init, Lint, TestWithCoverage, TestWithoutCoverage, DockerPush);
 
     Target GenerateHtmlTestReport => d => d
         .DependsOn(TestWithCoverage)
@@ -142,5 +173,4 @@ class Build : NukeBuild
                 .SetConfiguration(_configuration)
                 .SetNoBuild(true)
             ));
-
 }
