@@ -1,4 +1,8 @@
 {
   "files.eol": "\n",
-  "dotnet.defaultSolution": "RentCar.sln"
+  "dotnet.defaultSolution": "RentCar.sln",
+  "sonarlint.connectedMode.project": {
+    "connectionId": "foxminchan",
+    "projectKey": "foxminchan_RentCar"
+  }
 }

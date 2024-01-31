@@ -81,8 +81,18 @@ Navigate to the <a href="https://cloudinary.com/console">Cloudinary Console</a> 
 ## Start HashiCorp Stack
 
 <p align="justify">
+For the deployment, RentCar uses the HashiCorp stack, which consists of Nomad, Consul, and Vault. It is a set of open-source tools that enable you to provision, secure, and run any infrastructure for any application. The following is the architecture of the HashiCorp stack:
+</p>
+
+![Hashicorp](./assets/hashicorp.png)
+
+<p align="justify">
 To start the HashiCorp stack, you need to start the Nomad, Consul, and Vault servers. You can do this by running the following command:
 </p>
+
+> [!IMPORTANT]
+>
+> Make you have installed tools in the [Prerequisites](#prerequisites) section.
 
 ```bash
 cd build/local
