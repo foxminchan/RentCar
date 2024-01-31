@@ -41,7 +41,7 @@ dotnet tool install Nuke.GlobalTool --global
 ## Running the Application
 
 <p align="justify">
-To run the application, you need to start the Nomad and Consul servers. You can do this by running the following command:
+To run the application, you can do this by running the following command:
 </p>
 
 ```bash
