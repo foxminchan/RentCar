@@ -23,11 +23,11 @@ public static class Extension
             .AddPolicy(Roles.Admin,
                 policy => policy
                     .RequireRole(Policies.Admin)
-                    .RequireClaim(ClaimTypes.Role, [Claims.Create, Claims.Read, Claims.Update, Claims.Delete]))
+                    .RequireClaim(ClaimTypes.Role, Claims.Create, Claims.Read, Claims.Update, Claims.Delete))
             .AddPolicy(Roles.Customer,
                 policy => policy
                     .RequireRole(Policies.Customer)
-                    .RequireClaim(ClaimTypes.Role, [Claims.Create, Claims.Read]));
+                    .RequireClaim(ClaimTypes.Role, Claims.Create, Claims.Read));
 
         services.AddIdentityCore<ApplicationUser>()
             .AddEntityFrameworkStores<ApplicationDbContext>()

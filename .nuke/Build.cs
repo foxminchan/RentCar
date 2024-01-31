@@ -5,15 +5,15 @@ using Nuke.Common.CI.GitHubActions;
 using Nuke.Common.IO;
 using Nuke.Common.ProjectModel;
 using Nuke.Common.Tools.Coverlet;
+using Nuke.Common.Tools.Docker;
 using Nuke.Common.Tools.DotNet;
 using Nuke.Common.Tools.EntityFramework;
 using Nuke.Common.Tools.Npm;
 using Nuke.Common.Tools.ReportGenerator;
 using Nuke.Common.Utilities.Collections;
 using Nuke.Common;
-using System.Linq;
-using Nuke.Common.Tools.Docker;
 using Serilog;
+using System.Linq;
 
 [GitHubActions("ci",
     GitHubActionsImage.UbuntuLatest,

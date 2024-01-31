@@ -1,6 +1,8 @@
 ﻿// Copyright (c) 2024-present Nguyen Xuan Nhan. All rights reserved
 // Licensed under the MIT License
 
+using System.Net.Security;
+
 using Ardalis.GuardClauses;
 using HealthChecks.UI.Client;
 using Microsoft.AspNetCore.Builder;
@@ -33,7 +35,7 @@ public static class Extension
                 options.UseApiEndpointHttpMessageHandler(_ => new()
                 {
                     ClientCertificateOptions = ClientCertificateOption.Manual,
-                    ServerCertificateCustomValidationCallback = (_, _, _, _) => true
+                    ServerCertificateCustomValidationCallback = (_, _, _, sslPolicyErrors) => sslPolicyErrors == SslPolicyErrors.None
                 });
             })
             .AddInMemoryStorage();

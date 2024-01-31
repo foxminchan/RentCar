@@ -3,7 +3,6 @@
 
 using Ardalis.Result;
 using Ardalis.SharedKernel;
-
 using RentCar.Core.Interfaces;
 
 namespace RentCar.Application.Abstraction.Commands.CreateEntityCommand;
