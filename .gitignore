@@ -855,6 +855,4 @@ dist
 ### VisualStudio Patch ###
 # Additional files built by Visual Studio
 
-src/RentCar.Website/wwwroot/app.min.css
-
 # End of https://www.toptal.com/developers/gitignore/api/csharp,aspnetcore,visualstudio,visualstudiocode,node
