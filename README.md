@@ -1,6 +1,7 @@
 # Rent Car
 
 ![License](https://img.shields.io/github/license/foxminchan/RentCar?label=License)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=foxminchan_RentCar&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=foxminchan_RentCar)
 
 ## Description
 
