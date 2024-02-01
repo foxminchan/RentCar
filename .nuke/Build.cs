@@ -39,7 +39,7 @@ public class Build : NukeBuild
     string ProjectPrefix => $"{ProjectName}*";
     const string TestProjectPostfix = "*.Test";
     const string TestWithCoverageSupportProjectPostfix = "*.Unit.Test";
-    const string TestWithoutCoverageSupportProjectPostfix = "*.Functional.Tests";
+    const string TestWithoutCoverageSupportProjectPostfix = "*.Functional.Tests;*.Integration.Tests";
     const string CoverageFolderName = "coverage";
     string CoveragePrefix => $"{CoverageFolderName}.*";
     string CoverageReportFile => "coverage.xml";
