@@ -16,7 +16,7 @@ public sealed class Architecture
     [Fact]
     public void InvokesCoreLayerDependencies()
     {
-        var assembly = typeof(Core.AssemblyReference).Assembly;
+        var assembly = Core.AssemblyReference.Assembly;
 
         string[] layers = [
             CoreNamespace,
@@ -37,7 +37,7 @@ public sealed class Architecture
     [Fact]
     public void InvokesApplicationLayerDependencies()
     {
-        var assembly = typeof(Application.AssemblyReference).Assembly;
+        var assembly = Application.AssemblyReference.Assembly;
 
         string[] layers = [
             CoreNamespace,
@@ -57,7 +57,7 @@ public sealed class Architecture
     [Fact]
     public void InvokesInfrastructureLayerDependencies()
     {
-        var assembly = typeof(Infrastructure.AssemblyReference).Assembly;
+        var assembly = Infrastructure.AssemblyReference.Assembly;
 
         string[] layers = [
             CoreNamespace,
@@ -77,7 +77,7 @@ public sealed class Architecture
     [Fact]
     public void InvokesUseCaseLayerDependencies()
     {
-        var assembly = typeof(UseCase.AssemblyReference).Assembly;
+        var assembly = UseCase.AssemblyReference.Assembly;
 
         string[] layers = [
             CoreNamespace,
@@ -97,7 +97,7 @@ public sealed class Architecture
     [Fact]
     public void InvokesCoreLayerOnlyDependsOnItself()
     {
-        var assembly = typeof(Core.AssemblyReference).Assembly;
+        var assembly = Core.AssemblyReference.Assembly;
 
         var result = Types
             .InAssembly(assembly)
@@ -111,7 +111,7 @@ public sealed class Architecture
     [Fact]
     public void InvokesInfrastructureLayerOnlyDependsOnCoreLayer()
     {
-        var assembly = typeof(Infrastructure.AssemblyReference).Assembly;
+        var assembly = Infrastructure.AssemblyReference.Assembly;
 
         var result = Types
             .InAssembly(assembly)
@@ -125,7 +125,7 @@ public sealed class Architecture
     [Fact]
     public void InvokesApplicationLayerOnlyDependsOnInfrastructureLayer()
     {
-        var assembly = typeof(Application.AssemblyReference).Assembly;
+        var assembly =Application.AssemblyReference.Assembly;
 
         var result = Types
             .InAssembly(assembly)
@@ -139,7 +139,7 @@ public sealed class Architecture
     [Fact]
     public void InvokesUseCaseLayerOnlyDependsOnApplicationLayer()
     {
-        var assembly = typeof(UseCase.AssemblyReference).Assembly;
+        var assembly = UseCase.AssemblyReference.Assembly;
 
         var result = Types
             .InAssembly(assembly)
@@ -153,7 +153,7 @@ public sealed class Architecture
     [Fact]
     public void InvokesEndpointHaveDependencyOnMediaR()
     {
-        var assembly = typeof(UseCase.AssemblyReference).Assembly;
+        var assembly = UseCase.AssemblyReference.Assembly;
 
         var result = Types
             .InAssembly(assembly)
