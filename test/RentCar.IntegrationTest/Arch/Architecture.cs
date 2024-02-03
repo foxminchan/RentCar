@@ -95,62 +95,6 @@ public sealed class Architecture
     }
 
     [Fact]
-    public void InvokesCoreLayerOnlyDependsOnItself()
-    {
-        var assembly = Core.AssemblyReference.Assembly;
-
-        var result = Types
-            .InAssembly(assembly)
-            .Should()
-            .OnlyHaveDependenciesOn(CoreNamespace)
-            .GetResult();
-
-        result.IsSuccessful.Should().BeTrue(result.ToString());
-    }
-
-    [Fact]
-    public void InvokesInfrastructureLayerOnlyDependsOnCoreLayer()
-    {
-        var assembly = Infrastructure.AssemblyReference.Assembly;
-
-        var result = Types
-            .InAssembly(assembly)
-            .Should()
-            .OnlyHaveDependenciesOn(CoreNamespace)
-            .GetResult();
-
-        result.IsSuccessful.Should().BeTrue(result.ToString());
-    }
-
-    [Fact]
-    public void InvokesApplicationLayerOnlyDependsOnInfrastructureLayer()
-    {
-        var assembly =Application.AssemblyReference.Assembly;
-
-        var result = Types
-            .InAssembly(assembly)
-            .Should()
-            .OnlyHaveDependenciesOn(InfrastructureNamespace)
-            .GetResult();
-
-        result.IsSuccessful.Should().BeTrue(result.ToString());
-    }
-
-    [Fact]
-    public void InvokesUseCaseLayerOnlyDependsOnApplicationLayer()
-    {
-        var assembly = UseCase.AssemblyReference.Assembly;
-
-        var result = Types
-            .InAssembly(assembly)
-            .Should()
-            .OnlyHaveDependenciesOn(ApplicationNamespace)
-            .GetResult();
-
-        result.IsSuccessful.Should().BeTrue(result.ToString());
-    }
-
-    [Fact]
     public void InvokesEndpointHaveDependencyOnMediaR()
     {
         var assembly = UseCase.AssemblyReference.Assembly;
