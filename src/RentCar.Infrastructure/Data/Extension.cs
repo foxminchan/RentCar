@@ -30,7 +30,7 @@ public static class Extension
         {
             options.UseNpgsql(connectionString, sqlOptions =>
                 {
-                    sqlOptions.MigrationsAssembly(typeof(ApplicationDbContext).Assembly.FullName);
+                    sqlOptions.MigrationsAssembly(AssemblyReference.DbContext.FullName);
                     sqlOptions.EnableRetryOnFailure(maxRetryCount: 15, maxRetryDelay: TimeSpan.FromSeconds(30),
                         errorCodesToAdd: null);
                 })

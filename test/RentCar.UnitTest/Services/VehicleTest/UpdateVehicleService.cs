@@ -3,21 +3,25 @@
 
 using NSubstitute;
 using RentCar.Core.Entities;
+using RentCar.Core.Enums;
 using RentCar.Infrastructure.Data;
 using RentCar.Unit.Test.Fakers;
 
 namespace RentCar.Unit.Test.Services.VehicleTest;
 
-public class DeleteVehicleService
+public sealed class UpdateVehicleService
 {
     private readonly Repository<Vehicle> _repository = Substitute.For<Repository<Vehicle>>();
     private readonly VehicleFaker _faker = new();
 
     [Fact]
-    public async Task InvokesDeleteVehicleAsync()
+    public async Task InvokesUpdateVehicleAsync()
     {
         var vehicle = _faker.Generate();
-        await _repository.AddAsync(vehicle);
-        await _repository.Received().DeleteAsync(vehicle);
+        await _repository.UpdateAsync(vehicle);
+        var existVehicle = (await _repository.ListAsync()).FirstOrDefault();
+        Assert.NotNull(existVehicle);
+        existVehicle.Status = CarStatus.Lost;
+        await _repository.Received().UpdateAsync(existVehicle, Arg.Any<CancellationToken>());
     }
 }

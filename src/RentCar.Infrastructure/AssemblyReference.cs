@@ -3,10 +3,12 @@
 
 using System.Reflection;
 
-namespace RentCar.Application;
+using RentCar.Infrastructure.Data;
+
+namespace RentCar.Infrastructure;
 
 public static class AssemblyReference
 {
     public static readonly Assembly Assembly = typeof(AssemblyReference).Assembly;
-    public static readonly Assembly[] AppDomainAssembly = AppDomain.CurrentDomain.GetAssemblies();
+    public static readonly Assembly DbContext = typeof(ApplicationDbContext).Assembly;
 }

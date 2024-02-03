@@ -59,7 +59,7 @@ public sealed class ApplicationFactory<TProgram>
         Instance = _containers.Aggregate(this as WebApplicationFactory<TProgram>, (current, container) => current.WithWebHostBuilder(builder =>
         {
             if (container is PostgreSqlContainer dbContainer)
-                builder.UseSetting("ConnectionStrings:Db", dbContainer.GetConnectionString());
+                builder.UseSetting("ConnectionStrings:DefaultConnection", dbContainer.GetConnectionString());
         }));
     }
 

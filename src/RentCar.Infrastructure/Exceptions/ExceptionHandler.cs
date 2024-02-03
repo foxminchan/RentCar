@@ -2,6 +2,7 @@
 // Licensed under the MIT License
 
 using Ardalis.Result;
+using FluentValidation;
 using Microsoft.AspNetCore.Diagnostics;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
@@ -18,6 +19,9 @@ public sealed class ExceptionHandler(ILogger<ExceptionHandler> logger) : IExcept
 
         switch (exception)
         {
+            case ValidationException { Errors: { } } validationException:
+                await HandleValidationException(httpContext, validationException, cancellationToken);
+                break;
             case Ardalis.GuardClauses.NotFoundException notFoundException:
                 await HandleNotFoundException(httpContext, notFoundException, cancellationToken);
                 break;
@@ -31,6 +35,20 @@ public sealed class ExceptionHandler(ILogger<ExceptionHandler> logger) : IExcept
 
         return true;
     }
+
+    private static async Task HandleValidationException(
+        HttpContext httpContext, 
+        ValidationException validationException,
+        CancellationToken cancellationToken)
+    {
+        var validationErrorModel = Result.Invalid(validationException
+            .Errors
+            .Select(e => new ValidationError(e.ErrorMessage))
+            .ToList());
+        httpContext.Response.StatusCode = StatusCodes.Status400BadRequest;
+        await httpContext.Response.WriteAsJsonAsync(validationErrorModel, cancellationToken);
+    }
+
 
     private static async Task HandleNotFoundException(
         HttpContext httpContext,
@@ -61,7 +79,8 @@ public sealed class ExceptionHandler(ILogger<ExceptionHandler> logger) : IExcept
         {
             Status = StatusCodes.Status500InternalServerError,
             Title = "An error occurred while processing your request.",
-            Type = "https://tools.ietf.org/html/rfc7235#section-3.1"
+            Type = "https://tools.ietf.org/html/rfc7235#section-3.1",
+            Instance = httpContext.Request.Path
         };
         httpContext.Response.StatusCode = StatusCodes.Status500InternalServerError;
         await httpContext.Response.WriteAsJsonAsync(details, cancellationToken);
