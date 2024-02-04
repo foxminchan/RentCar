@@ -2,7 +2,6 @@
 // Licensed under the MIT License
 
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 using RentCar.Core.Entities;
 using RentCar.Core.Identity;
@@ -10,7 +9,7 @@ using RentCar.Core.Identity;
 namespace RentCar.Infrastructure.Data;
 
 public sealed class ApplicationDbContext(DbContextOptions<ApplicationDbContext> options)
-    : IdentityDbContext<ApplicationUser, IdentityRole<Guid>, Guid>(options), IDatabaseFacade
+    : IdentityDbContext<ApplicationUser, ApplicationRole, Guid>(options), IDatabaseFacade
 {
     public DbSet<Vehicle> Vehicles => Set<Vehicle>();
     public DbSet<Rental> Rentals => Set<Rental>();

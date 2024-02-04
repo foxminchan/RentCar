@@ -2,6 +2,7 @@
 // Licensed under the MIT License
 
 using System.Security.Claims;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Identity;
@@ -17,7 +18,9 @@ public static class Extension
 {
     public static void AddApplicationIdentity(this IServiceCollection services)
     {
-        services.AddAuthentication().AddBearerToken(IdentityConstants.BearerScheme);
+        services.AddAuthentication()
+            .AddBearerToken(IdentityConstants.BearerScheme)
+            .AddCookie(CookieAuthenticationDefaults.AuthenticationScheme);
 
         services.AddAuthorizationBuilder()
             .AddPolicy(Roles.Admin,
@@ -30,6 +33,7 @@ public static class Extension
                     .RequireClaim(ClaimTypes.Role, Claims.Create, Claims.Read));
 
         services.AddIdentityCore<ApplicationUser>()
+            .AddRoles<ApplicationRole>()
             .AddEntityFrameworkStores<ApplicationDbContext>()
             .AddApiEndpoints();
     }

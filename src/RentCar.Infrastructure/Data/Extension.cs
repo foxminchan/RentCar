@@ -26,7 +26,7 @@ public static class Extension
         services.AddScoped<IDbCommandInterceptor, TimingInterceptor>();
         services.AddScoped<ISaveChangesInterceptor, DispatchDomainEventsInterceptor>();
 
-        services.AddDbContextPool<ApplicationDbContext>(options =>
+        services.AddDbContextPool<ApplicationDbContext>((sp,options) =>
         {
             options.UseNpgsql(connectionString, sqlOptions =>
                 {
@@ -39,6 +39,9 @@ public static class Extension
                 .UseSnakeCaseNamingConvention()
                 .UseModel(ApplicationDbContextModel.Instance)
                 .UseQueryTrackingBehavior(QueryTrackingBehavior.NoTracking);
+
+            options.AddInterceptors(sp.GetServices<IDbCommandInterceptor>());
+            options.AddInterceptors(sp.GetServices<ISaveChangesInterceptor>());
 
             if (Environment.GetEnvironmentVariable("ASPNETCORE_ENVIRONMENT") == Environments.Development)
                 options
