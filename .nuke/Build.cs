@@ -115,7 +115,7 @@ public class Build : NukeBuild
                 .SetCollectCoverage(true)
                 .SetCoverletOutputFormat(CoverletOutputFormat.opencover)
                 .SetCoverletOutput(RootDirectory / CoverageFolderName / CoverageReportFile)
-                .SetExcludeByFile("**/Migrations/*.cs")
+                .SetExcludeByFile("**/Migrations/*.cs,**/CompliedModels/*.cs")
                 .SetNoRestore(true)
             )));
 

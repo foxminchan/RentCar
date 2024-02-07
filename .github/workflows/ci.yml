@@ -1,0 +1,102 @@
+name: ci
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    types: [opened, synchronize, reopened]
+    branches:
+      - main
+
+jobs:
+  lints:
+    name: ubuntu-latest
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+    defaults:
+      run:
+        shell: bash
+    concurrency:
+      group: ${{ github.workflow }}-${{ github.ref }}
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "latest"
+      - name: Set up pnpm
+        uses: pnpm/action-setup@v2
+        with:
+          version: "latest"
+          run_install: false
+      - name: Set up JDK
+        uses: actions/setup-java@v4
+        with:
+          java-version: 17
+          distribution: "microsoft"
+      - name: Get pnpm store directory
+        uses: pnpm/action-setup@v2
+        with:
+          version: "latest"
+          run_install: false
+      - name: Get pnpm store directory
+        shell: bash
+        run: echo "STORE_PATH=$(pnpm store path --silent)" >> $GITHUB_ENV
+      - uses: actions/cache@v3
+        name: Setup pnpm cache
+        with:
+          path: ${{ env.STORE_PATH }}
+          key: ${{ runner.os }}-pnpm-store-${{ hashFiles('**/pnpm-lock.yaml') }}
+          restore-keys: ${{ runner.os }}-pnpm-store-
+      - name: Cache SonarCloud packages
+        uses: actions/cache@v3
+        with:
+          path: ~\.sonar\cache
+          key: ${{ runner.os }}-sonar
+          restore-keys: ${{ runner.os }}-sonar
+      - name: Setup .NET
+        uses: actions/setup-dotnet@v3
+        with:
+          dotnet-version: 8.0.x
+      - name: Install SonarScanner
+        run: |
+          dotnet tool install --global dotnet-sonarscanner
+      - name: 'Cache: .nuke/temp, ~/.nuget/packages'
+        uses: actions/cache@v3
+        with:
+          path: |
+            .nuke/temp
+            ~/.nuget/packages
+          key: ${{ runner.os }}-${{ hashFiles('**/global.json', '**/*.csproj', '**/Directory.Packages.props') }}
+      - name: Install dependencies
+        run: pnpm install --frozen-lockfile
+      - name: Continuous Integration
+        run: |
+          dotnet-sonarscanner begin /k:"${{ env.PROJECT_KEY }}" \
+            /o:"${{ env.ORGANIZATION }}" \
+            /d:sonar.host.url="${{ env.SONAR_HOST_URL }}" \
+            /d:sonar.cs.opencover.reportsPaths=**/coverage.xml \
+            /d:sonar.scm.provider=git \
+            /d:sonar.projectBaseDir=${{ github.workspace }} \
+            /d:sonar.coverage.exclusions=**/Migrations/**,**/CompliedModels/** \
+            /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+          ./build.sh ci
+          dotnet-sonarscanner end /d:sonar.token="${{ secrets.SONAR_TOKEN }}"
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          file: ./coverage.xml
+          flags: unittests
+          name: codecov-umbrella
+          fail_ci_if_error: true
+    env:
+      PROJECT_KEY: "foxminchan_rentcar"
+      ORGANIZATION: "foxminchan"
+      SONAR_HOST_URL: "https://sonarcloud.io"
+      ASPNETCORE_ENVIRONMENT: "Development"
