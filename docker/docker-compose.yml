@@ -1,4 +1,5 @@
 version: "3.9"
+
 services:
   api:
     image: ghcr.io/foxminchan/rent-car-api:latest
@@ -6,8 +7,15 @@ services:
     environment:
       - ASPNETCORE_ENVIRONMENT=Development
       - ASPNETCORE_URLS=http://+:80
+    depends_on:
+      - db
     networks:
       - bridge-network
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:80/hc"]
+      interval: 10s
+      timeout: 5s
+      retries: 3
 
   db:
     image: postgres:latest
